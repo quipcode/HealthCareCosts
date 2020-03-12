@@ -32,7 +32,7 @@ class Main extends Component{
             <div>
             <Header/>
             <TransitionGroup>
-                <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
+                
                     <Switch>
                         {/* <Route path='/home' component={HomePage} /> */}
                         <Route path='/home' render={() => <Home healthcarecosts={this.props.healthcarecosts} />} />
@@ -43,7 +43,7 @@ class Main extends Component{
                         <Route exact path='/aboutus' render={() => <About partners={this.props.partners} />} /> */}
                         <Redirect to='/home' />
                     </Switch>
-                </CSSTransition>
+                
             </TransitionGroup>
             </div>
 
