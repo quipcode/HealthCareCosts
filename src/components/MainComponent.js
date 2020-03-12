@@ -1,0 +1,49 @@
+import React, { Component } from 'react';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import {connect} from 'react-redux';
+import Home from './HomeComponent'
+import {fetchHealthCareCosts} from '../redux/ActionCreators'
+
+const mapDispatchToProps = {
+    fetchHealthCareCosts: () => (fetchHealthCareCosts())
+}
+
+const mapStateToProps = state => {
+    return {
+        healthcarecosts: state.healthcarecosts
+    }
+}
+
+class Main extends Component{
+    componentDidMount(){
+        this.props.fetchHealthCareCosts()
+    }
+
+    render(){
+        const HomePage = ()=>{
+            return(
+                <Home healthcarecosts={this.props.healthcarecosts}/>
+            )
+        }
+        return(
+            
+            <TransitionGroup>
+                <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
+                    <Switch>
+                        {/* <Route path='/home' component={HomePage} /> */}
+                        <Route path='/home' render={() => <Home healthcarecosts={this.props.healthcarecosts} />} />
+                        {/* <Route exact path='/directory' render={() => <Directory campsites={this.props.campsites} />} />
+                        <Route path='/directory/:campsiteId' component={CampsiteWithId} />
+                        <Route exact path='/contactus' render={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} postFeedback={this.props.postFeedback} />} />
+                        <Route exact path='/aboutus' render={() => <About partners={this.props.partners} />} /> */}
+                        <Redirect to='/home' />
+                    </Switch>
+                </CSSTransition>
+            </TransitionGroup>
+
+        )
+    }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main))
