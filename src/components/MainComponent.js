@@ -4,6 +4,8 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import Home from './HomeComponent'
 import {fetchHealthCareCosts} from '../redux/ActionCreators'
+import Header from './HeaderComponent';
+import SearchResults from './SearchResults'
 
 const mapDispatchToProps = {
     fetchHealthCareCosts: () => (fetchHealthCareCosts())
@@ -27,12 +29,14 @@ class Main extends Component{
             )
         }
         return(
-            
+            <div>
+            <Header/>
             <TransitionGroup>
                 <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
                     <Switch>
                         {/* <Route path='/home' component={HomePage} /> */}
                         <Route path='/home' render={() => <Home healthcarecosts={this.props.healthcarecosts} />} />
+                        <Route path='/search' render={() => <SearchResults />} />
                         {/* <Route exact path='/directory' render={() => <Directory campsites={this.props.campsites} />} />
                         <Route path='/directory/:campsiteId' component={CampsiteWithId} />
                         <Route exact path='/contactus' render={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} postFeedback={this.props.postFeedback} />} />
@@ -41,6 +45,7 @@ class Main extends Component{
                     </Switch>
                 </CSSTransition>
             </TransitionGroup>
+            </div>
 
         )
     }

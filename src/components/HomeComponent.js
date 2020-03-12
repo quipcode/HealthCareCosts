@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from './HeaderComponent'
 
 function RenderHealthCareDataPoint({data}){
     return(
@@ -12,16 +13,6 @@ function RenderHealthCareDataPoint({data}){
     <p>Total Medicare Payment: {data['Total Medicare Payment']}</p>
     <p>Provider State:{data['Provider State']}</p>
     </div>
-
-
-    // "Average Medicare Payment": 39,
-    //   "Average Allowed Amount": 59,
-    //   "HCPCS Code": "69210",
-    //   "HCPCS Description": "Removal of impact ear wax",
-    //   "Services Covered by Medicare": "1,430",
-    //   "Total Allowed Amount": "84,220",
-    //   "Total Medicare Payment": "56,482",
-    //   "Provider State": "AK"
     )
 }
 
@@ -37,16 +28,15 @@ function Home(props){
                 <RenderHealthCareDataPoint data ={ element}/>
             </div>
         )
-        
     });
+
+    
     if(props.healthcarecosts){
-        return(
-            // {props.healthcarecosts.healthcarecosts[0]}
-            <div>
+        return(            
+            <div className="container">
             <h1>Hello there   </h1>
                 {data}
             </div>
-            
         )
     }
    
