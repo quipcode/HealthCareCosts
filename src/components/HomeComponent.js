@@ -133,6 +133,20 @@ const states = [
 
 ]
 
+const customStyles = {
+    option: (provided, state) => ({
+      ...provided,
+    //   borderBottom: '2px dotted green',
+    //   color: state.isSelected ? 'yellow' : 'black',
+    //   backgroundColor: state.isSelected ? 'green' : 'white'
+    }),
+    control: (provided) => ({
+      ...provided,
+    //   marginTop: "5%",
+    })
+  }
+
+
 function Home(props){
     // if(props.isLoading){
     //     return
@@ -164,7 +178,7 @@ function Home(props){
                     <h1>Select an operation and/or state</h1>
                     <div className="row selection-row">
                         <div className="col-md-8 selectionDropdown">
-                            <Select options={HCPCS_Operation} placeholder="Operation"  />
+                            <Select options={HCPCS_Operation} placeholder="Operation"   />
                         </div>
                         <div className="col-md-4 selectionDropdown" >
                             <Select options={states} placeholder="States" />

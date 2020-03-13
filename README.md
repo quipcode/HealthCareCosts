@@ -11,3 +11,5 @@ UI for app can be seen in this [figma](https://www.figma.com/file/qkWDbTNGseHbkc
 Logo for the app sourced from this article in [patient engagement hit](https://patientengagementhit.com/news/85-of-patients-concerned-about-healthcare-costs-quality) acutal [image url](https://patientengagementhit.com/images/site/article_headers/_normal/2018-healthcare-costs.jpg)
 
 Dropdown functionality supported by Select from react-select shoutout to this [blog post](https://alligator.io/react/react-select/)
+
+Full tutorial on react-select can be found [here](https://blog.logrocket.com/getting-started-with-react-select/)
