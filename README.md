@@ -7,3 +7,7 @@ Inspiration for this app comes from the good works of the folks at [ClearHealthC
 The data for this app comes from the Center for Medicare & Medicaid Services(CMS) from the [CMS site](https://www.cms.gov/Research-Statistics-Data-and-Systems/Research/HealthCareConInit/Physician) and at the time the project was started(3/11/20) only 25 selected procudures offered by phyicians by state in 2012 are included
 
 UI for app can be seen in this [figma](https://www.figma.com/file/qkWDbTNGseHbkcjrPSd2tF/HealthCareCosts?node-id=0%3A1)
+
+Logo for the app sourced from this article in [patient engagement hit](https://patientengagementhit.com/news/85-of-patients-concerned-about-healthcare-costs-quality) acutal [image url](https://patientengagementhit.com/images/site/article_headers/_normal/2018-healthcare-costs.jpg)
+
+Dropdown functionality supported by Select from react-select shoutout to this [blog post](https://alligator.io/react/react-select/)
