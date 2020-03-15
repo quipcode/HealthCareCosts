@@ -1,8 +1,15 @@
 import React, { Component } from "react";
-import { List, AutoSizer, Table, Column, MultiGrid} from "react-virtualized";
+import { List, AutoSizer, Table, Column, MultiGrid, ScrollSync} from "react-virtualized";
 import styles from './MultiGrid.example.css';
+import {Box} from 'rebass'
+import styled from 'styled-components'
 
 // const mydata = this.props.data
+
+const BigBox = styled(Box)`
+  min-height: 20rem;
+  max-width: 100vw;
+`;
 
 class SearchResults extends Component {
     constructor(props){
@@ -26,13 +33,7 @@ class SearchResults extends Component {
     )
   }
   
-   txt(n){
-    return this.state.bar[this.state.foo][n];
-}
 
- txt = (n) => {
-    return this.state.bar[this.state.foo][n];
-}
 cellRenderer = ({columnIndex, key, rowIndex, style}) => {
     
         if(rowIndex === 0){
@@ -75,62 +76,33 @@ cellRenderer = ({columnIndex, key, rowIndex, style}) => {
       console.log(this.state.colCount)
     return (
         <React.Fragment>
-        {/* <div style={{height:"100vh"}}>
-            <AutoSizer>
-            {
-                ({ width, height }) => {
-                return <List
-                    rowCount={this.props.data.length}
-                    width={width}
-                    height={height}
-                    rowHeight={50}
-                    rowRenderer={this.renderRow}
-                />
-                }
-            }
-            </AutoSizer>
-         </div> */}
+      
 
-        {/* <div style={{height:"100vh"}}>
-            <h2>Details</h2>
-            <Table
-            width={1000}
-            height={500}
-            headerHeight={20}
-            rowHeight={70}
-            rowCount={this.props.data.length}
-            rowGetter={({ index }) => this.props.data[index]}
-            >
-            <Column
-            label='name'
-            dataKey='name'
-            width={100}
-            />
-            
-            <Column
-            width={200}
-            label='Email'
-            dataKey='email'
-            />
-            </Table>
-        </div> */}
-
-        <div style={{height:"1vh"}}>
-            
-            <p>He there</p>
-            <MultiGrid
-                // cellRenderer={this.cellRenderer(this.props.data)}
-                // cellRenderer={({ index }) => this.props.data[index]}
-                cellRenderer={this.cellRenderer}
-                columnWidth={300}
-                columnCount={20}
-                fixedColumnCount={2}
-                fixedRowCount={1}
-                height={300}
-                rowHeight={110}
-                rowCount={this.state.mydatas.length}
-                width={1800}
-                />
+        <div style={{height:"1vh", width:"150vh"}}>
+        <p>He there</p>
+            <BigBox>
+                <ScrollSync>{scrolling =>(
+                    <AutoSizer>{({width, height})=>(
+                <Box position='relative'>
+                <MultiGrid
+                    // cellRenderer={this.cellRenderer(this.props.data)}
+                    // cellRenderer={({ index }) => this.props.data[index]}
+                    cellRenderer={this.cellRenderer}
+                    columnWidth={300}
+                    columnCount={20}
+                    fixedColumnCount={2}
+                    fixedRowCount={1}
+                    height={300}
+                    rowHeight={110}
+                    rowCount={this.state.mydatas.length}
+                    width={width }
+                    />
+                    </Box>
+                    )}
+                    </AutoSizer>
+                    )}
+                    </ScrollSync>
+                </BigBox>
         </div>
         </React.Fragment>
 
