@@ -35,10 +35,16 @@ const generateData = (count = 1000) => {
 }
 
 const data = generateData(10);
+// const data = 
 
 
 class Main extends Component{
-    
+    constructor(props){
+        super(props)
+        this.state = {
+            data: this.props.healthcarecosts
+        }
+    }
     componentDidMount(){
         this.props.fetchHealthCareCosts()
     }
@@ -57,7 +63,7 @@ class Main extends Component{
                     <Switch>
                         {/* <Route path='/home' component={HomePage} /> */}
                         <Route path='/home' render={() => <Home healthcarecosts={this.props.healthcarecosts} />} />
-                        <Route path='/search' render={() => <SearchResults data={data} />} />
+                        <Route path='/search' render={() => <SearchResults data={this.props.healthcarecosts} />} />
                         <Route path='/healthcarecosts' render={() => <HealthCareCosts healthcarecosts={this.props.healthcarecosts}/>} />
 
                         {/* <Route exact path='/directory' render={() => <Directory campsites={this.props.campsites} />} />

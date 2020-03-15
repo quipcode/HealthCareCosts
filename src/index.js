@@ -12,6 +12,7 @@ import 'font-awesome/css/font-awesome.css';
 import 'bootstrap-social/bootstrap-social.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/css/bootstrap.css";
+import 'react-virtualized/styles.css';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
