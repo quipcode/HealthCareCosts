@@ -43,8 +43,13 @@ class Header extends React.Component{
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/directory">
+                                    <NavLink className="nav-link" to="/healthcarecosts">
                                         <i className="fa fa-list fa-lg" /> HealthCare Costs
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink className="nav-link" to="/search">
+                                        <i className="fa fa-list fa-lg" /> Search
                                     </NavLink>
                                 </NavItem>
                              

@@ -6,6 +6,8 @@ import Home from './HomeComponent'
 import {fetchHealthCareCosts} from '../redux/ActionCreators'
 import Header from './HeaderComponent';
 import SearchResults from './SearchResults'
+import HealthCareCosts from './HealthCareCosts'
+// import faker from 'faker'
 
 const mapDispatchToProps = {
     fetchHealthCareCosts: () => (fetchHealthCareCosts())
@@ -17,7 +19,26 @@ const mapStateToProps = state => {
     }
 }
 
+const faker = require('faker');
+
+const generateData = (count = 1000) => {
+  let data = [];
+
+  for( let i = 0; i < count; i++) {
+    data.push({
+      name: faker.name.findName(),
+      email: faker.internet.email()
+    })
+  }
+
+  return data;
+}
+
+const data = generateData(1000);
+
+
 class Main extends Component{
+    
     componentDidMount(){
         this.props.fetchHealthCareCosts()
     }
@@ -36,7 +57,9 @@ class Main extends Component{
                     <Switch>
                         {/* <Route path='/home' component={HomePage} /> */}
                         <Route path='/home' render={() => <Home healthcarecosts={this.props.healthcarecosts} />} />
-                        <Route path='/search' render={() => <SearchResults />} />
+                        <Route path='/search' render={() => <SearchResults data={data} />} />
+                        <Route path='/healthcarecosts' render={() => <HealthCareCosts healthcarecosts={this.props.healthcarecosts}/>} />
+
                         {/* <Route exact path='/directory' render={() => <Directory campsites={this.props.campsites} />} />
                         <Route path='/directory/:campsiteId' component={CampsiteWithId} />
                         <Route exact path='/contactus' render={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} postFeedback={this.props.postFeedback} />} />
