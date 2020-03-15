@@ -10,7 +10,10 @@ class SearchResults extends Component {
         
         this.state = {
             mydatas: this.props.data,
-            bilbo: "g"
+            bilbo: "g",
+            colCount: (Object.keys(this.props.data[0])).length,
+            headers: Object.keys(this.props.data[0]),
+            counter: 0
         }
     }
     
@@ -31,14 +34,33 @@ class SearchResults extends Component {
     return this.state.bar[this.state.foo][n];
 }
 cellRenderer = ({columnIndex, key, rowIndex, style}) => {
-    return (
-      <div className={styles.Cell} key={key} style={style}>
-        {columnIndex}, {rowIndex}
-        {/* <p>Hi</p> */}
-        <p>{this. state.mydatas[rowIndex].name}</p>
-        <p> {this. state.mydatas[rowIndex].email}</p>
-      </div>
-    );
+    
+        if(rowIndex === 0){
+            if(this.state.counter <= this.state.headers.length){
+                {this.setState({
+                    counter: this.state.counter += 1
+                })}
+                return(
+                    <div className={styles.Cell} key={key} style={style}>
+                        {this.state.headers[this.state.counter - 1]}
+                       
+                    </div>
+                )
+            }
+            
+
+        }else{
+            return(
+                <div className={styles.Cell} key={key} style={style}>
+                {columnIndex}, {rowIndex}
+                {/* <p>Hi</p> */}
+                <p>{this. state.mydatas[rowIndex].name}</p>
+                <p> {this. state.mydatas[rowIndex].email}</p>
+              </div>
+            )
+        }
+     
+    
   }
   
 //   cellRenderer({columnIndex, key, rowIndex, style}) {
@@ -49,7 +71,8 @@ cellRenderer = ({columnIndex, key, rowIndex, style}) => {
 //     );
 //   }
   render() {
-      console.log(this.props.data)
+      console.log(this.props.data, )
+      console.log(this.state.colCount)
     return (
         <React.Fragment>
         {/* <div style={{height:"100vh"}}>
@@ -100,12 +123,12 @@ cellRenderer = ({columnIndex, key, rowIndex, style}) => {
                 // cellRenderer={({ index }) => this.props.data[index]}
                 cellRenderer={this.cellRenderer}
                 columnWidth={300}
-                columnCount={500}
+                columnCount={20}
                 fixedColumnCount={2}
                 fixedRowCount={1}
                 height={300}
                 rowHeight={110}
-                rowCount={100}
+                rowCount={this.state.mydatas.length}
                 width={1800}
                 />
         </div>

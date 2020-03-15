@@ -34,7 +34,7 @@ const generateData = (count = 1000) => {
   return data;
 }
 
-const data = generateData(1000);
+const data = generateData(10);
 
 
 class Main extends Component{
