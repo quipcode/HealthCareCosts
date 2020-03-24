@@ -11,6 +11,7 @@ import SearchRes from './SearchResults'
 import HealthCareCosts from './HealthCareCosts'
 import CustomizedTables from './SearchResults'
 import EnhancedTable from './SearchResults'
+import EnhancedTable2 from './Search2'
 
 // import faker from 'faker'
 
@@ -72,6 +73,7 @@ class Main extends Component{
                         {/* <Route path='/search' render={() => <SearchRes data={this.props.healthcarecosts} />} />
                         <Route path='/search' render={() => <CustomizedTables />} /> */}
                         <Route path='/search' render={() => <EnhancedTable />} />
+                        <Route path='/search2' render={() => <EnhancedTable2 hcCosts={this.props.healthcarecosts}/>} />
                         
                         <Route path='/healthcarecosts' render={() => <HealthCareCosts healthcarecosts={this.props.healthcarecosts}/>} />
 
