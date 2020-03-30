@@ -68,11 +68,11 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  { id: 'name', numeric: false, disablePadding: true, label: 'Dessert (100g serving)' },
-  { id: 'calories', numeric: true, disablePadding: false, label: 'Calories' },
-  { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
-  { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
-  { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
+  { id: 'name', numeric: false, disablePadding: true, label: 'Operation Name' },
+  { id: 'calories', numeric: true, disablePadding: false, label: 'Avg Medicare Payment' },
+  { id: 'fat', numeric: true, disablePadding: false, label: 'Avg Allowed Amount' },
+  { id: 'carbs', numeric: true, disablePadding: false, label: 'Provider State' },
+  { id: 'protein', numeric: true, disablePadding: false, label: 'Services Covered by Medicare' },
 ];
 
 function EnhancedTableHead(props) {
@@ -164,7 +164,7 @@ const EnhancedTableToolbar = props => {
         </Typography>
       ) : (
         <Typography className={classes.title} variant="h6" id="tableTitle">
-          Nutrition
+          Health Care Costs
         </Typography>
       )}
 
@@ -320,12 +320,12 @@ export default function EnhancedTable2({hcCosts}) {
                         />
                       </TableCell>
                       <TableCell component="th" id={labelId} scope="row" padding="none">
-                        {row.name}
+                        {row["HCPCS Description"]}
                       </TableCell>
-                      <TableCell align="right">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
+                      <TableCell align="right">{row["Average Medicare Payment"]}</TableCell>
+                      <TableCell align="right">{row["Average Allowed Amount"]}</TableCell>
+                      <TableCell align="right">{row["Provider State"]}</TableCell>
+                      <TableCell align="right">{row["Services Covered by Medicare"]}</TableCell>
                     </TableRow>
                   );
                 })}
