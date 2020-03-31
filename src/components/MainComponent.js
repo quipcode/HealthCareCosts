@@ -12,6 +12,8 @@ import HealthCareCosts from './HealthCareCosts'
 import CustomizedTables from './SearchResults'
 import EnhancedTable from './SearchResults'
 import EnhancedTable2 from './Search2'
+// import Editable from './search3'
+import MyTable from './search3'
 
 // import faker from 'faker'
 
@@ -74,6 +76,9 @@ class Main extends Component{
                         <Route path='/search' render={() => <CustomizedTables />} /> */}
                         <Route path='/search' render={() => <EnhancedTable />} />
                         <Route path='/search2' render={() => <EnhancedTable2 hcCosts={this.props.healthcarecosts}/>} />
+                        {/* <Route path='/search3' render={() => <Editable hcCosts={this.props.healthcarecosts} />} /> */}
+                        <Route path='/search3' render={() =>  <MyTable hcCosts={this.props.healthcarecosts} />} />
+                        
                         
                         <Route path='/healthcarecosts' render={() => <HealthCareCosts healthcarecosts={this.props.healthcarecosts}/>} />
 

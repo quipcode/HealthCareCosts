@@ -57,7 +57,11 @@ class Header extends React.Component{
                                         <i className="fa fa-list fa-lg" /> Search2
                                     </NavLink>
                                 </NavItem>
-                             
+                                <NavItem>
+                                    <NavLink className="nav-link" to="/search3">
+                                        <i className="fa fa-list fa-lg" /> Search3
+                                    </NavLink>
+                                </NavItem>
                             </Nav>
                             
                         </Collapse>
