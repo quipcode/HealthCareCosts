@@ -17,3 +17,5 @@ Full tutorial on react-select can be found [here](https://blog.logrocket.com/get
 Data table visualized via [react-visualized](https://bvaughn.github.io/react-virtualized) for a basic list tutorial see this [react_virtualized_basics repo](https://github.com/browniefed/react_virtualized_basics/tree/basicList) with associated [tutorial video](https://codedaily.io/tutorials/123/Create-an-Auto-Resizing-Virtualized-List-with-react-virtualized)
 
 To get a responsive grid I lifted from this [sandbox](https://codesandbox.io/s/q3z3n2mkq9)
+
+The table seen here is from the curtosy of the [material-table](https://github.com/mbrn/material-table) library

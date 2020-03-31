@@ -91,7 +91,7 @@ function MyTable(props){
               new Promise((resolve, reject) => {
                 setTimeout(() => {
                   {
-                    const data = this.state.data;
+                    const data = props.hcCosts.healthcarecosts;
                     data.push(newData);
                     this.setState({ data }, () => resolve());
                   }
