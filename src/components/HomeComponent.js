@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from './HeaderComponent'
 import Select from 'react-select';
 import {Button} from 'reactstrap';
 
@@ -18,32 +17,7 @@ function RenderHealthCareDataPoint({data}){
     )
 }
 
-const scaryAnimals = [
-    { label: "Alligators", value: 1 },
-    { label: "Crocodiles", value: 2 },
-    { label: "Sharks", value: 3 },
-    { label: "Small crocodiles", value: 4 },
-    { label: "Smallest crocodiles", value: 5 },
-    { label: "Snakes", value: 6 },
-  ];
 
-  const babyAnimals = [
-    { label: "Alligators", value: 1 },
-    { label: "Crocodiles", value: 2 },
-    { label: "Sharks", value: 3 },
-    { label: "Small crocodiles", value: 4 },
-    { label: "Smallest crocodiles", value: 5 },
-    { label: "Snakes", value: 6 },
-  ];
-
-  const cryAnimals = [
-    { label: "Alligators", value: 1 },
-    { label: "Crocodiles", value: 2 },
-    { label: "Sharks", value: 3 },
-    { label: "Small crocodiles", value: 4 },
-    { label: "Smallest crocodiles", value: 5 },
-    { label: "Snakes", value: 6 },
-  ];
 const HCPCS_Operation = [
         {label: "Removal of impact ear wax" , value:1 },
         {label: "Administration of 1 vaccine"   , value:2 },

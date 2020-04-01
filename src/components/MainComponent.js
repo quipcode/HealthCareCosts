@@ -5,15 +5,15 @@ import {connect} from 'react-redux';
 import Home from './HomeComponent'
 import {fetchHealthCareCosts} from '../redux/ActionCreators'
 import Header from './HeaderComponent';
-// import SearchResults from './SearchResults'
-import SearchResult from './SearchResults'
-import SearchRes from './SearchResults'
-import HealthCareCosts from './HealthCareCosts'
-import CustomizedTables from './SearchResults'
-import EnhancedTable from './SearchResults'
-import EnhancedTable2 from './Search2'
+import SubmissionForm from './SubmissionForm'
+import ContactForm from './ContactForm'
+
+
+
+
+
 // import Editable from './search3'
-import MyTable from './search3'
+import MyTable from './HealthCareCosts'
 
 // import faker from 'faker'
 
@@ -69,23 +69,18 @@ class Main extends Component{
             <TransitionGroup>
                 
                     <Switch>
-                        {/* <Route path='/home' component={HomePage} /> */}
+                       
                         <Route path='/home' render={() => <Home healthcarecosts={this.props.healthcarecosts} />} />
-                        {/* <Route path='/search' render={() => <SearchResults data={this.props.healthcarecosts} />} /> */}
-                        {/* <Route path='/search' render={() => <SearchRes data={this.props.healthcarecosts} />} />
-                        <Route path='/search' render={() => <CustomizedTables />} /> */}
-                        <Route path='/search' render={() => <EnhancedTable />} />
-                        <Route path='/search2' render={() => <EnhancedTable2 hcCosts={this.props.healthcarecosts}/>} />
-                        {/* <Route path='/search3' render={() => <Editable hcCosts={this.props.healthcarecosts} />} /> */}
-                        <Route path='/search3' render={() =>  <MyTable hcCosts={this.props.healthcarecosts} />} />
+                     
+                        
+                        <Route path='/submissionform' render={() =>  <SubmissionForm/>} />
+              
+                        <Route path='/healthcarecosts' render={() =>  <MyTable hcCosts={this.props.healthcarecosts} />} />
+                        <Route path='/contactus' render={() =>  <ContactForm/>} />
                         
                         
-                        <Route path='/healthcarecosts' render={() => <HealthCareCosts healthcarecosts={this.props.healthcarecosts}/>} />
 
-                        {/* <Route exact path='/directory' render={() => <Directory campsites={this.props.campsites} />} />
-                        <Route path='/directory/:campsiteId' component={CampsiteWithId} />
-                        <Route exact path='/contactus' render={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} postFeedback={this.props.postFeedback} />} />
-                        <Route exact path='/aboutus' render={() => <About partners={this.props.partners} />} /> */}
+ 
                         <Redirect to='/home' />
                     </Switch>
                 

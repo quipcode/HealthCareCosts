@@ -42,26 +42,26 @@ class Header extends React.Component{
                                         <i className="fa fa-home fa-lg" /> Home 
                                     </NavLink>
                                 </NavItem>
+                              
+                            
+                                
+                                <NavItem>
+                                    <NavLink className="nav-link" to="/submissionform">
+                                        <i className=" fa fa-pencil-square-o fa-lg" /> Submission Form
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink className="nav-link" to="/contactus">
+                                        <i className=" fa fa-address-card fa-lg" /> Contact Us
+                                    </NavLink>
+                                </NavItem>
                                 <NavItem>
                                     <NavLink className="nav-link" to="/healthcarecosts">
                                         <i className="fa fa-list fa-lg" /> HealthCare Costs
                                     </NavLink>
                                 </NavItem>
-                                <NavItem>
-                                    <NavLink className="nav-link" to="/search">
-                                        <i className="fa fa-list fa-lg" /> Search
-                                    </NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink className="nav-link" to="/search2">
-                                        <i className="fa fa-list fa-lg" /> Search2
-                                    </NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink className="nav-link" to="/search3">
-                                        <i className="fa fa-list fa-lg" /> Search3
-                                    </NavLink>
-                                </NavItem>
+
+                                
                             </Nav>
                             
                         </Collapse>
