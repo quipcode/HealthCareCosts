@@ -3,7 +3,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import Home from './HomeComponent'
-import {fetchHealthCareCosts} from '../redux/ActionCreators'
+import {fetchHealthCareCosts, fetchHCPCSOperations, fetchUSStates} from '../redux/ActionCreators'
 import Header from './HeaderComponent';
 import SubmissionForm from './SubmissionForm'
 import ContactForm from './ContactForm'
@@ -18,12 +18,16 @@ import MyTable from './HealthCareCosts'
 // import faker from 'faker'
 
 const mapDispatchToProps = {
-    fetchHealthCareCosts: () => (fetchHealthCareCosts())
+    fetchHealthCareCosts: () => (fetchHealthCareCosts()),
+    fetchHCPCSOperations: () => (fetchHCPCSOperations()),
+    fetchUSStates: () => (fetchUSStates())
 }
 
 const mapStateToProps = state => {
     return {
-        healthcarecosts: state.healthcarecosts
+        healthcarecosts: state.healthcarecosts,
+        usstates: state.usstates,
+        hcpcsoperation: state.hcpcsoperation
     }
 }
 
@@ -55,6 +59,8 @@ class Main extends Component{
     }
     componentDidMount(){
         this.props.fetchHealthCareCosts()
+        this.props.fetchHCPCSOperations()
+        this.props.fetchUSStates()
     }
 
     render(){

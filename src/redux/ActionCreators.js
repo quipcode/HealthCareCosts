@@ -41,9 +41,11 @@ export const addHealthCareCosts = healthcarecostdata => ({
 
 export const fetchHCPCSOperations = () => dispatch => {
     dispatch(HCPCSOperationLoading())
+    
     return fetch(baseUrl + 'HCPCS_Operation')
     .then(response => {
         if(response.ok){
+            
             return response
         }else{
             const error = new Error(`Error ${response.status}: ${response.statusText}`); 
@@ -57,7 +59,7 @@ export const fetchHCPCSOperations = () => dispatch => {
         }
     )
     .then(response=> response.json())
-    .then(HCPCSOperationdata => dispatch(addHCPCSOperations(HCPCSOperationdata)))
+    .then(hcpcsoperations => dispatch(addHCPCSOperations(hcpcsoperations)))
     .catch(error => dispatch(HCPCSOperationFailed(error.message)))
 
 }
@@ -72,9 +74,9 @@ export const HCPCSOperationFailed = errMess =>({
     payload: errMess
 })
 
-export const addHCPCSOperations = HCPCSOperationdata => ({
+export const addHCPCSOperations = hcpcsoperations => ({
     type: ActionTypes.ADD_HCPCSOPERATION,
-    payload: HCPCSOperationdata
+    payload: hcpcsoperations
 })
 
 export const fetchUSStates = () => dispatch => {
