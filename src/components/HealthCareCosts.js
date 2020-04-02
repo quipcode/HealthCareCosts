@@ -45,7 +45,7 @@ const myColumns =  [
     { title: 'Operation Name', field: 'HCPCS Description' },
     { title: 'Avg Medicare Payment', field: 'Average Medicare Payment', initialEditValue: 'initial edit value' },
     { title: 'Avg Allowed Amt', field: 'Average Allowed Amount', type: 'numeric' },
-    { title: 'Provider State', field: 'Provider State', initialEditValue: 'initial edit value' },
+    { title: 'Provider State', field: 'Provider State', initialEditValue: 'initial edit value', defaultFilter: 'AK' },
     { title: 'Services Covered by Medicare', field: 'Services Covered by Medicare', type: 'numeric' },
     {
       title: 'Birth Place',
@@ -87,17 +87,17 @@ function MyTable(props){
           columns={myColumns}
           data={props.hcCosts.healthcarecosts}
           editable={{
-            onRowAdd: newData =>
-              new Promise((resolve, reject) => {
-                setTimeout(() => {
-                  {
-                    const data = props.hcCosts.healthcarecosts;
-                    data.push(newData);
-                    this.setState({ data }, () => resolve());
-                  }
-                  resolve()
-                }, 1000)
-              })
+            // onRowAdd: newData =>
+            //   new Promise((resolve, reject) => {
+            //     setTimeout(() => {
+            //       {
+            //         const data = props.hcCosts.healthcarecosts;
+            //         data.push(newData);
+            //         this.setState({ data }, () => resolve());
+            //       }
+            //       resolve()
+            //     }, 1000)
+            //   })
 
           }}
           icons={tableIcons}
