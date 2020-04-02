@@ -12,7 +12,7 @@ export const ConfigureStore = () => {
         combineReducers({
             healthcarecosts: HealthCareCosts,
             usstates: USStates,
-            hcpcsoperation : HCPCSOperations,
+            hcpcsoperations : HCPCSOperations,
             ...createForms({
                 feedbackForm: InitialFeedback
             })
