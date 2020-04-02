@@ -62,12 +62,19 @@ class Home extends Component{
     
     }
 
-    handleChange = selectedOption => {
+      handleOperationChange = operation => {
+          this.setState(
+              {operation},
+              () => console.log(`state is:`, this.state)
+          )
+          
+      }
+      handleStateChange = state => {
         this.setState(
-          { selectedOption },
-          () => console.log(`Option selected:`, this.state.selectedOption)
-        );
-      };
+            {state},
+            () => console.log(`state is:`, this.state)
+        )        
+    }
     render(){
         return(            
                         <div className="app">
@@ -75,12 +82,12 @@ class Home extends Component{
                                 <h1>Select an operation and/or state</h1>
                                 <div className="row selection-row">
                                     <div className="col-md-8 selectionDropdown">
-                                        {/* <Select options={HCPCS_Operation} placeholder="Operation"   /> */}
-                                        <Select options={this.props.props.hcpcsoperations.hcpcsoperations} onChange={this.handleChange} placeholder="Operation"   />
+                                        
+                                        <Select options={this.props.props.hcpcsoperations.hcpcsoperations} onChange={this.handleOperationChange} placeholder="Operation"   />
                                     </div>
                                     <div className="col-md-4 selectionDropdown" >
-                                        {/* <Select options={states} placeholder="States" /> */}
-                                        <Select options={this.props.props.usstates.USStates} onChange={this.handleChange} placeholder="States" />
+                                        
+                                        <Select options={this.props.props.usstates.USStates} onChange={this.handleStateChange} placeholder="States" />
                                     </div>
                                     
                                 </div>
