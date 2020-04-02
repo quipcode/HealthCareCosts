@@ -2,21 +2,21 @@ import React, { Component } from 'react';
 import Select from 'react-select';
 import {Button} from 'reactstrap';
 // import {Redirect} from 'react-router-dom';
-import { BrowserRouter as Router, Route,Switch, Redirect, Link} from 'react-router-dom'
+import { BrowserRouter as  Redirect, Link} from 'react-router-dom'
 
 
-const customStyles = {
-    option: (provided, state) => ({
-      ...provided,
-    //   borderBottom: '2px dotted green',
-    //   color: state.isSelected ? 'yellow' : 'black',
-    //   backgroundColor: state.isSelected ? 'green' : 'white'
-    }),
-    control: (provided) => ({
-      ...provided,
-    //   marginTop: "5%",
-    })
-  }
+// const customStyles = {
+//     option: (provided, state) => ({
+//       ...provided,
+//     //   borderBottom: '2px dotted green',
+//     //   color: state.isSelected ? 'yellow' : 'black',
+//     //   backgroundColor: state.isSelected ? 'green' : 'white'
+//     }),
+//     control: (provided) => ({
+//       ...provided,
+//     //   marginTop: "5%",
+//     })
+//   }
 
 
 

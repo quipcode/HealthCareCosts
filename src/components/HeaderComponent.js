@@ -60,6 +60,11 @@ class Header extends React.Component{
                                         <i className="fa fa-list fa-lg" /> HealthCare Costs
                                     </NavLink>
                                 </NavItem>
+                                <NavItem>
+                                    <NavLink className="nav-link" to="/myprofile">
+                                        <i className="fa fa-user fa-lg" /> My Profile
+                                    </NavLink>
+                                </NavItem>
 
                                 
                             </Nav>

@@ -54,7 +54,39 @@ ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 //     lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
 //   },
 // ]
+let myColumns =  
+[
+  { title: 'Operation Name', field: 'HCPCS Description',  },
+  { title: 'Avg Medicare Payment', field: 'Average Medicare Payment', initialEditValue: 'initial edit value' },
+  { title: 'Avg Allowed Amt', field: 'Average Allowed Amount', type: 'numeric' },
+  { title: 'Provider State', field: 'Provider State', initialEditValue: 'initial edit value',  },
+  { title: 'Services Covered by Medicare', field: 'Services Covered by Medicare', type: 'numeric' },
+]
+function setColumns({props}){
+  
+  if(props.filterBy.operation.label && props.filterBy.state.label){
+      myColumns =  
+      [
+        { title: 'Operation Name', field: 'HCPCS Description', defaultFilter: `${props.filterBy.operation.label}` },
+        { title: 'Avg Medicare Payment', field: 'Average Medicare Payment', initialEditValue: 'initial edit value' },
+        { title: 'Avg Allowed Amt', field: 'Average Allowed Amount', type: 'numeric' },
+        { title: 'Provider State', field: 'Provider State', initialEditValue: 'initial edit value', defaultFilter: `${props.filterBy.state.label}` },
+        { title: 'Services Covered by Medicare', field: 'Services Covered by Medicare', type: 'numeric' },
+      ]
+  }else if(props.filterBy.operation.label && !props.filterBy.state.label){
+    myColumns =  
+    [
+      { title: 'Operation Name', field: 'HCPCS Description', defaultFilter: `${props.filterBy.operation.label}` },
+      { title: 'Avg Medicare Payment', field: 'Average Medicare Payment', initialEditValue: 'initial edit value' },
+      { title: 'Avg Allowed Amt', field: 'Average Allowed Amount', type: 'numeric' },
+      { title: 'Provider State', field: 'Provider State', initialEditValue: 'initial edit value', defaultFilter: null },
+      { title: 'Services Covered by Medicare', field: 'Services Covered by Medicare', type: 'numeric' },
+    ]
+  }
+  
+}
 
+// setColumns({props})
 function MyTable(props){
     console.log("props", props)
     if(props.hcCosts.isLoading){
@@ -79,15 +111,29 @@ function MyTable(props){
             
         )
     }
-
-    const myColumns =  
-      [
-        { title: 'Operation Name', field: 'HCPCS Description', defaultFilter: `${props.filterBy.operation.label}` },
-        { title: 'Avg Medicare Payment', field: 'Average Medicare Payment', initialEditValue: 'initial edit value' },
-        { title: 'Avg Allowed Amt', field: 'Average Allowed Amount', type: 'numeric' },
-        { title: 'Provider State', field: 'Provider State', initialEditValue: 'initial edit value', defaultFilter: `${props.filterBy.state.label}` },
-        { title: 'Services Covered by Medicare', field: 'Services Covered by Medicare', type: 'numeric' },
-      ]
+    
+      if( !props.filterBy.operation && !props.filterBy.state){
+        myColumns =  
+        [
+          { title: 'Operation Name', field: 'HCPCS Description', defaultFilter: `${props.filterBy.operation.label}` },
+          { title: 'Avg Medicare Payment', field: 'Average Medicare Payment', initialEditValue: 'initial edit value' },
+          { title: 'Avg Allowed Amt', field: 'Average Allowed Amount', type: 'numeric' },
+          { title: 'Provider State', field: 'Provider State', initialEditValue: 'initial edit value', defaultFilter: `${props.filterBy.state.label}` },
+          { title: 'Services Covered by Medicare', field: 'Services Covered by Medicare', type: 'numeric' },
+        ]
+      }else if(!props.filterBy.operation.label && props.filterBy.state.label){
+        myColumns =  
+        [
+          { title: 'Operation Name', field: 'HCPCS Description' },
+          { title: 'Avg Medicare Payment', field: 'Average Medicare Payment', initialEditValue: 'initial edit value' },
+          { title: 'Avg Allowed Amt', field: 'Average Allowed Amount', type: 'numeric' },
+          { title: 'Provider State', field: 'Provider State', initialEditValue: 'initial edit value', defaultFilter: `${props.filterBy.state.label}` },
+          { title: 'Services Covered by Medicare', field: 'Services Covered by Medicare', type: 'numeric' },
+        ]
+      }
+    
+    
+        
      
     return(
         <MaterialTable

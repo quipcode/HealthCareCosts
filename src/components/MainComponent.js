@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { TransitionGroup } from 'react-transition-group';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import Home from './HomeComponent'
@@ -7,7 +7,7 @@ import {fetchHealthCareCosts, fetchHCPCSOperations, fetchUSStates} from '../redu
 import Header from './HeaderComponent';
 import SubmissionForm from './SubmissionForm'
 import ContactForm from './ContactForm'
-
+import MyProfilePage from './MyProfilePage'
 
 
 
@@ -31,22 +31,10 @@ const mapStateToProps = state => {
     }
 }
 
-const faker = require('faker');
 
-const generateData = (count = 1000) => {
-  let data = [];
 
-  for( let i = 0; i < count; i++) {
-    data.push({
-      name: faker.name.findName(),
-      email: faker.internet.email()
-    })
-  }
 
-  return data;
-}
 
-const data = generateData(10);
 // const data = 
 
 
@@ -64,11 +52,7 @@ class Main extends Component{
     }
 
     render(){
-        const HomePage = ()=>{
-            return(
-                <Home healthcarecosts={this.props.healthcarecosts}/>
-            )
-        }
+        
         //passes in what users selected to filter by on home page
         const MyTableComp = ({location}) => {
             return(
@@ -90,7 +74,7 @@ class Main extends Component{
                         {/* <Route path='/healthcarecosts' render={() =>  <MyTable hcCosts={this.props.healthcarecosts} />} /> */}
                         <Route path='/healthcarecosts' component={MyTableComp}  />
                         <Route path='/contactus' render={() =>  <ContactForm/>} />
-                        
+                        <Route path='/myprofile' component={MyProfilePage}/>
                         
 
  
