@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import MaterialTable from 'material-table'
 // import {Promise} from 'react-promise'
 import {Loading} from './Loading'
@@ -41,19 +41,19 @@ ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
 ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-const myColumns =  [
-    { title: 'Operation Name', field: 'HCPCS Description' },
-    { title: 'Avg Medicare Payment', field: 'Average Medicare Payment', initialEditValue: 'initial edit value' },
-    { title: 'Avg Allowed Amt', field: 'Average Allowed Amount', type: 'numeric' },
-    { title: 'Provider State', field: 'Provider State', initialEditValue: 'initial edit value', defaultFilter: 'AK' },
-    { title: 'Services Covered by Medicare', field: 'Services Covered by Medicare', type: 'numeric' },
-    {
-      title: 'Birth Place',
-      field: 'birthCity',
-      lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-    },
-  ]
 
+// const myColumns =  [
+//   { title: 'Operation Name', field: 'HCPCS Description' },
+//   { title: 'Avg Medicare Payment', field: 'Average Medicare Payment', initialEditValue: 'initial edit value' },
+//   { title: 'Avg Allowed Amt', field: 'Average Allowed Amount', type: 'numeric' },
+//   { title: 'Provider State', field: 'Provider State', initialEditValue: 'initial edit value', defaultFilter: "" },
+//   { title: 'Services Covered by Medicare', field: 'Services Covered by Medicare', type: 'numeric' },
+//   {
+//     title: 'Birth Place',
+//     field: 'birthCity',
+//     lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
+//   },
+// ]
 
 function MyTable(props){
     console.log("props", props)
@@ -79,7 +79,15 @@ function MyTable(props){
             
         )
     }
-    
+
+    const myColumns =  
+      [
+        { title: 'Operation Name', field: 'HCPCS Description', defaultFilter: `${props.filterBy.operation.label}` },
+        { title: 'Avg Medicare Payment', field: 'Average Medicare Payment', initialEditValue: 'initial edit value' },
+        { title: 'Avg Allowed Amt', field: 'Average Allowed Amount', type: 'numeric' },
+        { title: 'Provider State', field: 'Provider State', initialEditValue: 'initial edit value', defaultFilter: `${props.filterBy.state.label}` },
+        { title: 'Services Covered by Medicare', field: 'Services Covered by Medicare', type: 'numeric' },
+      ]
      
     return(
         <MaterialTable
@@ -107,6 +115,52 @@ function MyTable(props){
 
     )
 }
+
+// class HealthCareCostTable extends Component{
+//   constructor(props){
+//     super(props);
+
+//     this.state = {
+//       myColumns: [
+//         { title: 'Operation Name', field: 'HCPCS Description' },
+//         { title: 'Avg Medicare Payment', field: 'Average Medicare Payment', initialEditValue: 'initial edit value' },
+//         { title: 'Avg Allowed Amt', field: 'Average Allowed Amount', type: 'numeric' },
+//         { title: 'Provider State', field: 'Provider State', initialEditValue: 'initial edit value', defaultFilter: `${props.filterBy}` },
+//         { title: 'Services Covered by Medicare', field: 'Services Covered by Medicare', type: 'numeric' },
+//       ]
+//     }
+
+//   }
+
+//   render(){
+//     return(
+//       <MaterialTable
+//       title="HealthCare Costs"
+//       columns={this.state.myColumns}
+//       data={props.hcCosts.healthcarecosts}
+//       editable={{
+//         onRowAdd: newData =>
+//           new Promise((resolve, reject) => {
+//             setTimeout(() => {
+//               {
+//                 const data = props.hcCosts.healthcarecosts;
+//                 data.push(newData);
+//                 this.setState({ data }, () => resolve());
+//               }
+//               resolve()
+//             }, 1000)
+//           })
+
+//       }}
+//       icons={tableIcons}
+//       options={{filtering: true}}
+      
+//     />
+
+//     )
+//   }
+ 
+// }
 
 // class Editable extends React.Component {
 //     constructor(props) {
