@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
 import {Button} from 'reactstrap';
+// import {Redirect} from 'react-router-dom';
+import { BrowserRouter as Router, Route,Switch, Redirect, Link} from 'react-router-dom'
 
 
 const customStyles = {
@@ -46,8 +48,8 @@ class Home extends Component{
     constructor(props){
         super(props);
         this.state = {
-            operation: '',
-            state: '',
+            operation: null,
+            state: null,
             selectedOption: null
 
         }
@@ -69,33 +71,44 @@ class Home extends Component{
           )
           
       }
-      handleStateChange = state => {
-        this.setState(
-            {state},
-            () => console.log(`state is:`, this.state)
-        )        
-    }
-    render(){
-        return(            
-                        <div className="app">
-                            <div className="container selection-grid ">
-                                <h1>Select an operation and/or state</h1>
-                                <div className="row selection-row">
-                                    <div className="col-md-8 selectionDropdown">
-                                        
-                                        <Select options={this.props.props.hcpcsoperations.hcpcsoperations} onChange={this.handleOperationChange} placeholder="Operation"   />
-                                    </div>
-                                    <div className="col-md-4 selectionDropdown" >
-                                        
-                                        <Select options={this.props.props.usstates.USStates} onChange={this.handleStateChange} placeholder="States" />
-                                    </div>
-                                    
-                                </div>
-                              <Button id="searchBtn" onClick={() => window.alert("button clicked")}>Search</Button>
-                            </div>
-                        </div>
-                    )
+    handleStateChange = state => {
+    this.setState(
+        {state},
+        () => console.log(`state is:`, this.state))        
     }
 
+    onSubmit = () => {
+        // if(userFound){
+            return  <Redirect  to="/healthcarecosts" />     
+     }
+    
+    
+    render(){
+        return(            
+            <div className="app">
+                <div className="container selection-grid ">
+                    <h1>Select an operation and/or state</h1>
+                    <div className="row selection-row">
+                        <div className="col-md-8 selectionDropdown">
+                            <Select options={this.props.props.hcpcsoperations.hcpcsoperations} onChange={this.handleOperationChange} placeholder="Operation"   />
+                        </div>
+                        <div className="col-md-4 selectionDropdown" >
+                            <Select options={this.props.props.usstates.USStates} onChange={this.handleStateChange} placeholder="States" />
+                        </div>
+                    </div>
+                    <Link to={{
+                        pathname: '/healthcarecosts',
+                        operationstateProps: {
+                            operation: this.state.operation,
+                            state: this.state.state
+                        }
+                    }}>
+                    <Button id="searchBtn" onClick={this.try}>Search</Button>
+                    </Link>
+                 
+                </div>
+            </div>
+        )
+    }
 }
 export default Home

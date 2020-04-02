@@ -56,7 +56,7 @@ const myColumns =  [
 
 
 function MyTable(props){
-    console.log(props.hcCosts)
+    console.log("props", props)
     if(props.hcCosts.isLoading){
         return(
             <div className="container">
@@ -87,17 +87,17 @@ function MyTable(props){
           columns={myColumns}
           data={props.hcCosts.healthcarecosts}
           editable={{
-            // onRowAdd: newData =>
-            //   new Promise((resolve, reject) => {
-            //     setTimeout(() => {
-            //       {
-            //         const data = props.hcCosts.healthcarecosts;
-            //         data.push(newData);
-            //         this.setState({ data }, () => resolve());
-            //       }
-            //       resolve()
-            //     }, 1000)
-            //   })
+            onRowAdd: newData =>
+              new Promise((resolve, reject) => {
+                setTimeout(() => {
+                  {
+                    const data = props.hcCosts.healthcarecosts;
+                    data.push(newData);
+                    this.setState({ data }, () => resolve());
+                  }
+                  resolve()
+                }, 1000)
+              })
 
           }}
           icons={tableIcons}

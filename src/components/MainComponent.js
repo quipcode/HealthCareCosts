@@ -69,6 +69,12 @@ class Main extends Component{
                 <Home healthcarecosts={this.props.healthcarecosts}/>
             )
         }
+        //passes in what users selected to filter by on home page
+        const MyTableComp = ({location}) => {
+            return(
+                <MyTable hcCosts={this.props.healthcarecosts} filterBy={location.operationstateProps} />
+            )
+        }
         return(
             <div>
             <Header/>
@@ -81,7 +87,8 @@ class Main extends Component{
                         <Route path='/home' render={() => <Home props={this.props} />} />
                         <Route path='/submissionform' render={() =>  <SubmissionForm/>} />
               
-                        <Route path='/healthcarecosts' render={() =>  <MyTable hcCosts={this.props.healthcarecosts} />} />
+                        {/* <Route path='/healthcarecosts' render={() =>  <MyTable hcCosts={this.props.healthcarecosts} />} /> */}
+                        <Route path='/healthcarecosts' component={MyTableComp}  />
                         <Route path='/contactus' render={() =>  <ContactForm/>} />
                         
                         
