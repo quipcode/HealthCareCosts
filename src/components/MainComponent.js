@@ -76,9 +76,9 @@ class Main extends Component{
                 
                     <Switch>
                        
-                        <Route path='/home' render={() => <Home healthcarecosts={this.props.healthcarecosts} />} />
+                        {/* <Route path='/home' render={() => <Home healthcarecosts={this.props.healthcarecosts} />} /> */}
                      
-                        
+                        <Route path='/home' render={() => <Home props={this.props} />} />
                         <Route path='/submissionform' render={() =>  <SubmissionForm/>} />
               
                         <Route path='/healthcarecosts' render={() =>  <MyTable hcCosts={this.props.healthcarecosts} />} />

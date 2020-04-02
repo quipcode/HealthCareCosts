@@ -139,8 +139,8 @@ function Home(props){
     //     )
     // });
 
-    
-    if(props.healthcarecosts){
+    if(props.props.hcpcsoperation){
+    // if(props.healthcarecosts){
         return(            
             // <div className="container">
             //     <div className="row">
@@ -156,10 +156,12 @@ function Home(props){
                     <h1>Select an operation and/or state</h1>
                     <div className="row selection-row">
                         <div className="col-md-8 selectionDropdown">
-                            <Select options={HCPCS_Operation} placeholder="Operation"   />
+                            {/* <Select options={HCPCS_Operation} placeholder="Operation"   /> */}
+                            <Select options={props.props.hcpcsoperation.hcpcsoperations} placeholder="Operation"   />
                         </div>
                         <div className="col-md-4 selectionDropdown" >
-                            <Select options={states} placeholder="States" />
+                            {/* <Select options={states} placeholder="States" /> */}
+                            <Select options={props.props.usstates.USStates} placeholder="States" />
                         </div>
                         
                     </div>
