@@ -101,6 +101,7 @@ function MyTable(props){
 
           }}
           icons={tableIcons}
+          options={{filtering: true}}
           
         />
 
