@@ -6,7 +6,7 @@ const passport = require('passport');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', authenticate.verifyAdmin, authenticate.verifyUser,function (req, res, next) {
+router.get('/', authenticate.verifyUser,  authenticate.verifyAdmin, function (req, res, next) {
   User.find()
     .then(users => {
       res.statusCode = 200;
