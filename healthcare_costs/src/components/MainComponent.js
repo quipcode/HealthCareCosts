@@ -4,7 +4,7 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import { actions } from 'react-redux-form';
 import Home from './HomeComponent'
-
+import Login from './Login/Login'
 import {fetchHealthCareCosts, fetchHCPCSOperations, fetchUSStates} from '../redux/ActionCreators'
 import Header from './HeaderComponent';
 import SubmissionForm from './SubmissionForm'
@@ -78,6 +78,7 @@ class Main extends Component{
                         <Route path='/healthcarecosts' component={MyTableComp}  />
                         <Route path='/contactus' render={() =>  <ContactForm/>} />
                         <Route path='/myprofile' component={MyProfilePage}/>
+                        <Route path='/login' render={() =>  <Login/>} />
                         
 
  
