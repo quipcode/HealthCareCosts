@@ -18,3 +18,7 @@ export const HealthCareCosts = {
     TotalMedicarePayment: "",
     ProviderState : "Select"
 }
+export const LoginForm = {
+    email: '',
+    password: ''
+}
