@@ -15,9 +15,16 @@ const userSchema = new Schema({
     admin: {
         type: Boolean,
         default: false
+    },
+    email: {
+        type: String,
+        default: ""
     }
 });
 
-userSchema.plugin(passportLocalMongoose);
+//this didn't work
+// userSchema.plugin(passportLocalMongoose, {usernameQueryFields: ['email']});
+
+userSchema.plugin(passportLocalMongoose, {usernameField: 'email'});
 
 module.exports = mongoose.model('User', userSchema);

@@ -20,9 +20,12 @@ class Login extends Component{
        this.handleSubmit = this.handleSubmit.bind(this) 
     }
 
-    handleSubmit(event) {
-        alert('A name was submitted: ' + this.state.value);
-        event.preventDefault();
+    handleSubmit(values) {
+        console.log('Current state is: ' + JSON.stringify(values));
+        alert('Current state is: ' + JSON.stringify(values));
+        // console.log(values)
+        // alert('A name was submitted: ' + this.state.value);
+        // event.preventDefault();
     }
 
     render(){
@@ -68,39 +71,72 @@ class Login extends Component{
                             <div class="card-body">
                                 <h5 class="card-title text-center">Sign In</h5>
                                 <Form model="loginForm" className="form-signin" onSubmit={values => this.handleSubmit(values)}>
-                                <Col>
-                                        <FormGroup className="form-group ">
-                                        <Label>Email</Label>
-                                        <Input className="inputter"
-                                            type="email"
-                                            name="email"
-                                            id="exampleEmail"
-                                            placeholder="myemail@email.com"
-                                        />
-                                        </FormGroup>
-                                    </Col>
+
                                     <Col>
-                                        <FormGroup className="form-group ">
-                                        <Label className="labeler" for="examplePassword">Password</Label>
-                                        <Input className="inputter"
-                                            type="password"
-                                            name="password"
-                                            id="examplePassword"
-                                            placeholder="********"
-                                        />
+                                        <FormGroup className="form-group">
+                                            <Label>Email</Label>
+                                            <Control.text 
+                                                model=".email" 
+                                                id="email" 
+                                                name="email"
+                                                placeholder="Email"
+                                                className="form-control inputter"
+                                                validators={{
+                                                    required,
+                                                    validEmail
+                                                }}
+                                            />
+                                            <Errors
+                                                className="text-danger"
+                                                model=".email"
+                                                show="touched"
+                                                component="div"
+                                                messages={{
+                                                    required: 'Required',
+                                                    validEmail: 'Invalid email address'
+                                                }}
+                                            />
                                         </FormGroup>
                                     </Col>
+
+                                    <Col>
+                                        <FormGroup className="form-group">
+                                            <Label className="labeler" for="examplePassword">Password</Label>
+                                            <Control.text 
+                                                type="password"
+                                                model=".password" 
+                                                id="password" 
+                                                name="password"
+                                                placeholder="password"
+                                                className="form-control inputter"
+                                                validators={{
+                                                    required,
+                                                }}
+                                            />
+                                            <Errors
+                                                className="text-danger"
+                                                model=".password"
+                                                show="touched"
+                                                component="div"
+                                                messages={{
+                                                    required: 'Required',
+                                                }}
+                                            />
+                                            
+                                        </FormGroup>
+                                    </Col>
+
                                     <Button type="submit" color="primary">Submit</Button>
                                 </Form>
+
                                 <hr class="my-4"/>
+                                
                                 <div className="row">
-                                    
                                     <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
-                                    </div>
+                                </div>
                                     <hr class="my-4"/>
-                                <div className="row form-label-group">
-                                    
-                                    
+                                
+                                <div className="row ">                                   
                                     <p id="signUpTxt">Don't have an account? Sign up here!</p>
                                     <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign up</button>
                                 </div>
