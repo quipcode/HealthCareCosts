@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Control, Form, Errors,   } from 'react-redux-form';
 import {  Button, Label, Col, Row, FormGroup, Input,Text} from 'reactstrap'
-import "./login.css"
+import styles from "./login.css"
 
 const required = val => val && val.length;
 const maxLength = len => val => !val || (val.length <= len);
@@ -66,7 +66,7 @@ class Login extends Component{
 
             <div className="container">
                 <div className="row">
-                    <div class="col-sm-12 col-md-12 col-lg-12 mx-auto">
+                    <div class="col-xs-8 col-sm-12 col-md-12 col-lg-12">
                         <div class="card card-signin my-5">
                             <div class="card-body">
                                 <h5 class="card-title text-center">Sign In</h5>
