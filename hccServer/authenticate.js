@@ -43,6 +43,22 @@ exports.jwtPassport = passport.use(
     )
 );
 
+// exports.jwtPassport = passport => {
+//     passport.use(
+//         new JwtStrategy(opts, (jwt_payload, done) => {
+//             console.log('JWT payload:', jwt_payload);
+//             User.findById(jwt_payload.id)
+//                 .then(user => {
+//                     if (user) return done(null, user);
+//                     return done(null, false);
+//                 })
+//                 .catch(err => {
+//                     return done(err, false, {message: 'Server Error'});
+//                 });
+//         })
+//     );
+// };
+
 exports.verifyUser = passport.authenticate('jwt', { session: false });
 
 exports.local = passport.use(new LocalStrategy(User.authenticate()));
