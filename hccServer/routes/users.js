@@ -131,17 +131,23 @@ userRouter.route('/:username')
         if(user){
           
           if(user.username == req.user.username ||  req.user.admin  ){
+            console.log('body is', req.params.username)
+            User.findOneAndUpdate({username : req.params.username}, {
+              $set : req.body
+            }, (err, result) => {
+              if(err){
+                res.send(err)
+              }else{
+                res.send(result)
+              }
+            })
+              .catch(err => next(err));
+          }else{
             console.log(user.username, req.params.username, req.user, user)
             const err = new Error(`You are not authorized to update this record ${user} !`);
             err.status = 403;
             return next(err);
-          }else{
-            console.log("don't touch bond")
           }
-          User.findByIdAndUpdate(req.params.username, {
-            $set : req.body
-          }, {new: true})
-            .catch(err => next(err));
         }else{
           const err = new Error(`User with username ${req.params.username} not found`);
           err.status = 404;
