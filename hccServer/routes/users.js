@@ -134,7 +134,7 @@ userRouter.route('/:username')
             console.log('body is', req.params.username)
             User.findOneAndUpdate({username : req.params.username}, {
               $set : req.body
-            }, (err, result) => {
+            }, {new: true}, (err, result) => {
               if(err){
                 res.send(err)
               }else{
