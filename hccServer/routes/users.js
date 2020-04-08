@@ -12,7 +12,7 @@ const userRouter = express.Router();
 userRouter.use(bodyParser.json());
 
 /* GET users listing. */
-userRouter.get('/', authenticate.verifyUser, authenticate.verifyAdmin,function (req, res, next) {
+userRouter.get('/',function (req, res, next) {
   User.find()
     .then(users => {
       res.statusCode = 200;
@@ -112,7 +112,8 @@ userRouter.get('/logout', (req, res, next) => {
 
 userRouter.route('/:username')
   .get((req,res,next) => {
-    User.findById(req.params.username)
+    // User.findById(req.params.username)
+    User.findOne({"username": req.params.username})
       .then(user => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
@@ -120,14 +121,32 @@ userRouter.route('/:username')
       })
       .catch(err => next(err))
   })
-  .put((req, res, next) => {
-    User.findByIdAndUpdate(req.params.username, {
-      $set : req.body
-    }, {new: true})
+  .put(authenticate.verifyUser, (req, res, next) => {
+    User.findOne({"username": req.params.username})
+    
+    // User.findByIdAndUpdate(req.params.username, {
+    //   $set : req.body
+    // }, {new: true})
       .then(user => {
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'application/json');
-        res.json(user);
+        if(user){
+          
+          if(user.username == req.user.username ||  req.user.admin  ){
+            console.log(user.username, req.params.username, req.user, user)
+            const err = new Error(`You are not authorized to update this record ${user} !`);
+            err.status = 403;
+            return next(err);
+          }else{
+            console.log("don't touch bond")
+          }
+          User.findByIdAndUpdate(req.params.username, {
+            $set : req.body
+          }, {new: true})
+            .catch(err => next(err));
+        }else{
+          const err = new Error(`User with username ${req.params.username} not found`);
+          err.status = 404;
+          return next(err);
+        }
       })
       .catch(err => next(err));
   })
