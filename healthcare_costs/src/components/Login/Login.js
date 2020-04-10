@@ -21,8 +21,9 @@ class Login extends Component{
     }
 
     handleSubmit(values) {
-        console.log('Current state is: ' + JSON.stringify(values));
+        console.log('Current state is: ' + JSON.stringify(values), this.props);
         alert('Current state is: ' + JSON.stringify(values));
+        this.props.postLogin(values)
         // console.log(values)
         // alert('A name was submitted: ' + this.state.value);
         // event.preventDefault();
@@ -81,10 +82,10 @@ class Login extends Component{
                                                 name="email"
                                                 placeholder="Email"
                                                 className="form-control inputter"
-                                                // validators={{
-                                                //     required,
-                                                //     validEmail
-                                                // }}
+                                                validators={{
+                                                    required,
+                                                    validEmail
+                                                }}
                                             />
                                             <Errors
                                                 className="text-danger"

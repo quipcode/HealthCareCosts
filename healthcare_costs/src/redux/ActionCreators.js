@@ -1,5 +1,6 @@
 import * as ActionTypes from './ActionTypes'
 import {baseUrl} from '../shared/baseUrl'
+import {serverUrl} from '../shared/serverUrl'
 
 export const fetchHealthCareCosts = () => dispatch => {
     dispatch(healthCareCostsLoading())
@@ -150,3 +151,31 @@ export const postFeedback = (theFeedback)  => {
             alert('We were unable to submit your feedback \nError: ' + error.message);
         });
 };
+
+export const postLogin = (theCredentials) => {
+    const newLogin = theCredentials
+    return fetch(serverUrl + 'users/login',{
+        method: "POST",
+        body: JSON.stringify(newLogin),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+     .then(res => {
+         if(res.ok){
+             alert("You've been logged")
+             return res
+         }else{
+             const error = new Error(`Error ${res.status}: ${res.statusText}`);
+             error.response = res
+             throw error;
+         }
+     },
+        error => {throw error;}
+     )
+      .then(res => res.json())
+      .catch(error => {
+        console.log('post comment', error.message);
+        alert('We were unable to log you in \nError: ' + error.message);
+      })
+}

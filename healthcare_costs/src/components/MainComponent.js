@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import { actions } from 'react-redux-form';
 import Home from './HomeComponent'
 import Login from './Login/Login'
-import {fetchHealthCareCosts, fetchHCPCSOperations, fetchUSStates} from '../redux/ActionCreators'
+import {fetchHealthCareCosts, fetchHCPCSOperations, fetchUSStates, postLogin} from '../redux/ActionCreators'
 import Header from './HeaderComponent';
 import SubmissionForm from './SubmissionForm'
 import ContactForm from './ContactForm'
@@ -24,6 +24,7 @@ const mapDispatchToProps = {
     fetchHCPCSOperations: () => (fetchHCPCSOperations()),
     fetchUSStates: () => (fetchUSStates()),
     resetFeedbackForm: () => (actions.reset('feedbackForm')),
+    postLogin: login => (postLogin(login)),
 }
 
 const mapStateToProps = state => {
@@ -78,7 +79,7 @@ class Main extends Component{
                         <Route path='/healthcarecosts' component={MyTableComp}  />
                         <Route path='/contactus' render={() =>  <ContactForm/>} />
                         <Route path='/myprofile' component={MyProfilePage}/>
-                        <Route path='/login' render={() =>  <Login/>} />
+                        <Route path='/login' render={() =>  <Login postLogin={this.props.postLogin}/>} />
                         
 
  
