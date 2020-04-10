@@ -61,11 +61,11 @@ exports.jwtPassport = passport.use(
 
 exports.verifyUser = passport.authenticate('jwt', { session: false });
 
-// exports.local = passport.use(new LocalStrategy(User.authenticate()));
-// exports.local = passport.use(new LocalStrategy(User.authenticate()));
+// following josiah's comment here https://stackoverflow.com/questions/45250545/how-to-authenticate-via-email-rather-than-username-in-passport-js we got it boys
+exports.local = passport.use(new LocalStrategy( {usernameField : "email"},User.authenticate()));
 
 
 // following JordanForeman's model of using createStrategy I was able to get email to work: https://github.com/saintedlama/passport-local-mongoose/issues/35
-exports.local = passport.use(User.createStrategy());
+// exports.local = passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
