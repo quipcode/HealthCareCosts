@@ -61,6 +61,11 @@ exports.jwtPassport = passport.use(
 
 exports.verifyUser = passport.authenticate('jwt', { session: false });
 
-exports.local = passport.use(new LocalStrategy(User.authenticate()));
+// exports.local = passport.use(new LocalStrategy(User.authenticate()));
+// exports.local = passport.use(new LocalStrategy(User.authenticate()));
+
+
+// following JordanForeman's model of using createStrategy I was able to get email to work: https://github.com/saintedlama/passport-local-mongoose/issues/35
+exports.local = passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());

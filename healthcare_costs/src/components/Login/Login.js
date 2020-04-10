@@ -81,10 +81,10 @@ class Login extends Component{
                                                 name="email"
                                                 placeholder="Email"
                                                 className="form-control inputter"
-                                                validators={{
-                                                    required,
-                                                    validEmail
-                                                }}
+                                                // validators={{
+                                                //     required,
+                                                //     validEmail
+                                                // }}
                                             />
                                             <Errors
                                                 className="text-danger"
