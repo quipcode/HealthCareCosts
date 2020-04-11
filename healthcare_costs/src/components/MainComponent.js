@@ -5,17 +5,30 @@ import {connect} from 'react-redux';
 import { actions } from 'react-redux-form';
 import Home from './HomeComponent'
 import Login from './Login/Login'
-import {fetchHealthCareCosts, fetchHCPCSOperations, fetchUSStates, postLogin} from '../redux/ActionCreators'
+import jwt_decode from "jwt-decode";
+import {fetchHealthCareCosts, fetchHCPCSOperations, fetchUSStates, loginUser} from '../redux/actions/ActionCreators'
+// import {loginUser, postLogin} from '../redux/actions/ActionCreators'
 import Header from './HeaderComponent';
 import SubmissionForm from './SubmissionForm'
 import ContactForm from './ContactForm'
 import MyProfilePage from './MyProfilePage'
+import {setCurrentUser} from '../redux/actions/ActionCreators'
 
 
-
+// if(localStorage.jwtToken){
+//     const token = localStorage.jwtToken
+//     setAuthToken(token)
+//     const decoded = jwt_decode(token)
+//     store.dispatch(setCurrentUser(decoded));
+//     const currentTime = Date.now() / 1000
+//     // if(decoded.exp < currentTime){
+//     //     store.dispatch
+//     // }
+// }
 
 // import Editable from './search3'
 import MyTable from './HealthCareCosts'
+import setAuthToken from '../utils/setAuthToken';
 
 // import faker from 'faker'
 
@@ -24,7 +37,7 @@ const mapDispatchToProps = {
     fetchHCPCSOperations: () => (fetchHCPCSOperations()),
     fetchUSStates: () => (fetchUSStates()),
     resetFeedbackForm: () => (actions.reset('feedbackForm')),
-    postLogin: login => (postLogin(login)),
+    // postLogin: login => (postLogin(login)),
 }
 
 const mapStateToProps = state => {
@@ -80,7 +93,7 @@ class Main extends Component{
                         <Route path='/healthcarecosts' component={MyTableComp}  />
                         <Route path='/contactus' render={() =>  <ContactForm/>} />
                         <Route path='/myprofile' component={MyProfilePage}/>
-                        <Route path='/login' render={() =>  <Login postLogin={this.props.postLogin}/>} />
+                        <Route path='/login' render={() =>  <Login/>} />
                         
 
  

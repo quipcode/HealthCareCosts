@@ -1,8 +1,5 @@
-import React, {Component} from 'react'
-import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, Button, UncontrolledDropdown,  DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-    NavbarText} from 'reactstrap'
+import React from 'react'
+import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem} from 'reactstrap'
 
 // import{Navbar, Nav, NavDropdown,Form, FormControl, Button, MenuItem} from 'react-bootstrap';
 

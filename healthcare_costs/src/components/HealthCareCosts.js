@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import MaterialTable from 'material-table'
 // import {Promise} from 'react-promise'
 import {Loading} from './Loading'
@@ -19,7 +19,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import Header from './HeaderComponent';
+// import Header from './HeaderComponent';
 
 const tableIcons = {
 Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -62,29 +62,29 @@ let myColumns =
   { title: 'Provider State', field: 'Provider State', initialEditValue: 'initial edit value',  },
   { title: 'Services Covered by Medicare', field: 'Services Covered by Medicare', type: 'numeric' },
 ]
-function setColumns({props}){
+// function setColumns({props}){
   
-  if(props.filterBy.operation.label && props.filterBy.state.label){
-      myColumns =  
-      [
-        { title: 'Operation Name', field: 'HCPCS Description', defaultFilter: `${props.filterBy.operation.label}` },
-        { title: 'Avg Medicare Payment', field: 'Average Medicare Payment', initialEditValue: 'initial edit value' },
-        { title: 'Avg Allowed Amt', field: 'Average Allowed Amount', type: 'numeric' },
-        { title: 'Provider State', field: 'Provider State', initialEditValue: 'initial edit value', defaultFilter: `${props.filterBy.state.label}` },
-        { title: 'Services Covered by Medicare', field: 'Services Covered by Medicare', type: 'numeric' },
-      ]
-  }else if(props.filterBy.operation.label && !props.filterBy.state.label){
-    myColumns =  
-    [
-      { title: 'Operation Name', field: 'HCPCS Description', defaultFilter: `${props.filterBy.operation.label}` },
-      { title: 'Avg Medicare Payment', field: 'Average Medicare Payment', initialEditValue: 'initial edit value' },
-      { title: 'Avg Allowed Amt', field: 'Average Allowed Amount', type: 'numeric' },
-      { title: 'Provider State', field: 'Provider State', initialEditValue: 'initial edit value', defaultFilter: null },
-      { title: 'Services Covered by Medicare', field: 'Services Covered by Medicare', type: 'numeric' },
-    ]
-  }
+//   if(props.filterBy.operation.label && props.filterBy.state.label){
+//       myColumns =  
+//       [
+//         { title: 'Operation Name', field: 'HCPCS Description', defaultFilter: `${props.filterBy.operation.label}` },
+//         { title: 'Avg Medicare Payment', field: 'Average Medicare Payment', initialEditValue: 'initial edit value' },
+//         { title: 'Avg Allowed Amt', field: 'Average Allowed Amount', type: 'numeric' },
+//         { title: 'Provider State', field: 'Provider State', initialEditValue: 'initial edit value', defaultFilter: `${props.filterBy.state.label}` },
+//         { title: 'Services Covered by Medicare', field: 'Services Covered by Medicare', type: 'numeric' },
+//       ]
+//   }else if(props.filterBy.operation.label && !props.filterBy.state.label){
+//     myColumns =  
+//     [
+//       { title: 'Operation Name', field: 'HCPCS Description', defaultFilter: `${props.filterBy.operation.label}` },
+//       { title: 'Avg Medicare Payment', field: 'Average Medicare Payment', initialEditValue: 'initial edit value' },
+//       { title: 'Avg Allowed Amt', field: 'Average Allowed Amount', type: 'numeric' },
+//       { title: 'Provider State', field: 'Provider State', initialEditValue: 'initial edit value', defaultFilter: null },
+//       { title: 'Services Covered by Medicare', field: 'Services Covered by Medicare', type: 'numeric' },
+//     ]
+//   }
   
-}
+// }
 
 // setColumns({props})
 function MyTable(props){

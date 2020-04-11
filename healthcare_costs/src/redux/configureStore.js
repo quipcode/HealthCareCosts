@@ -2,11 +2,11 @@ import { createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import { createForms } from 'react-redux-form';
-import {HealthCareCosts} from './healthcarecosts'
-import {UsersLogin} from './users'
+import {HealthCareCosts} from './reducers/healthcarecosts'
+import {UsersLogin} from './reducers/users'
 import {InitialFeedback, LoginForm} from './forms'
-import {USStates} from './usstates'
-import {HCPCSOperations} from './hcpcsoperation'
+import {USStates} from './reducers/usstates'
+import {HCPCSOperations} from './reducers/hcpcsoperation'
 
 export const ConfigureStore = () => {
     const store = createStore(

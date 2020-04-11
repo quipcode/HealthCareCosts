@@ -1,10 +1,13 @@
+const mongoose = require('mongoose');
+const passport = require('passport');
+const express = require('express');
+
 var createError = require('http-errors');
-var express = require('express');
 var path = require('path');
 var logger = require('morgan');
-const passport = require('passport');
-const mongoose = require('mongoose');
-const config = require('./config');
+
+
+const config = require('../../keys');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');

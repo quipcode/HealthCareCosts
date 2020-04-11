@@ -1,6 +1,9 @@
 import * as ActionTypes from './ActionTypes'
-import {baseUrl} from '../shared/baseUrl'
-import {serverUrl} from '../shared/serverUrl'
+import {baseUrl} from '../../shared/baseUrl'
+import {serverUrl} from '../../shared/serverUrl'
+import setAuthToken from '../../utils/setAuthToken'
+import jwt_decode from "jwt-decode";
+import axios from 'axios'
 
 export const fetchHealthCareCosts = () => dispatch => {
     dispatch(healthCareCostsLoading())
@@ -166,39 +169,65 @@ export const loginSuccess = logintoken => ({
     payload : logintoken
 })
 
-export const postLogin = (theCredentials) => dispatch =>{
-    dispatch(loginLoading())
-    const newLogin = theCredentials
-    return fetch(serverUrl + 'users/login',{
-        method: "POST",
-        body: JSON.stringify(newLogin),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-     .then(res => {
-         if(res.ok){
-             alert("You've been logged in", res)
-             console.log("res is", res)
-             console.log("res is", res.body)
-             return res
-         }else{
-             const error = new Error(`Error ${res.status}: ${res.statusText}`);
-             error.response = res
-             throw error;
-         }
-     },
-        error => {throw error;}
-     )
-      .then(res => {
-          res.json()
-        //   console.log(res.json())
-        })
-      .then(logintoken => dispatch(loginSuccess(logintoken)))
-      .catch(error => dispatch(loginFailed(error.message)))
-    //   .catch(error => {
-    //     console.log('post comment', error.message);
-    //     alert('We were unable to log you in \nError: ' + error.message);
-    //   })
-}
+// export const postLogin = (theCredentials) => dispatch =>{
+//     dispatch(loginLoading())
+//     const newLogin = theCredentials
+//     return fetch(serverUrl + 'users/login',{
+//         method: "POST",
+//         body: JSON.stringify(newLogin),
+//         headers: {
+//             "Content-Type": "application/json"
+//         }
+//     })
+//      .then(res => {
+//          if(res.ok){
+//              alert("You've been logged in", res)
+//              console.log("res is", res)
+//              console.log("res is", res.body)
+//              return res
+//          }else{
+//              const error = new Error(`Error ${res.status}: ${res.statusText}`);
+//              error.response = res
+//              throw error;
+//          }
+//      },
+//         error => {throw error;}
+//      )
+//       .then(res => {
+//           res.json()
+//         //   console.log(res.json())
+//         })
+//       .then(logintoken => dispatch(loginSuccess(logintoken)))
+//       .catch(error => dispatch(loginFailed(error.message)))
+//     //   .catch(error => {
+//     //     console.log('post comment', error.message);
+//     //     alert('We were unable to log you in \nError: ' + error.message);
+//     //   })
+// }
 
+// Set logged in user
+export const setCurrentUser = decoded => {
+    return {
+      type: ActionTypes.SET_CURRENT_USER,
+      payload: decoded
+    };
+  };
+
+export const loginUser = credentials => dispatch =>{
+    axios
+        .post(serverUrl + 'users/login', credentials)
+        .then(res => {
+            const {token} = res.data
+            localStorage.setItem("jwtToken", token);
+            // Set token to Auth header
+            setAuthToken(token);
+            // Decode token to get user data
+            const decoded = jwt_decode(token);
+            // Set current user
+            dispatch(setCurrentUser(decoded));
+        })
+        .catch(err => dispatch({
+            type: ActionTypes.LOGIN_FAILED,
+            payload: err.response.data
+        }))
+}

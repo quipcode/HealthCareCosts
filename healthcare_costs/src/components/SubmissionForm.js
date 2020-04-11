@@ -1,9 +1,9 @@
 import React from 'react';
-import TextField from '@material-ui/core/TextField';
+// import TextField from '@material-ui/core/TextField';
 // import Button from '@material-ui/core/Button';
-import { Control, Form, Errors, actions, LocalForm } from 'react-redux-form';
-import { Breadcrumb, BreadcrumbItem, Button, Label, Col, Row} from 'reactstrap'
-import {postFeedback} from '../redux/ActionCreators'
+import { Control, Form, Errors } from 'react-redux-form';
+import {  Button, Label, Col, Row} from 'reactstrap'
+import {postFeedback} from '../redux/actions/ActionCreators'
 
 const required = val => val && val.length;
 const maxLength = len => val => !val || (val.length <= len);

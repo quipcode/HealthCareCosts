@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { Control, Form, Errors,   } from 'react-redux-form';
-import {  Button, Label, Col, Row, FormGroup, Input,Text} from 'reactstrap'
-import styles from "./login.css"
+import {  Button, Label, Col, FormGroup} from 'reactstrap'
+// import {loginUser} from ".."
+import {loginUser} from '../../redux/actions/ActionCreators'
+// import styles from "./login.css"
 
 const required = val => val && val.length;
-const maxLength = len => val => !val || (val.length <= len);
-const minLength = len => val => val && (val.length >= len);
-const isNumber = val => !isNaN(+val);
+// const maxLength = len => val => !val || (val.length <= len);
+// const minLength = len => val => val && (val.length >= len);
+// const isNumber = val => !isNaN(+val);
 const validEmail = val => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 
 
@@ -23,7 +25,8 @@ class Login extends Component{
     handleSubmit(values) {
         console.log('Current state is: ' + JSON.stringify(values), this.props);
         alert('Current state is: ' + JSON.stringify(values));
-        this.props.postLogin(values)
+        loginUser(values)
+        // this.props.postLogin(values)
         // console.log(values)
         // alert('A name was submitted: ' + this.state.value);
         // event.preventDefault();
