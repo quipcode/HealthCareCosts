@@ -67,10 +67,10 @@ class Login extends Component{
 
             <div className="container">
                 <div className="row">
-                    <div class="col-xs-8 col-sm-12 col-md-12 col-lg-12">
-                        <div class="card card-signin my-5">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Sign In</h5>
+                    <div className="col-xs-8 col-sm-12 col-md-12 col-lg-12">
+                        <div className="card card-signin my-5">
+                            <div className="card-body">
+                                <h5 className="card-title text-center">Sign In</h5>
                                 <Form model="loginForm" className="form-signin" onSubmit={values => this.handleSubmit(values)}>
 
                                     <Col>
@@ -130,16 +130,16 @@ class Login extends Component{
                                     <Button type="submit" color="primary">Submit</Button>
                                 </Form>
 
-                                <hr class="my-4"/>
+                                <hr className="my-4"/>
                                 
                                 <div className="row">
-                                    <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
+                                    <button className="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i className="fab fa-google mr-2"></i> Sign in with Google</button>
                                 </div>
-                                    <hr class="my-4"/>
+                                    <hr className="my-4"/>
                                 
                                 <div className="row ">                                   
                                     <p id="signUpTxt">Don't have an account? Sign up here!</p>
-                                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign up</button>
+                                    <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign up</button>
                                 </div>
                             </div>
                         </div>
