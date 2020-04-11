@@ -152,7 +152,22 @@ export const postFeedback = (theFeedback)  => {
         });
 };
 
-export const postLogin = (theCredentials) => {
+export const loginLoading = () => ({
+    type: ActionTypes.LOGIN_LOADING
+})
+
+export const loginFailed = errMess => ({
+    type: ActionTypes.LOGIN_FAILED,
+    payload: errMess
+})
+
+export const loginSuccess = logintoken => ({
+    type: ActionTypes.LOGIN_SUCCESS,
+    payload : logintoken
+})
+
+export const postLogin = (theCredentials) => dispatch =>{
+    dispatch(loginLoading())
     const newLogin = theCredentials
     return fetch(serverUrl + 'users/login',{
         method: "POST",
@@ -163,7 +178,9 @@ export const postLogin = (theCredentials) => {
     })
      .then(res => {
          if(res.ok){
-             alert("You've been logged")
+             alert("You've been logged in", res)
+             console.log("res is", res)
+             console.log("res is", res.body)
              return res
          }else{
              const error = new Error(`Error ${res.status}: ${res.statusText}`);
@@ -173,9 +190,15 @@ export const postLogin = (theCredentials) => {
      },
         error => {throw error;}
      )
-      .then(res => res.json())
-      .catch(error => {
-        console.log('post comment', error.message);
-        alert('We were unable to log you in \nError: ' + error.message);
-      })
+      .then(res => {
+          res.json()
+        //   console.log(res.json())
+        })
+      .then(logintoken => dispatch(loginSuccess(logintoken)))
+      .catch(error => dispatch(loginFailed(error.message)))
+    //   .catch(error => {
+    //     console.log('post comment', error.message);
+    //     alert('We were unable to log you in \nError: ' + error.message);
+    //   })
 }
+

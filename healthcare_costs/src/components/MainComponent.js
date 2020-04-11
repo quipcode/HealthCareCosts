@@ -31,7 +31,8 @@ const mapStateToProps = state => {
     return {
         healthcarecosts: state.healthcarecosts,
         usstates: state.usstates,
-        hcpcsoperations: state.hcpcsoperations
+        hcpcsoperations: state.hcpcsoperations,
+        logintoken: state.logintoken
     }
 }
 
