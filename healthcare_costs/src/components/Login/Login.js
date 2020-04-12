@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { Control, Form, Errors,   } from 'react-redux-form';
 import {  Button, Label, Col, FormGroup} from 'reactstrap'
 // import {loginUser} from ".."
-import {loginUser} from '../../redux/actions/ActionCreators'
+import {loginUser, testbasicfunct} from '../../redux/actions/ActionCreators'
 // import styles from "./login.css"
 
 const required = val => val && val.length;
@@ -13,19 +15,44 @@ const validEmail = val => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 
 
 class Login extends Component{
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
         this.state ={
-            username: '',
-            password: ''
+            email: '',
+            password: '',
+            errors: {}
+
         }
        this.handleSubmit = this.handleSubmit.bind(this) 
     }
+    
+  
+    componentDidMount() {
+    // If logged in and user navigates to Login page, should redirect them to dashboard
+        console.log(this.props)
+        if (this.props.auth.isAuthenticated) {
+            this.props.history.push("/home");
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.auth.isAuthenticated) {
+          this.props.history.push("/home");
+        }
+    
+        if (nextProps.errors) {
+          this.setState({
+            errors: nextProps.errors
+          });
+        }
+      }
 
     handleSubmit(values) {
         console.log('Current state is: ' + JSON.stringify(values), this.props);
         alert('Current state is: ' + JSON.stringify(values));
-        loginUser(values)
+        testbasicfunct(values)
+        this.props.loginUser(values)
+        // loginUser(values)
         // this.props.postLogin(values)
         // console.log(values)
         // alert('A name was submitted: ' + this.state.value);
@@ -154,4 +181,21 @@ class Login extends Component{
     }
 }
 
-export default Login
+Login.propTypes = {
+    loginUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+  };
+  
+  const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+  });
+  
+  export default connect(
+    mapStateToProps,
+    { loginUser }
+  )(Login);
+  
+
+// export default Login

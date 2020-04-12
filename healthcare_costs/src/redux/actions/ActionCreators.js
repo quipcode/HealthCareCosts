@@ -214,20 +214,31 @@ export const setCurrentUser = decoded => {
   };
 
 export const loginUser = credentials => dispatch =>{
+    // return fetch(serverUrl + 'users/login', {
+    //     method: "POST",
+    //     body: JSON.stringify(credentials),
+    //     headers: {
+    //         "Content-Type": "application/json"
+    //     }
+    // })
     axios
-        .post(serverUrl + 'users/login', credentials)
-        .then(res => {
-            const {token} = res.data
-            localStorage.setItem("jwtToken", token);
-            // Set token to Auth header
-            setAuthToken(token);
-            // Decode token to get user data
-            const decoded = jwt_decode(token);
-            // Set current user
-            dispatch(setCurrentUser(decoded));
-        })
-        .catch(err => dispatch({
-            type: ActionTypes.LOGIN_FAILED,
-            payload: err.response.data
-        }))
+      .post(serverUrl + 'users/login', credentials)
+      .then(res => {
+          const {token} = res.data
+          localStorage.setItem("jwtToken", token);
+          // Set token to Auth header
+          setAuthToken(token);
+          // Decode token to get user data
+          const decoded = jwt_decode(token);
+          // Set current user
+          dispatch(setCurrentUser(decoded));
+      })
+      .catch(err => dispatch({
+          type: ActionTypes.LOGIN_FAILED,
+          payload: err
+      }))
+}
+
+export const testbasicfunct = creds => {
+    console.log("basic funct", creds)
 }

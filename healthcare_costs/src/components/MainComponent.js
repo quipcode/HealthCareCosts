@@ -5,14 +5,14 @@ import {connect} from 'react-redux';
 import { actions } from 'react-redux-form';
 import Home from './HomeComponent'
 import Login from './Login/Login'
-import jwt_decode from "jwt-decode";
+// import jwt_decode from "jwt-decode";
 import {fetchHealthCareCosts, fetchHCPCSOperations, fetchUSStates, loginUser} from '../redux/actions/ActionCreators'
 // import {loginUser, postLogin} from '../redux/actions/ActionCreators'
 import Header from './HeaderComponent';
 import SubmissionForm from './SubmissionForm'
 import ContactForm from './ContactForm'
 import MyProfilePage from './MyProfilePage'
-import {setCurrentUser} from '../redux/actions/ActionCreators'
+// import {setCurrentUser} from '../redux/actions/ActionCreators'
 
 
 // if(localStorage.jwtToken){
@@ -28,7 +28,7 @@ import {setCurrentUser} from '../redux/actions/ActionCreators'
 
 // import Editable from './search3'
 import MyTable from './HealthCareCosts'
-import setAuthToken from '../utils/setAuthToken';
+// import setAuthToken from '../utils/setAuthToken';
 
 // import faker from 'faker'
 
@@ -37,6 +37,7 @@ const mapDispatchToProps = {
     fetchHCPCSOperations: () => (fetchHCPCSOperations()),
     fetchUSStates: () => (fetchUSStates()),
     resetFeedbackForm: () => (actions.reset('feedbackForm')),
+    // loginUser: () => (loginUser())
     // postLogin: login => (postLogin(login)),
 }
 
@@ -45,7 +46,8 @@ const mapStateToProps = state => {
         healthcarecosts: state.healthcarecosts,
         usstates: state.usstates,
         hcpcsoperations: state.hcpcsoperations,
-        logintoken: state.logintoken
+        logintoken: state.logintoken,
+        auth: state.auth
     }
 }
 
@@ -93,7 +95,8 @@ class Main extends Component{
                         <Route path='/healthcarecosts' component={MyTableComp}  />
                         <Route path='/contactus' render={() =>  <ContactForm/>} />
                         <Route path='/myprofile' component={MyProfilePage}/>
-                        <Route path='/login' render={() =>  <Login/>} />
+                        {/* <Route path='/login' render={() =>  <Login/>} /> */}
+                        <Route exact path="/login" component={Login} />
                         
 
  
