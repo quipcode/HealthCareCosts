@@ -221,8 +221,15 @@ export const loginUser = credentials => dispatch =>{
     //         "Content-Type": "application/json"
     //     }
     // })
+    const config = {
+        headers: {
+                "content-type": "application/json",
+                "Cache-Control": "no-cache",
+                "x-api-key": "9xxxxxxxxxxxxxxxxxxxxxx9"
+        }
+    }
     axios
-      .post(serverUrl + 'users/login', credentials)
+      .post(serverUrl + 'users/login', credentials, { "content-type": "application/json"})
       .then(res => {
           const {token} = res.data
           localStorage.setItem("jwtToken", token);
