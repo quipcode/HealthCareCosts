@@ -13,6 +13,7 @@ import SubmissionForm from './SubmissionForm'
 import ContactForm from './ContactForm'
 import MyProfilePage from './MyProfilePage'
 import NavBar from './navbar/NavBar'
+import Register from './register/Register'
 // import Register fr
 // import {setCurrentUser} from '../redux/actions/ActionCreators'
 
@@ -100,6 +101,7 @@ class Main extends Component{
                         <Route path='/myprofile' component={MyProfilePage}/>
                         {/* <Route path='/login' render={() =>  <Login/>} /> */}
                         <Route exact path="/login" component={Login} />
+                        <Route exact path="/register" component={Register} />
                         
 
  
