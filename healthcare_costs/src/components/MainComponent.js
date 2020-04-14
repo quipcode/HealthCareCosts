@@ -12,6 +12,8 @@ import Header from './HeaderComponent';
 import SubmissionForm from './SubmissionForm'
 import ContactForm from './ContactForm'
 import MyProfilePage from './MyProfilePage'
+import NavBar from './navbar/NavBar'
+// import Register fr
 // import {setCurrentUser} from '../redux/actions/ActionCreators'
 
 
@@ -81,6 +83,7 @@ class Main extends Component{
         }
         return(
             <div>
+            <NavBar auth={this.props.auth}/>
             <Header/>
             <TransitionGroup>
                 

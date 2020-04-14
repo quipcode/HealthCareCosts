@@ -1,5 +1,6 @@
 import React from 'react'
 import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem} from 'reactstrap'
+import { NavDropdown } from 'react-bootstrap';
 
 // import{Navbar, Nav, NavDropdown,Form, FormControl, Button, MenuItem} from 'react-bootstrap';
 
@@ -34,6 +35,23 @@ class Header extends React.Component{
                         <NavbarToggler onClick={this.toggleNav} />
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
+                            <NavDropdown eventKey={1}
+                                title={
+                                    <div className="pull-left">
+                                        {/* <img className="thumbnail-image"
+                                            src="/assets/images/icons8-user-shield-80.png"
+                                            alt="user pic"
+                                            width="40" height="40" className="rounded-circle"
+                                        /> */}
+                                        <span>Proof of Concept</span>
+                                    </div>
+                                }
+                                id="basic-nav-dropdown" 
+                            >
+                                <NavDropdown.Item href="/home">Home</NavDropdown.Item>
+                                <NavDropdown.Item href="/healthcarecosts">HealthCare Costs</NavDropdown.Item>
+                               
+                            </NavDropdown>
                                 <NavItem>
                                     <NavLink className="nav-link" to="/home">
                                         <i className="fa fa-home fa-lg" /> Home 
@@ -77,16 +95,7 @@ class Header extends React.Component{
         //     <React.Fragment>
         //     <Navbar className="navbar navbar-dark bg-dark navbar-expand-sm" expand="sm">
         //         <Navbar.Brand href="/home">
-                    
-        //                 <a className="navbar-brand" href="/home">
-        //                     <img src="/assets/images/transparent_shield.png" width="30" height="30" alt="logo" />
-        //                     {/* instead of <img src={"/images/resto.png"} /> you need to use <img src={require('/images/image-name.png')} /> */}
-        //                     {/* <img src={require("images/transparent_shield.png")} width="30" height="30" alt="logo" /> */}
-        //                     {/* <img src="http://localhost:3001/images/transparent_shield.png" width="30" height="30" alt="logo" /> */}
-                            
-        //                     <span> The Guild App</span>
-        //                 </a>
-                    
+                  
                     
         //                 {/* <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-4" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         //                     <span class="navbar-toggler-icon"></span>
