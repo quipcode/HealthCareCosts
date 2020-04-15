@@ -6,11 +6,13 @@ import {HCPCSOperations} from './hcpcsoperation'
 import {HealthCareCosts} from './healthcarecosts'
 import {UsersLogin} from './users'
 import {InitialFeedback, LoginForm} from '../forms'
+import {UserProfile} from './userprofile'
 // import errorReducer from "./errorReducer";
 
 
 
 export default combineReducers({
+  userprofile : UserProfile,
   auth: authReducer,
   healthcarecosts: HealthCareCosts,
   usstates: USStates,

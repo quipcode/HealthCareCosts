@@ -171,41 +171,6 @@ export const loginSuccess = logintoken => ({
     payload : logintoken
 })
 
-// export const postLogin = (theCredentials) => dispatch =>{
-//     dispatch(loginLoading())
-//     const newLogin = theCredentials
-//     return fetch(serverUrl + 'users/login',{
-//         method: "POST",
-//         body: JSON.stringify(newLogin),
-//         headers: {
-//             "Content-Type": "application/json"
-//         }
-//     })
-//      .then(res => {
-//          if(res.ok){
-//              alert("You've been logged in", res)
-//              console.log("res is", res)
-//              console.log("res is", res.body)
-//              return res
-//          }else{
-//              const error = new Error(`Error ${res.status}: ${res.statusText}`);
-//              error.response = res
-//              throw error;
-//          }
-//      },
-//         error => {throw error;}
-//      )
-//       .then(res => {
-//           res.json()
-//         //   console.log(res.json())
-//         })
-//       .then(logintoken => dispatch(loginSuccess(logintoken)))
-//       .catch(error => dispatch(loginFailed(error.message)))
-//     //   .catch(error => {
-//     //     console.log('post comment', error.message);
-//     //     alert('We were unable to log you in \nError: ' + error.message);
-//     //   })
-// }
 
 // Set logged in user
 export const setCurrentUser = decoded => {
@@ -216,20 +181,7 @@ export const setCurrentUser = decoded => {
   };
 
 export const loginUser = credentials => dispatch =>{
-    // return fetch(serverUrl + 'users/login', {
-    //     method: "POST",
-    //     body: JSON.stringify(credentials),
-    //     headers: {
-    //         "Content-Type": "application/json"
-    //     }
-    // })
-    const config = {
-        headers: {
-                "content-type": "application/json",
-                "Cache-Control": "no-cache",
-                "x-api-key": "9xxxxxxxxxxxxxxxxxxxxxx9"
-        }
-    }
+
     axios
       .post(serverUrl + 'users/login', credentials, { "content-type": "application/json"})
       .then(res => {
@@ -257,3 +209,40 @@ export const logoutUser = () => dispatch => {
     setAuthToken(false)
     dispatch(setCurrentUser({}))
 }
+
+export const myProfileDetails = userId => dispatch =>{
+    dispatch(userprofileLoading())
+    axios
+        .get(serverUrl + 'users/' + userId)
+        .then(res => {
+            if(res.ok){
+                return res
+            }else{
+                const error = new Error(`Error ${res.status}: ${res.statusText}`)
+                error.response = res
+                throw error
+            }
+        },
+            error => {
+                const errMess = new Error(error.message);
+                throw errMess;
+            }
+        )
+        .then(res => res.json())
+        .then(userprofile => dispatch(addUserProfile(userprofile)))
+        .catch(error => dispatch(userprofileFailed(error.message)))
+}
+
+export const userprofileLoading = () => ({
+    type: ActionTypes.USERPROFILE_LOADING
+})
+
+export const userprofileFailed = errMess => ({
+    type: ActionTypes.USERPROFILE_FAILED,
+    payload: errMess
+})
+
+export const addUserProfile = userprofile => ({
+    type: ActionTypes.USERPROFILE_SUCCESS,
+    payload: userprofile
+})
