@@ -12,6 +12,8 @@ const config = require('../../keys');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var samplehccRouter = require('./routes/samplehcc')
+var usstatesRouter = require('./routes/usstates')
+var hccoperationsRouter = require('./routes/hccoperations')
 
 const url = config.mongoUrl;
 const connect = mongoose.connect(url, {
@@ -40,6 +42,8 @@ app.use(passport.initialize());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/samplehcc', samplehccRouter)
+app.use('/usstates', usstatesRouter)
+app.use('/hccoperations', hccoperationsRouter)
 
 app.use(express.static(path.join(__dirname, 'public')));
 

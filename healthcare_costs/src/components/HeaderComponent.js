@@ -35,7 +35,7 @@ class Header extends React.Component{
                         <NavbarToggler onClick={this.toggleNav} />
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
-                            <NavDropdown eventKey={1}
+                            <NavDropdown eventkey={1}
                                 title={
                                     <div className="pull-left">
                                         {/* <img className="thumbnail-image"

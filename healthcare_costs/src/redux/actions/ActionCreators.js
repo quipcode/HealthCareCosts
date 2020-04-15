@@ -7,7 +7,8 @@ import axios from 'axios'
 
 export const fetchHealthCareCosts = () => dispatch => {
     dispatch(healthCareCostsLoading())
-    return fetch(baseUrl + 'healthcarecosts')
+    // return fetch(baseUrl + 'healthcarecosts')
+    return fetch(serverUrl + 'samplehcc')
     .then(response => {
         if(response.ok){
             return response
@@ -45,8 +46,8 @@ export const addHealthCareCosts = healthcarecostdata => ({
 
 export const fetchHCPCSOperations = () => dispatch => {
     dispatch(HCPCSOperationLoading())
-    
-    return fetch(baseUrl + 'HCPCS_Operation')
+    return fetch(serverUrl + 'hccoperations')
+    // return fetch(baseUrl + 'HCPCS_Operation')
     .then(response => {
         if(response.ok){
             
@@ -85,7 +86,8 @@ export const addHCPCSOperations = hcpcsoperations => ({
 
 export const fetchUSStates = () => dispatch => {
     dispatch(USStatesLoading())
-    return fetch(baseUrl + 'usstates')
+    return fetch(serverUrl + 'usstates')
+    // return fetch(baseUrl + 'usstates')
     .then(response => {
         if(response.ok){
             return response

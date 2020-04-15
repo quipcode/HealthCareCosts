@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 const SampleHCC = require('../models/samplehcc')
-const User = require('../models/user')
 const cors = require('./cors');
 const samplehccRouter = express.Router()
 
