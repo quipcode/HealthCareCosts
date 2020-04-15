@@ -13,6 +13,7 @@ let NavBar = (props) => {
         console.log("auth is", auth)
         return auth.isAuthenticated ? 
         // <Collapse isOpen={toggleNav} navbar>
+        <Collapse isOpen={toggleNav} navbar>
           <Nav className="float-xs-right" navbar>
             <NavDropdown eventkey={1}
                     title={
@@ -31,17 +32,47 @@ let NavBar = (props) => {
                     <NavDropdown.Item href="/healthcarecosts">HealthCare Costs</NavDropdown.Item>
                   
               </NavDropdown>
-              <NavItem className="navbar-text">
+              {/* <NavItem className="navbar-text">
               Welcome back {auth.username}
-              </NavItem>
-              <NavItem>
+              </NavItem> */}
+                  <NavItem>
+                      <NavLink className="nav-link" to="/home">
+                          <i className="fa fa-home fa-lg" /> Home 
+                      </NavLink>
+                  </NavItem>
+                
+              
+                  
+                  <NavItem>
+                      <NavLink className="nav-link" to="/submissionform">
+                          <i className=" fa fa-pencil-square-o fa-lg" /> Submission Form
+                      </NavLink>
+                  </NavItem>
+                  <NavItem>
+                      <NavLink className="nav-link" to="/contactus">
+                          <i className=" fa fa-address-card fa-lg" /> Contact Us
+                      </NavLink>
+                  </NavItem>
+                  <NavItem>
+                      <NavLink className="nav-link" to="/healthcarecosts">
+                          <i className="fa fa-list fa-lg" /> HealthCare Costs
+                      </NavLink>
+                  </NavItem>
+                  <NavItem>
+                      <NavLink className="nav-link" to="/myprofile">
+                          <i className="fa fa-user fa-lg" /> My Profile
+                      </NavLink>
+                  </NavItem>
+        </Nav>
+        <Nav className="ml-auto" navbar>
+          <NavItem>
                   <NavLink className="nav-link" to="/logut">
                       <i className="fa fa-sign-out fa-lg" /> Logout 
                   </NavLink>
                 <NavLink tag={Link} to="/logout">Logout</NavLink>
               </NavItem>
         </Nav>
-      // </Collapse>
+      </Collapse>
         : 
     // <Navbar dark sticky="top"  className=" navbar navbar-dark  navbar-expand-sm" expand="sm"  >
     

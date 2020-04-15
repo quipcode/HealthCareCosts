@@ -85,7 +85,7 @@ class Main extends Component{
         return(
             <div>
             <NavBar auth={this.props.auth}/>
-            <Header/>
+            {/* <Header/> */}
             <TransitionGroup>
                 
                     <Switch>

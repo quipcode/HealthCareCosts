@@ -177,7 +177,7 @@ function MyTable(props){
           options={{filtering: true}}
           
         />
-        <p>sup dog {console.log("paragraph props", props)}</p>
+        
       </React.Fragment>
 
 
