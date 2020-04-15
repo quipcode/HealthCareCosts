@@ -56,11 +56,11 @@ ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 // ]
 let myColumns =  
 [
-  { title: 'Operation Name', field: 'HCPCS Description',  },
-  { title: 'Avg Medicare Payment', field: 'Average Medicare Payment', initialEditValue: 'initial edit value' },
-  { title: 'Avg Allowed Amt', field: 'Average Allowed Amount', type: 'numeric' },
-  { title: 'Provider State', field: 'Provider State', initialEditValue: 'initial edit value',  },
-  { title: 'Services Covered by Medicare', field: 'Services Covered by Medicare', type: 'numeric' },
+  { title: 'Operation Name', field: 'HCPCSDescription',  },
+  { title: 'Avg Medicare Payment', field: 'AvgMedPayment', initialEditValue: 'initial edit value' },
+  { title: 'Avg Allowed Amt', field: 'AvgAllowedAmnt', type: 'numeric' },
+  { title: 'Provider State', field: 'ProviderState', initialEditValue: 'initial edit value',  },
+  { title: 'Services Covered by Medicare', field: 'ServicesCoveredbyMedicare', type: 'numeric' },
 ]
 // function setColumns({props}){
   
@@ -115,38 +115,38 @@ function MyTable(props){
         if( !props.filterBy.operation && !props.filterBy.state){
           myColumns =  
           [
-            { title: 'Operation Name', field: 'HCPCS Description' },
-            { title: 'Avg Medicare Payment', field: 'Average Medicare Payment', initialEditValue: 'initial edit value' },
-            { title: 'Avg Allowed Amt', field: 'Average Allowed Amount', type: 'numeric' },
-            { title: 'Provider State', field: 'Provider State', initialEditValue: 'initial edit value' },
-            { title: 'Services Covered by Medicare', field: 'Services Covered by Medicare', type: 'numeric' },
+            { title: 'Operation Name', field: 'HCPCSDescription' },
+            { title: 'Avg Medicare Payment', field: 'AvgMedPayment', initialEditValue: 'initial edit value' },
+            { title: 'Avg Allowed Amt', field: 'AvgAllowedAmnt', type: 'numeric' },
+            { title: 'Provider State', field: 'ProviderState', initialEditValue: 'initial edit value' },
+            { title: 'Services Covered by Medicare', field: 'ServicesCoveredbyMedicare', type: 'numeric' },
           ]
         }else if(!props.filterBy.operation && props.filterBy.state.label){
           myColumns =  
           [
-            { title: 'Operation Name', field: 'HCPCS Description' },
-            { title: 'Avg Medicare Payment', field: 'Average Medicare Payment', initialEditValue: 'initial edit value' },
-            { title: 'Avg Allowed Amt', field: 'Average Allowed Amount', type: 'numeric' },
-            { title: 'Provider State', field: 'Provider State', initialEditValue: 'initial edit value', defaultFilter: `${props.filterBy.state.label}` },
-            { title: 'Services Covered by Medicare', field: 'Services Covered by Medicare', type: 'numeric' },
+            { title: 'Operation Name', field: 'HCPCSDescription' },
+            { title: 'Avg Medicare Payment', field: 'AvgMedPayment', initialEditValue: 'initial edit value' },
+            { title: 'Avg Allowed Amt', field: 'AvgAllowedAmnt', type: 'numeric' },
+            { title: 'Provider State', field: 'ProviderState', initialEditValue: 'initial edit value', defaultFilter: `${props.filterBy.state.label}` },
+            { title: 'Services Covered by Medicare', field: 'ServicesCoveredbyMedicare', type: 'numeric' },
           ]
         }else if(props.filterBy.operation.label && !props.filterBy.state){
           myColumns =  
           [
-            { title: 'Operation Name', field: 'HCPCS Description', defaultFilter: `${props.filterBy.operation.label}` },
-            { title: 'Avg Medicare Payment', field: 'Average Medicare Payment', initialEditValue: 'initial edit value' },
-            { title: 'Avg Allowed Amt', field: 'Average Allowed Amount', type: 'numeric' },
-            { title: 'Provider State', field: 'Provider State', initialEditValue: 'initial edit value'},
-            { title: 'Services Covered by Medicare', field: 'Services Covered by Medicare', type: 'numeric' },
+            { title: 'Operation Name', field: 'HCPCSDescription', defaultFilter: `${props.filterBy.operation.label}` },
+            { title: 'Avg Medicare Payment', field: 'AvgMedPayment', initialEditValue: 'initial edit value' },
+            { title: 'Avg Allowed Amt', field: 'AvgAllowedAmnt', type: 'numeric' },
+            { title: 'Provider State', field: 'ProviderState', initialEditValue: 'initial edit value'},
+            { title: 'Services Covered by Medicare', field: 'ServicesCoveredbyMedicare', type: 'numeric' },
           ]
         }else if( props.filterBy.operation && props.filterBy.state){
           myColumns =  
           [
-            { title: 'Operation Name', field: 'HCPCS Description' , defaultFilter: `${props.filterBy.operation.label}` },
-            { title: 'Avg Medicare Payment', field: 'Average Medicare Payment', initialEditValue: 'initial edit value' },
-            { title: 'Avg Allowed Amt', field: 'Average Allowed Amount', type: 'numeric' },
-            { title: 'Provider State', field: 'Provider State', initialEditValue: 'initial edit value' , defaultFilter: `${props.filterBy.state.label}`  },
-            { title: 'Services Covered by Medicare', field: 'Services Covered by Medicare', type: 'numeric' },
+            { title: 'Operation Name', field: 'HCPCSDescription' , defaultFilter: `${props.filterBy.operation.label}` },
+            { title: 'Avg Medicare Payment', field: 'AvgMedPayment', initialEditValue: 'initial edit value' },
+            { title: 'Avg Allowed Amt', field: 'AvgAllowedAmnt', type: 'numeric' },
+            { title: 'Provider State', field: 'ProviderState', initialEditValue: 'initial edit value' , defaultFilter: `${props.filterBy.state.label}`  },
+            { title: 'Services Covered by Medicare', field: 'ServicesCoveredbyMedicare', type: 'numeric' },
           ]
         }
       }
@@ -154,7 +154,8 @@ function MyTable(props){
         
      
     return(
-        <MaterialTable
+      <React.Fragment>
+                <MaterialTable
           title="HealthCare Costs"
           columns={myColumns}
           data={props.hcCosts.healthcarecosts}
@@ -176,6 +177,9 @@ function MyTable(props){
           options={{filtering: true}}
           
         />
+        <p>sup dog {console.log("paragraph props", props)}</p>
+      </React.Fragment>
+
 
     )
 }
