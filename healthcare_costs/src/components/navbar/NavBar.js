@@ -12,12 +12,14 @@ import Login from '../Login/Login'
 
 let NavBar = (props) => {
     const [toggleNav, navToggler] = useState(false)
-    const [toggleModal, modalToggler] = useState(false)
+    const [toggleLoginModal, modalLoginToggler] = useState(false)
+    const [toggleLogoutModal, modalLogoutToggler] = useState(false)
     const [message, logger] = useState("sup")
     const loginOrProfile = (auth) => {
         console.log("auth is", auth)
         return auth.isAuthenticated ? 
         // <Collapse isOpen={toggleNav} navbar>
+        <React.Fragment>
         <Collapse isOpen={toggleNav} navbar>
           <Nav className="float-xs-right" navbar>
             <NavDropdown eventkey={1}
@@ -71,29 +73,28 @@ let NavBar = (props) => {
         </Nav>
         <Nav className="ml-auto" navbar>
           <NavItem>
-                    <Button  color="secondary" onClick={console.log("button clicked")}>
+                    {/* <Button  color="secondary" onClick={console.log("button clicked")}>
                       <i className="fa fa-sign-out fa-lg" /> Logout
-                      {/* {this.props.auth.isFetching ?
-                          <span className="fa fa-spinner fa-pulse fa-fw"></span>
-                          : null
-                      } */}
+                    
+                    </Button> */}
+                    <Button color="secondary" onClick={() => modalLogoutToggler(!toggleLogoutModal)} >
+                        <i className="fa fa-sign-in fa-lg" /> Logout
                     </Button>
-                      
                   {/* <NavLink className="nav-link" to="/logut">
                       <i className="fa fa-sign-out fa-lg" /> Logout 
                   </NavLink>
                 <NavLink tag={Link} to="/logout">Logout</NavLink> */}
               </NavItem>
-              <NavItem onClick={window.alert("whhh")}>
-                    {/* <NavLink className="nav-link" to="/login">
-                      <i className="fa fa-sign-in fa-lg" /> Login 
-                    </NavLink> */}
-                      
-                  
-                  {/* <NavLink tag={Link} to="/login">Log in</NavLink> */}
-              </NavItem>
+           
         </Nav>
       </Collapse>
+        <Modal isOpen={toggleLogoutModal} toggle={modalLogoutToggler}>
+        <ModalHeader toggle={() => modalLogoutToggler(!toggleLogoutModal)}>Login</ModalHeader>
+        <ModalBody>
+            <p> more stuff</p>
+        </ModalBody>
+     </Modal>
+     </React.Fragment>
         : 
     // <Navbar dark sticky="top"  className=" navbar navbar-dark  navbar-expand-sm" expand="sm"  >
     
@@ -136,7 +137,7 @@ let NavBar = (props) => {
                 {/* </NavItem> */}
                 <NavItem  >
                 
-                <Button color="secondary" onClick={() => modalToggler(!toggleModal)} >
+                <Button color="secondary" onClick={() => modalLoginToggler(!toggleLoginModal)} >
                     <i className="fa fa-sign-in fa-lg" /> Login
                 </Button>
                 </NavItem>
@@ -147,8 +148,8 @@ let NavBar = (props) => {
               </NavItem> */}
             </Nav>
           </Collapse>
-           <Modal isOpen={toggleModal} toggle={modalToggler}>
-              <ModalHeader toggle={() => modalToggler(!toggleModal)}>Login</ModalHeader>
+           <Modal isOpen={toggleLoginModal} toggle={modalLoginToggler}>
+              <ModalHeader toggle={() => modalLoginToggler(!toggleLoginModal)}>Login</ModalHeader>
               <ModalBody>
                   <Login/>
               </ModalBody>

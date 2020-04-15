@@ -85,10 +85,23 @@ router.post("/login", cors.corsWithOptions ,(req,res, next) => {
 })
 
 router.get("/",(req,res) =>{
-    res.json({
-        success: true,
-        message: "sup"
+    User.find()
+    .then(user => {
+        res.statusCode = 200,
+        res.setHeader('Content-Type', 'application/json')
+        res.json(user);
     })
+    .catch(err => next(err))
 })
 
+router.route("/:userId", cors.corsWithOptions)
+.get((req,res,next) => {
+    User.findById(req.params.userId)
+    .then(user => {
+        res.statusCode = 200,
+        res.setHeader('Content-Type', 'application/json')
+        res.json(user);
+    })
+    .catch(err => next(err))
+})
 module.exports = router
