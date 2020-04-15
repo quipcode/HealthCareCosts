@@ -251,3 +251,9 @@ export const loginUser = credentials => dispatch =>{
 export const testbasicfunct = creds => {
     console.log("basic funct", creds)
 }
+
+export const logoutUser = () => dispatch => {
+    localStorage.removeItem("jwtToken")
+    setAuthToken(false)
+    dispatch(setCurrentUser({}))
+}
