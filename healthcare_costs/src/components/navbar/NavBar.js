@@ -18,7 +18,10 @@ let NavBar = (props) => {
     // const logMeOut = useFriendStatus(props.logoutUser);
     const logMeOut = () => {
         // e.preventDefault();
+        //Need to call the modalLogoutToggler to ensure that logout modal is closed upon confirmation
+        modalLogoutToggler(!toggleLogoutModal)
         props.logoutUser();
+        
       };
     const loginOrProfile = (auth) => {
         console.log("auth is", auth)
@@ -164,7 +167,7 @@ let NavBar = (props) => {
            <Modal isOpen={toggleLoginModal} toggle={modalLoginToggler}>
               <ModalHeader toggle={() => modalLoginToggler(!toggleLoginModal)}>Login</ModalHeader>
               <ModalBody>
-              
+                    {/* //The onclose is needed as it will ensure that the login modal is closed after user has logged in  */}
                     <Login onClose={() => modalLoginToggler(!toggleLoginModal)}/>
                     {/* <Login onClose={this.showModal}/> */}
               </ModalBody>
