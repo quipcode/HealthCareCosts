@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import {logoutUser} from '../../redux/actions/ActionCreators'
 import { connect } from "react-redux";
 import Login from '../Login/Login'
+import Logout from '../logout/Logout'
 
 // import React from 'react'
 // import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem} from 'reactstrap'
@@ -14,13 +15,14 @@ let NavBar = (props) => {
     const [toggleNav, navToggler] = useState(false)
     const [toggleLoginModal, modalLoginToggler] = useState(false)
     const [toggleLogoutModal, modalLogoutToggler] = useState(false)
-    const [message, logger] = useState("sup")
+
     // const logMeOut = useFriendStatus(props.logoutUser);
     const logMeOut = () => {
         // e.preventDefault();
         //Need to call the modalLogoutToggler to ensure that logout modal is closed upon confirmation
-        modalLogoutToggler(!toggleLogoutModal)
+        
         props.logoutUser();
+        modalLogoutToggler(!toggleLogoutModal)
         
       };
     const loginOrProfile = (auth) => {
@@ -108,6 +110,7 @@ let NavBar = (props) => {
                 <i className="fa fa-sign-in fa-lg" /> Cancel
             </Button>
             </ModalFooter>
+            <Logout toggler={modalLogoutToggler}/>
         </ModalBody>
      </Modal>
      </React.Fragment>

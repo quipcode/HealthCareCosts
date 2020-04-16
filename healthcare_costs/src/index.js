@@ -15,6 +15,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/css/bootstrap.css";
 import 'react-virtualized/styles.css';
 import 'typeface-roboto';
+// import { createBrowserHistory } from 'history';
+// export const browserHistory = createBrowserHistory();
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

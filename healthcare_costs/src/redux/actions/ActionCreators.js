@@ -4,6 +4,10 @@ import {serverUrl} from '../../shared/serverUrl'
 import setAuthToken from '../../utils/setAuthToken'
 import jwt_decode from "jwt-decode";
 import axios from 'axios'
+import {browserHistory } from '../../index'
+import {useHistory  } from 'react-router-dom';
+
+// const history = useHistory();
 
 export const fetchHealthCareCosts = () => dispatch => {
     dispatch(healthCareCostsLoading())
@@ -204,10 +208,19 @@ export const testbasicfunct = creds => {
     console.log("basic funct", creds)
 }
 
+const redirect = redirectUrl => {
+    window.location = redirectUrl;
+  };
+
 export const logoutUser = () => dispatch => {
     localStorage.removeItem("jwtToken")
     setAuthToken(false)
-    dispatch(setCurrentUser({}))
+    //need to reroute here so user doesn't see alert
+    // browserHistory.push('/home')
+    // redirect('/home')
+//    history.push('/home')
+// this.props.history.push('/home')
+    // dispatch(setCurrentUser({}))
 }
 
 export const myProfileDetails = userId => dispatch =>{

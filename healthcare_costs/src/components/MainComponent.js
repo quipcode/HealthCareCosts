@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TransitionGroup } from 'react-transition-group';
-import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { Switch, Route, Redirect, withRouter  } from 'react-router-dom';
 import {connect} from 'react-redux';
 import { actions } from 'react-redux-form';
 import Home from './HomeComponent'
@@ -14,6 +14,8 @@ import ContactForm from './ContactForm'
 import MyProfilePage from './MyProfilePage'
 import NavBar from './navbar/NavBar'
 import Register from './register/Register'
+import PrivateRoute from './private-route/PrivateRoute'
+
 // import Register fr
 // import {setCurrentUser} from '../redux/actions/ActionCreators'
 
@@ -73,6 +75,8 @@ class Main extends Component{
         this.props.fetchHCPCSOperations()
         this.props.fetchUSStates()
     }
+    
+    
 
     render(){
         
@@ -87,27 +91,30 @@ class Main extends Component{
             <NavBar auth={this.props.auth}/>
             {/* <Header/> */}
             <TransitionGroup>
-                
-                    <Switch>
-                       
-                        {/* <Route path='/home' render={() => <Home healthcarecosts={this.props.healthcarecosts} />} /> */}
-                     
-                        <Route path='/home' render={() => <Home props={this.props} />} />
-                        <Route path='/submissionform' render={() =>  <SubmissionForm resetFeedbackForm={this.props.resetFeedbackForm} postFeedback={this.props.postFeedback}/>} />
-              
-                        {/* <Route path='/healthcarecosts' render={() =>  <MyTable hcCosts={this.props.healthcarecosts} />} /> */}
-                        <Route path='/healthcarecosts' component={MyTableComp}  />
-                        <Route path='/contactus' render={() =>  <ContactForm/>} />
-                        <Route path='/myprofile' component={MyProfilePage}/>
-                        {/* <Route path='/login' render={() =>  <Login/>} /> */}
-                        <Route exact path="/login" component={Login} />
-                        <Route exact path="/register" component={Register} />
-                        
-
- 
-                        <Redirect to='/home' />
-                    </Switch>
-                
+                    
+                <Switch>
+                    {/* <Route path='/home' render={() => <Home healthcarecosts={this.props.healthcarecosts} />} /> */}
+                    <Route path='/healthcarecosts' component={MyTableComp}  />
+                    <Route path='/home' render={() => <Home props={this.props} />} />
+                    {/* <Route exact path="/login" component={Login} /> */}
+                    <Route exact path="/register" component={Register} />
+                    {/* <PublicRoute exact path="/healthcarecosts" component={() => MyTableComp}/> */}
+                    {/* <PublicRoute exact path="/home" component={() => <Home props={this.props} />}/> */}
+                    {/* <PublicRoute exact path="/healthcarecosts" component={MyTableComp}/> */}
+                    {/* <Route path='/healthcarecosts' render={() =>  <MyTable hcCosts={this.props.healthcarecosts} />} /> */}                
+                    {/* <Route path='/submissionform' render={() =>  <SubmissionForm resetFeedbackForm={this.props.resetFeedbackForm} postFeedback={this.props.postFeedback}/>} />
+                    <Route path='/contactus' render={() =>  <ContactForm/>} />
+                    <Route path='/myprofile' component={MyProfilePage}/> */}
+                    {/* <Route path='/login' render={() =>  <Login/>} /> */}
+                    {/* <Redirect to='/home' /> */}
+                {/* </Switch> */}
+                {/* <Switch> */}
+                    <PrivateRoute exact path="/submissionform" component={SubmissionForm} />
+                    <PrivateRoute exact path="/contactus" component={ContactForm} />
+                    <PrivateRoute exact path="/myprofile" component={MyProfilePage} />
+                    <Redirect to='/home' />
+                </Switch>
+                            
             </TransitionGroup>
             </div>
 
