@@ -1,5 +1,5 @@
 import React, {useState}from 'react'
-import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, Button, Col,  Modal, ModalHeader, ModalBody} from 'reactstrap'
+import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, Button, Col,  Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap'
 import { NavDropdown } from 'react-bootstrap';
 import {Link, NavLink} from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -15,6 +15,11 @@ let NavBar = (props) => {
     const [toggleLoginModal, modalLoginToggler] = useState(false)
     const [toggleLogoutModal, modalLogoutToggler] = useState(false)
     const [message, logger] = useState("sup")
+    // const logMeOut = useFriendStatus(props.logoutUser);
+    const logMeOut = () => {
+        // e.preventDefault();
+        props.logoutUser();
+      };
     const loginOrProfile = (auth) => {
         console.log("auth is", auth)
         return auth.isAuthenticated ? 
@@ -89,9 +94,17 @@ let NavBar = (props) => {
         </Nav>
       </Collapse>
         <Modal isOpen={toggleLogoutModal} toggle={modalLogoutToggler}>
-        <ModalHeader toggle={() => modalLogoutToggler(!toggleLogoutModal)}>Login</ModalHeader>
+        <ModalHeader toggle={() => modalLogoutToggler(!toggleLogoutModal)}>Logout</ModalHeader>
         <ModalBody>
-            <p> more stuff</p>
+            <p  > Are you sure you want to logout? </p>
+            <ModalFooter>
+            <Button color="primary" onClick={ () =>  logMeOut()} >
+                <i className="fa fa-sign-in fa-lg" /> Confirm
+            </Button>
+            <Button color="secondary" onClick={() => modalLogoutToggler(!toggleLogoutModal)} >
+                <i className="fa fa-sign-in fa-lg" /> Cancel
+            </Button>
+            </ModalFooter>
         </ModalBody>
      </Modal>
      </React.Fragment>
@@ -151,7 +164,9 @@ let NavBar = (props) => {
            <Modal isOpen={toggleLoginModal} toggle={modalLoginToggler}>
               <ModalHeader toggle={() => modalLoginToggler(!toggleLoginModal)}>Login</ModalHeader>
               <ModalBody>
-                  <Login/>
+              
+                    <Login onClose={() => modalLoginToggler(!toggleLoginModal)}/>
+                    {/* <Login onClose={this.showModal}/> */}
               </ModalBody>
            </Modal>
           </React.Fragment>

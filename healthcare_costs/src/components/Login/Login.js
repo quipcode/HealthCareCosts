@@ -27,7 +27,9 @@ class Login extends Component{
        this.handleSubmit = this.handleSubmit.bind(this) 
     }
     
-  
+    onClose = e => {
+        this.props.onClose && this.props.onClose(e);
+      };
     componentDidMount() {
     // If logged in and user navigates to Login page, should redirect them to dashboard
         console.log(this.props)
@@ -49,8 +51,7 @@ class Login extends Component{
       }
 
     handleSubmit(values) {
-        console.log('Current state is: ' + JSON.stringify(values), this.props);
-        alert('Current state is: ' + JSON.stringify(values));
+     
         testbasicfunct(values)
         this.props.loginUser(values)
         // loginUser(values)
@@ -96,13 +97,14 @@ class Login extends Component{
                 </div>
             </div> */}
 
-            <div className="container">
+            {/* <div className="container">
                 <div className="row">
                     <div className="col-xs-8 col-sm-12 col-md-12 col-lg-12">
-                        <div className="card card-signin my-5">
+                        <div className="card card-signin my-5"> */}
                             <div className="card-body">
                                 <h5 className="card-title text-center">Sign In</h5>
                                 <Form model="loginForm" className="form-signin" onSubmit={values => this.handleSubmit(values)}>
+                                {/* <Form model="loginForm" className="form-signin" > */}
 
                                     <Col>
                                         <FormGroup className="form-group">
@@ -158,7 +160,7 @@ class Login extends Component{
                                         </FormGroup>
                                     </Col>
 
-                                    <Button type="submit" color="primary">Submit</Button>
+                                    <Button className="btn btn-lg btn-google btn-block text-uppercase" type="submit" color="primary" onClick={this.onClose} >Submit</Button>
                                 </Form>
 
                                 <hr className="my-4"/>
@@ -173,16 +175,17 @@ class Login extends Component{
                                     <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign up</button>
                                 </div>
                             </div>
-                        </div>
+                         {/* </div>
                     </div>
                 </div>    
-            </div>
+            </div> */}
                 </React.Fragment>
         )
     }
 }
 
 Login.propTypes = {
+    onClose: PropTypes.func.isRequired,
     loginUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
