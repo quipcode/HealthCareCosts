@@ -9,7 +9,7 @@ samplehccRouter.route('/')
     .options(cors.corsWithOptions, (req,res) => res.sendStatus(200))
     .get(cors.cors, (req,res,next) =>{
         // User.find()
-        SampleHCC.find()
+        SampleHCC.find().sort({HCPCSCode :1})
         // .populate('comments.author')
         
         .then(samplehcc => {
