@@ -55,7 +55,7 @@ router.post("/login", cors.corsWithOptions ,(req,res, next) => {
     const password = req.body.password
     // console.log(email, password)
     User.findOne({email}).then(user => {
-        if(!user) return res.status(404).json({emailnotfound: "Email not found"})
+        if(!user) return next(res.status(404).json({emailnotfound: "Email not found"}))
         bcrypt.compare(password, user.password).then(isMatch => {
             if(isMatch){
                 const payload = {

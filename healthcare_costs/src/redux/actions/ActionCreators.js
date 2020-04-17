@@ -201,10 +201,16 @@ export const loginUser = credentials => dispatch =>{
           history.push('/myprofile')
       })
     //   .then()
-      .catch(err => dispatch({
-          type: ActionTypes.LOGIN_FAILED,
-          payload: err
-      }))
+    //   .catch(err => dispatch({
+    //       type: ActionTypes.LOGIN_FAILED,
+    //       payload: err
+    //   }))
+
+    //   .catch(error => dispatch(loginFailed(error.message))
+    .catch(error => {
+      console.log('post comment', error.message, error);
+      alert('We were unable to log you in \nError: ' + error.message);
+    })
 }
 
 export const testbasicfunct = creds => {

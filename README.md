@@ -21,3 +21,10 @@ To get a responsive grid I lifted from this [sandbox](https://codesandbox.io/s/q
 The table seen here is from the curtosy of the [material-table](https://github.com/mbrn/material-table) library
 
 Login form pulled from [here](https://startbootstrap.com/snippets/login/)
+
+Detected Bugs:
+- [ ] Failed login message not relayed to end user
+<!-- - [ ] Update the website
+- [x] Write the press release
+- [ ] Update the website
+- [ ] Contact the media  -->

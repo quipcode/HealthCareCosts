@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Control, Form, Errors,   } from 'react-redux-form';
+import { Control, Form, Errors, Field   } from 'react-redux-form';
 import {  Button, Label, Col, Row} from 'reactstrap'
 
 class MyProfilePage extends Component{
@@ -27,67 +27,71 @@ class MyProfilePage extends Component{
     }
 render(){
     return(
-        <div className="container">
-        <div className="row row-content">
+        <div className="container app selection-grid ">
+            <div className="row row-content">
                     <div className="col-12">
                         <h2>Send us your Feedback</h2>
                         <hr />
-                    </div>
-                    <div className="col-md-10">
-                        <Form model="myuserprofile">
+                        
+                        <Form model="myuserprofile">  
                             <Row className="form-group">
-                                <Col>
+                                    <Col>
+                                        
+                                        <Control.text className="form-control" placeholder="First Name" model="myuserprofile.firstName" />
+                                    </Col>
                                     
-                                    <Control.text className="form-control" placeholder="First Name" model="myuserprofile.firstName" />
-                                </Col>
-                                
-                                <Col>
-                                
-                                <Control.text className="form-control" placeholder="Last Name" model="myuserprofile.lastName" />
-                                </Col>
-                                
-                            </Row>
-
-                            <div className="field">
-                            
-                            </div>
-
-                            <button type="submit">
-                            Submit
-                            </button>
-                            <Row className="form-group">
-                                
-                                <Col md={10}>
-                                    {/* <Label htmlFor="firstName" md={1}>First Name</Label> */}
-                                    <Control.text inline model=".firstName" id="firstName" name="firstName"
-                                        placeholder="First Name"
-                                        className="form-control"
-                                        // validators={{
-                                        //     required,
-                                        //     minLength: minLength(2),
-                                        //     maxLength: maxLength(15)
-                                        // }}
-                                    />
+                                    <Col>
                                     
-                                    {/* <Label htmlFor="firstName" md={1}>Last Name</Label> */}
-                                    <Control.text inline model=".lastName" id="lastName" name="lastName"
-                                        placeholder="Last Name"
-                                        className="form-control"
-                                        // validators={{
-                                        //     required,
-                                        //     minLength: minLength(2),
-                                        //     maxLength: maxLength(15)
-                                        // }}
-                                    />
-                                </Col>
-                                
-                                <Col md={10}>
+                                    <Control.text className="form-control" placeholder="Last Name" model="myuserprofile.lastName" />
+                                    </Col>
                                     
-                                </Col>
-                            </Row>
+                                </Row>
+                                <Row className="form-group">
+                                    <Col>
+                                        
+                                        <Control.text className="form-control" placeholder="Username" model="myuserprofile.username" />
+                                    </Col>
+                                    
+                                    <Col>
+                                    
+                                        <Control.text className="form-control" placeholder="Email" model="myuserprofile.email" />
+                                    </Col>
+                                    
+                                </Row>
+                                <Row className="form-group">
+                                    <Col>
+                                    <Control.text className="form-control" placeholder="Address 1" model="myuserprofile.address1" />
+                                    </Col>
+                                </Row>
+                                <Row className="form-group">
+                                    <Col>
+                                    <Control.text className="form-control" placeholder="Address 2" model="myuserprofile.address2" />
+                                    </Col>
+                                </Row>
+                                <Row className="form-group">
+                                    <Col>
+                                        <Control.text className="form-control" placeholder="City" model="myuserprofile.city" />
+                                    </Col>
+                                    <Col>
+                                    <Field model="user.favoriteColors">
+                                        <select className="form-control">
+                                            {/* {showWhite && <option value="white">white</option>} */}
+                                            <option value="red">red</option>
+                                            <option value="green">green</option>
+                                            <option value="blue">blue</option>
+                                        </select>
+                                    </Field>
+                                        <Control.text className="form-control" placeholder="State" model="myuserprofile.state" />
+                                    </Col>
+                                    <Col>
+                                         <Control.text className="form-control" placeholder="Zipcode" model="myuserprofile.zipcode" />
+                                    </Col>
+                                </Row>
+                                <Button>Update</Button>
                         </Form>
                     </div>
             </div>
+         
         </div>
         
     )
