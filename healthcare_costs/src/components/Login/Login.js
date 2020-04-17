@@ -52,7 +52,7 @@ class Login extends Component{
 
     handleSubmit(values) {
      
-        testbasicfunct(values)
+        // testbasicfunct(values)
         this.props.loginUser(values)
         // loginUser(values)
         // this.props.postLogin(values)

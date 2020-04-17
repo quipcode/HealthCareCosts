@@ -5,7 +5,7 @@ import {USStates} from './usstates'
 import {HCPCSOperations} from './hcpcsoperation'
 import {HealthCareCosts} from './healthcarecosts'
 import {UsersLogin} from './users'
-import {InitialFeedback, LoginForm} from '../forms'
+import {InitialFeedback, LoginForm, MyUserProfile} from '../forms'
 import {UserProfile} from './userprofile'
 // import errorReducer from "./errorReducer";
 
@@ -20,7 +20,8 @@ export default combineReducers({
   logintoken: UsersLogin,
   ...createForms({
     feedbackForm: InitialFeedback,
-    loginForm: LoginForm
+    loginForm: LoginForm,
+    myuserprofile: MyUserProfile
     })
 //   errors: errorReducer
 });

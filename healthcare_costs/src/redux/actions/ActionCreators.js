@@ -6,6 +6,7 @@ import jwt_decode from "jwt-decode";
 import axios from 'axios'
 import {browserHistory } from '../../index'
 import {useHistory  } from 'react-router-dom';
+import history from '../../history';
 
 // const history = useHistory();
 
@@ -197,7 +198,9 @@ export const loginUser = credentials => dispatch =>{
           const decoded = jwt_decode(token);
           // Set current user
           dispatch(setCurrentUser(decoded));
+          history.push('/myprofile')
       })
+    //   .then()
       .catch(err => dispatch({
           type: ActionTypes.LOGIN_FAILED,
           payload: err
@@ -215,6 +218,8 @@ const redirect = redirectUrl => {
 export const logoutUser = () => dispatch => {
     localStorage.removeItem("jwtToken")
     setAuthToken(false)
+    dispatch(setCurrentUser({}))
+    history.push('/home')
     //need to reroute here so user doesn't see alert
     // browserHistory.push('/home')
     // redirect('/home')

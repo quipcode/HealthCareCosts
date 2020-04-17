@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
+import history from './history';
 import Main from './components/MainComponent'
 import './App.css'
 // import { createBrowserHistory } from 'history'
 import jwt_decode from "jwt-decode";
-import {BrowserRouter} from 'react-router-dom'
+
+import {Router, BrowserRouter} from 'react-router-dom'
 import {Provider} from 'react-redux'
 
 import setAuthToken from './utils/setAuthToken'
@@ -60,11 +62,11 @@ class App extends Component {
     return(
 
       <Provider store={store}>
-        <BrowserRouter >
+        <Router history={history} >
           <div className="App">
             <Main/>
           </div>
-        </BrowserRouter>
+        </Router>
       </Provider>
 
     )

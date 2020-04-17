@@ -42,9 +42,9 @@ class Logout extends Component{
       }
 
       logMeOut(values) {
-     
-        
         this.props.logoutUser()
+        this.props.toggler()
+        
         // this.props.history.push("/home");
         // history.push("/home")
         // loginUser(values)
@@ -65,22 +65,22 @@ class Logout extends Component{
                 <Button color="secondary" onClick={() => this.props.toggler()}  >
                     <i className="fa fa-sign-in fa-lg" /> Cancel
                 </Button>
-                {console.log("suppper duppper ", )}
+      
             </React.Fragment>
         )
     }
 }
 
 Logout.propTypes = {
-    onClose: PropTypes.func.isRequired,
+    
     logoutUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired
+    // errors: PropTypes.object.isRequired
   };
   
   const mapStateToProps = state => ({
     auth: state.auth,
-    errors: state.errors
+    // errors: state.errors
   });
   
   export default connect(

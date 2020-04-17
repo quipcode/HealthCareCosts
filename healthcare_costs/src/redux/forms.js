@@ -22,3 +22,16 @@ export const LoginForm = {
     email: '',
     password: ''
 }
+
+export const MyUserProfile = {
+    firstName: '',
+    lastName: '',
+    username: '',
+    phoneNum: '',
+    email: '',
+    address1: '',
+    address2: '',
+    city: '',
+    state: '',
+    zipcode: '' 
+}

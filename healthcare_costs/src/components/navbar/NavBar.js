@@ -26,7 +26,7 @@ let NavBar = (props) => {
         
       };
     const loginOrProfile = (auth) => {
-        console.log("auth is", auth)
+        
         return auth.isAuthenticated ? 
         // <Collapse isOpen={toggleNav} navbar>
         <React.Fragment>
@@ -101,7 +101,7 @@ let NavBar = (props) => {
         <Modal isOpen={toggleLogoutModal} toggle={modalLogoutToggler}>
         <ModalHeader toggle={() => modalLogoutToggler(!toggleLogoutModal)}>Logout</ModalHeader>
         <ModalBody>
-            <p  > Are you sure you want to logout? </p>
+            {/* <p  > Are you sure you want to logout? </p>
             <ModalFooter>
             <Button color="primary" onClick={ () =>  logMeOut()} >
                 <i className="fa fa-sign-in fa-lg" /> Confirm
@@ -109,7 +109,7 @@ let NavBar = (props) => {
             <Button color="secondary" onClick={() => modalLogoutToggler(!toggleLogoutModal)} >
                 <i className="fa fa-sign-in fa-lg" /> Cancel
             </Button>
-            </ModalFooter>
+            </ModalFooter> */}
             <Logout toggler={modalLogoutToggler}/>
         </ModalBody>
      </Modal>
