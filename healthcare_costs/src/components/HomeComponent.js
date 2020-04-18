@@ -57,7 +57,7 @@ class Home extends Component{
     }
 
     handleSubmit(values) {
-        console.log('Current state is: ' + JSON.stringify(values));
+        // console.log('Current state is: ' + JSON.stringify(values));
         // alert('Current state is: ' + JSON.stringify(values));
         // postFeedback(values);
         // this.props.resetFeedbackForm();
@@ -67,14 +67,15 @@ class Home extends Component{
       handleOperationChange = operation => {
           this.setState(
               {operation},
-              () => console.log(`state is:`, this.state)
+            //   () => console.log(`state is:`, this.state)
           )
           
       }
     handleStateChange = state => {
     this.setState(
         {state},
-        () => console.log(`state is:`, this.state))        
+        )     
+        // () => console.log(`state is:`, this.state)   
     }
 
     onSubmit = () => {
@@ -103,7 +104,7 @@ class Home extends Component{
                             state: this.state.state
                         }
                     }}>
-                    <Button id="searchBtn" onClick={this.try}>Search</Button>
+                    <Button id="searchBtn" >Search</Button>
                     </Link>
                  
                 </div>

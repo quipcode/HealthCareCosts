@@ -6,7 +6,7 @@ import { actions } from 'react-redux-form';
 import Home from './HomeComponent'
 import Login from './Login/Login'
 // import jwt_decode from "jwt-decode";
-import {fetchHealthCareCosts, fetchHCPCSOperations, fetchUSStates, loginUser} from '../redux/actions/ActionCreators'
+import {fetchHealthCareCosts, fetchHCPCSOperations, getUserProfile, patchUserProfile , fetchUSStates, loginUser} from '../redux/actions/ActionCreators'
 // import {loginUser, postLogin} from '../redux/actions/ActionCreators'
 import Header from './HeaderComponent';
 import SubmissionForm from './SubmissionForm'
@@ -41,7 +41,10 @@ const mapDispatchToProps = {
     fetchHealthCareCosts: () => (fetchHealthCareCosts()),
     fetchHCPCSOperations: () => (fetchHCPCSOperations()),
     fetchUSStates: () => (fetchUSStates()),
-    resetFeedbackForm: () => (actions.reset('feedbackForm')),
+    // resetFeedbackForm: () => (actions.reset('feedbackForm')),
+    patchUserProfile: profile => (patchUserProfile(profile)),
+    getUserProfile : userId => (getUserProfile(userId))
+    
     // loginUser: () => (loginUser())
     // postLogin: login => (postLogin(login)),
 }
@@ -52,7 +55,8 @@ const mapStateToProps = state => {
         usstates: state.usstates,
         hcpcsoperations: state.hcpcsoperations,
         logintoken: state.logintoken,
-        auth: state.auth
+        auth: state.auth,
+        userprofile: state.userprofile
     }
 }
 
@@ -68,6 +72,7 @@ class Main extends Component{
         this.props.fetchHealthCareCosts()
         this.props.fetchHCPCSOperations()
         this.props.fetchUSStates()
+        // this.props.getUserProfile()
     }
     
     
@@ -78,6 +83,11 @@ class Main extends Component{
         const MyTableComp = ({location}) => {
             return(
                 <MyTable hcCosts={this.props.healthcarecosts} filterBy={location.operationstateProps} />
+            )
+        }
+        const MyUserProfile = () =>{
+            return (
+                < MyProfilePage patchUserProfile={this.props.patchUserProfile} userId={this.props.auth.user.id} getUserProfile={this.props.getUserProfile} ></MyProfilePage>
             )
         }
         return(
@@ -105,7 +115,7 @@ class Main extends Component{
                 {/* <Switch> */}
                     <PrivateRoute exact path="/submissionform" component={SubmissionForm} />
                     <PrivateRoute exact path="/contactus" component={ContactForm} />
-                    <PrivateRoute exact path="/myprofile" component={MyProfilePage} />
+                    <PrivateRoute exact path="/myprofile" component={MyUserProfile} />
                     <Redirect to='/home' />
                 </Switch>
                             

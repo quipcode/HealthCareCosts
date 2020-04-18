@@ -198,6 +198,8 @@ export const loginUser = credentials => dispatch =>{
           const decoded = jwt_decode(token);
           // Set current user
           dispatch(setCurrentUser(decoded));
+          dispatch(getUserProfile(decoded.id));
+          console.log("in the post axios login ", decoded.id)
           history.push('/myprofile')
       })
     //   .then()
@@ -225,6 +227,7 @@ export const logoutUser = () => dispatch => {
     localStorage.removeItem("jwtToken")
     setAuthToken(false)
     dispatch(setCurrentUser({}))
+    dispatch(addUserProfile({}))
     history.push('/home')
     //need to reroute here so user doesn't see alert
     // browserHistory.push('/home')
@@ -234,29 +237,69 @@ export const logoutUser = () => dispatch => {
     // dispatch(setCurrentUser({}))
 }
 
-export const myProfileDetails = userId => dispatch =>{
-    dispatch(userprofileLoading())
+export const getUserProfile = userId => dispatch =>{
+    // dispatch(userprofileLoading())
+    // axios
+    //     .get(serverUrl + 'users/' + userId,  {
+    //         validateStatus: function (status) {
+    //           return status < 500; // Reject only if the status code is greater than or equal to 500
+    //         }})
+    //     .then(res => {
+    //         if(res){
+    //             return res
+    //         }else{
+    //             const error = new Error(`Error ${res.status}: ${res.statusText}`)
+    //             error.response = res
+    //             throw error
+    //         }
+    //     },
+    //         error => {
+    //             const errMess = new Error(error.message);
+    //             throw errMess;
+    //         }
+    //     )
+    //     .then(res => res.json())
+    //     .then(userprofile => dispatch(addUserProfile(userprofile)))
+    //     .catch(error => dispatch(userprofileFailed(error.message)))
     axios
-        .get(serverUrl + 'users/' + userId)
-        .then(res => {
-            if(res.ok){
-                return res
-            }else{
-                const error = new Error(`Error ${res.status}: ${res.statusText}`)
-                error.response = res
-                throw error
-            }
-        },
-            error => {
-                const errMess = new Error(error.message);
-                throw errMess;
-            }
-        )
-        .then(res => res.json())
-        .then(userprofile => dispatch(addUserProfile(userprofile)))
-        .catch(error => dispatch(userprofileFailed(error.message)))
-}
+    .get(serverUrl + 'users/' + userId, {
+        validateStatus: function (status) {
+          return status < 500; // Reject only if the status code is greater than or equal to 500
+        }})
+    .then()
+    ///the issue with my get logged in user is because the res.ok is only applicable to the fetch method
+        .then(function(res){console.log(res, res.ok)})
+    .catch(function (error) {
+        console.log(error.toJSON());
+      });
 
+    //   dispatch(USStatesLoading())
+    //   return fetch(serverUrl + 'usstates')
+    //   // return fetch(baseUrl + 'usstates')
+    //   .then(response => {
+    //       if(response.ok){
+    //           return response
+    //       }else{
+    //           const error = new Error(`Error ${response.status}: ${response.statusText}`); 
+    //           error.response = response
+    //           throw error;
+    //       }
+    //   },
+    //       error =>{
+    //           const errMess = new Error(error.message);
+    //           throw errMess
+    //       }
+    //   )
+      
+    //   .then(response => { console.log(response)})
+    //   .then(USStatesdata => dispatch(addUSStates(USStatesdata)))
+    //   .catch(error => dispatch(USStatesFailed(error.message)))
+}
+export const patchUserProfile = userId => dispatch =>{
+    // export const postUserProfile = function(data){
+        dispatch(userprofileLoading())
+        // console.log("hi there", data)
+}
 export const userprofileLoading = () => ({
     type: ActionTypes.USERPROFILE_LOADING
 })
@@ -270,3 +313,9 @@ export const addUserProfile = userprofile => ({
     type: ActionTypes.USERPROFILE_SUCCESS,
     payload: userprofile
 })
+
+// export const postUserProfile = (profile) => ({
+//     axios
+    
+        
+// })

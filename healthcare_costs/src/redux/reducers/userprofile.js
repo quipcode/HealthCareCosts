@@ -11,7 +11,7 @@ export const UserProfile = (state = initialState, action) => {
         case ActionTypes.USERPROFILE_LOADING:
             return{...state, isLoading: true, errMess: null, userprofile: {}}
         case ActionTypes.USERPROFILE_FAILED:
-            return{...state, isLoading: false, errMess: action.payload}
+            return{...state, isLoading: false, errMess: action.payload }
         case ActionTypes.USERPROFILE_SUCCESS:
             return{...state, isLoading: false, errMess: null, userprofile: action.payload}
         default: 
