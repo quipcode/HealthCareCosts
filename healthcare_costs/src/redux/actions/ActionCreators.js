@@ -266,12 +266,22 @@ export const getUserProfile = userId => dispatch =>{
         validateStatus: function (status) {
           return status < 500; // Reject only if the status code is greater than or equal to 500
         }})
-    .then()
-    ///the issue with my get logged in user is because the res.ok is only applicable to the fetch method
-        .then(function(res){console.log(res, res.ok)})
-    .catch(function (error) {
-        console.log(error.toJSON());
-      });
+    .then(res => {
+        const profile = res.data
+        delete profile.password;
+        dispatch(addUserProfile(profile))
+    })
+    
+    .catch(err => {
+        dispatch(userprofileFailed(err.message))
+        alert("We were unable to pull your profile at this time")
+    })
+    
+    // ///the issue with my get logged in user is because the res.ok is only applicable to the fetch method
+    //     .then(function(res){console.log(res, res.ok)})
+    // .catch(function (error) {
+    //     console.log(error.toJSON());
+    //   });
 
     //   dispatch(USStatesLoading())
     //   return fetch(serverUrl + 'usstates')

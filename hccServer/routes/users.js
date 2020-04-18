@@ -104,4 +104,37 @@ router.route("/:userId", cors.corsWithOptions)
     })
     .catch(err => next(err))
 })
+.patch((req,res,next) => {
+    User.findById(req.params.userId)
+    .then(user => {
+        if(user){
+            if(!user.id.equals(req.params.userId)){
+                const err = new Error('You are not authorized to update this comment!');
+                err.status = 403;
+                return next(err);
+            }
+            req.body.author = req.user._id;
+            Users.findByIdAndUpdate(req.params.userId, {
+                $set: req.body
+            }, { new: true })
+            .then(comment => {
+                Comment.findById(comment._id)
+                .populate('author')
+                .then(comment => {
+                    res.statusCode = 200;
+                    res.setHeader('Content-Type', 'application/json');
+                    res.json(comment); 
+                })
+                .catch(err => next(err));               
+            })
+            .catch(err => next(err));
+
+        }else{
+            const err = new Error(`User ${req.params.userId} not found`)
+            err.status = 404;
+            return next(err);
+        }
+    })
+    .catch(err => next(err));
+})
 module.exports = router

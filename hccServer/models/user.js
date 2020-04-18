@@ -29,6 +29,26 @@ const userSchema = new Schema({
         type: String,
         default: "",
         required: true
+    },
+    address1 :{
+        type: String,
+        default: ""
+    },
+    address2 :{
+        type: String,
+        default: ""
+    },
+    city: {
+        type: String,
+        default: ""
+    },
+    state : {
+        type: String,
+        default: ""
+    },
+    zipcode: {
+        type: Number,
+        default: 0
     }
 });
 

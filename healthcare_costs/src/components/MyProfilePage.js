@@ -46,11 +46,24 @@ class MyProfilePage extends Component{
     }
    
     getmeprofile(event){
-        this.props.getUserProfile(this.props.userId)
+        console.log(this.props.myprofile)
+        // this.props.getUserProfile(this.props.userId)
         // console.log(this.props.userId)
     }
 
 render(){
+    let firstNameControl
+    let lastNameControl
+    let emailControl
+    let usernameControl
+    this.props.myprofile.firstname ? firstNameControl = <Control.text   model=".firstName" id="firstName" className="form-control" placeholder="First Name"  onChange={this.happy} defaultValue={this.props.myprofile.firstname}  /> : firstNameControl = <Control.text   model=".firstName" id="firstName" className="form-control" placeholder="First Name"  />
+
+    this.props.myprofile.lastname ? lastNameControl = <Control.text className="form-control" placeholder="Last Name" model=".lastName" defaultValue={this.props.myprofile.lastname} /> : lastNameControl = <Control.text className="form-control" placeholder="Last Name" model=".lastName" />
+    
+    this.props.myprofile.email ? emailControl = <Control.text disabled={{ valid: true }}className="form-control" placeholder="Email" model="myuserprofile.email"  defaultValue={this.props.myprofile.email} /> : emailControl =  <Control.text disabled={{ valid: true }}className="form-control" placeholder="Email" model="myuserprofile.email" />
+    
+    this.props.myprofile.username ? usernameControl = <Control.text className="form-control" disabled={{ valid: true }} placeholder="Username" model="myuserprofile.username" defaultValue={this.props.myprofile.username} /> : usernameControl = <Control.text className="form-control" disabled={{ valid: true }} placeholder="Username" model="myuserprofile.username" />
+
     return(
         <div className="container selection-grid ">
             <div className="row row-content">
@@ -62,24 +75,25 @@ render(){
                             <Row className="form-group">
                                     <Col md={6} style={fieldStyling}>
                                     {/* <label for="inputEmail4">Email</label> */}
-                                        <Control.text   model=".firstName" id="firstName" className="form-control" placeholder="First Name"  onChange={this.happy} />
+                                        {firstNameControl}                          
+                                        
                                     </Col>
                                     
                                     <Col md={6} style={fieldStyling}>
                                     {/* <label for="inputEmail4">Email</label> */}
-                                    <Control.text className="form-control" placeholder="Last Name" model=".lastName" />
+                                        {lastNameControl}
                                     </Col>
                                     
                                 </Row>
                                 <Row className="form-group">
                                     <Col md={6} style={fieldStyling}>
+                                        {usernameControl}
                                         
-                                        <Control.text className="form-control" disabled={{ valid: true }} placeholder="Username" model="myuserprofile.username" />
                                     </Col>
                                     
                                     <Col md={6} style={fieldStyling}>
-                                    
-                                        <Control.text disabled={{ valid: true }}className="form-control" placeholder="Email" model="myuserprofile.email" />
+                                        {emailControl}
+                                        
                                     </Col>
                                     
                                 </Row>

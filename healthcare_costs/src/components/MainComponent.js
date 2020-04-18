@@ -87,7 +87,7 @@ class Main extends Component{
         }
         const MyUserProfile = () =>{
             return (
-                < MyProfilePage patchUserProfile={this.props.patchUserProfile} userId={this.props.auth.user.id} getUserProfile={this.props.getUserProfile} ></MyProfilePage>
+                < MyProfilePage patchUserProfile={this.props.patchUserProfile} userId={this.props.auth.user.id} getUserProfile={this.props.getUserProfile} myprofile={this.props.userprofile.userprofile}></MyProfilePage>
             )
         }
         return(
