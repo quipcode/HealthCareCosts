@@ -42,7 +42,7 @@ const mapDispatchToProps = {
     fetchHCPCSOperations: () => (fetchHCPCSOperations()),
     fetchUSStates: () => (fetchUSStates()),
     // resetFeedbackForm: () => (actions.reset('feedbackForm')),
-    patchUserProfile: profile => (patchUserProfile(profile)),
+    patchUserProfile: (profile, userId) => (patchUserProfile(profile, userId)),
     getUserProfile : userId => (getUserProfile(userId))
     
     // loginUser: () => (loginUser())
@@ -87,7 +87,7 @@ class Main extends Component{
         }
         const MyUserProfile = () =>{
             return (
-                < MyProfilePage patchUserProfile={this.props.patchUserProfile} userId={this.props.auth.user.id} getUserProfile={this.props.getUserProfile} myprofile={this.props.userprofile.userprofile}></MyProfilePage>
+                < MyProfilePage patchUserProfile={this.props.patchUserProfile} userId={this.props.auth.user.id} getUserProfile={this.props.getUserProfile} myprofile={this.props.userprofile.userprofile} states={this.props.usstates.USStates}></MyProfilePage>
             )
         }
         return(

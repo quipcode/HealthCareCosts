@@ -108,27 +108,19 @@ router.route("/:userId", cors.corsWithOptions)
     User.findById(req.params.userId)
     .then(user => {
         if(user){
-            if(!user.id.equals(req.params.userId)){
+            console.log("is true", !user._id.equals(req.params.userId))
+            if(!user._id.equals(req.params.userId)){
                 const err = new Error('You are not authorized to update this comment!');
                 err.status = 403;
+                console.log("in err")
                 return next(err);
             }
-            req.body.author = req.user._id;
-            Users.findByIdAndUpdate(req.params.userId, {
+            User.findByIdAndUpdate(req.params.userId, {
                 $set: req.body
-            }, { new: true })
-            .then(comment => {
-                Comment.findById(comment._id)
-                .populate('author')
-                .then(comment => {
-                    res.statusCode = 200;
-                    res.setHeader('Content-Type', 'application/json');
-                    res.json(comment); 
-                })
-                .catch(err => next(err));               
-            })
-            .catch(err => next(err));
-
+            }, function(e, results) {
+                res.json(results)
+               })      
+            .catch(err => next(err))
         }else{
             const err = new Error(`User ${req.params.userId} not found`)
             err.status = 404;

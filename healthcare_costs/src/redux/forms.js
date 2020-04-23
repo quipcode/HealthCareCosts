@@ -27,7 +27,6 @@ export const MyUserProfile = {
     firstName: '',
     lastName: '',
     username: '',
-    phoneNum: '',
     email: '',
     address1: '',
     address2: '',
