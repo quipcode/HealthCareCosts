@@ -4,8 +4,6 @@ import {serverUrl} from '../../shared/serverUrl'
 import setAuthToken from '../../utils/setAuthToken'
 import jwt_decode from "jwt-decode";
 import axios from 'axios'
-import {browserHistory } from '../../index'
-import {useHistory  } from 'react-router-dom';
 import history from '../../history';
 
 // const history = useHistory();
@@ -128,39 +126,6 @@ export const addUSStates = USStatesdata => ({
     payload: USStatesdata
 })
 
-export const postFeedback = (theFeedback)  => {
-
-    const newFeedback = theFeedback
-    // newFeedback.date = new Date().toISOString();
-
-    return fetch(baseUrl + 'feedback', {
-        method: "POST",
-        body: JSON.stringify(newFeedback),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-        .then(response => {
-            if (response.ok) {
-                // return response;
-                alert("Thank you for your feedback " + JSON.stringify(response))
-                return response;
-            } else {
-                const error = new Error(`Error ${response.status}: ${response.statusText}`);
-                error.response = response;
-                throw error;
-            }
-        },
-            error => { throw error; }
-        )
-        .then(response => response.json())
-        // .then(response => dispatch(addComment(response)))
-        // .then(alert("Thank you for your feedback \n" ))
-        .catch(error => {
-            console.log('post comment', error.message);
-            alert('We were unable to submit your feedback \nError: ' + error.message);
-        });
-};
 
 export const loginLoading = () => ({
     type: ActionTypes.LOGIN_LOADING
@@ -202,13 +167,7 @@ export const loginUser = credentials => dispatch =>{
           console.log("in the post axios login ", decoded.id)
           history.push('/myprofile')
       })
-    //   .then()
-    //   .catch(err => dispatch({
-    //       type: ActionTypes.LOGIN_FAILED,
-    //       payload: err
-    //   }))
 
-    //   .catch(error => dispatch(loginFailed(error.message))
     .catch(error => {
       console.log('post comment', error.message, error);
       alert('We were unable to log you in \nError: ' + error.message);
@@ -219,9 +178,7 @@ export const testbasicfunct = creds => {
     console.log("basic funct", creds)
 }
 
-const redirect = redirectUrl => {
-    window.location = redirectUrl;
-  };
+
 
 export const logoutUser = () => dispatch => {
     localStorage.removeItem("jwtToken")
@@ -229,12 +186,6 @@ export const logoutUser = () => dispatch => {
     dispatch(setCurrentUser({}))
     dispatch(addUserProfile({}))
     history.push('/home')
-    //need to reroute here so user doesn't see alert
-    // browserHistory.push('/home')
-    // redirect('/home')
-//    history.push('/home')
-// this.props.history.push('/home')
-    // dispatch(setCurrentUser({}))
 }
 
 export const getUserProfile = userId => dispatch =>{
@@ -282,3 +233,37 @@ export const addUserProfile = userprofile => ({
     payload: userprofile
 })
 
+
+export const postFeedback = (theFeedback)  => {
+
+    const newFeedback = theFeedback
+    // newFeedback.date = new Date().toISOString();
+
+    return fetch(baseUrl + 'feedback', {
+        method: "POST",
+        body: JSON.stringify(newFeedback),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then(response => {
+            if (response.ok) {
+                // return response;
+                alert("Thank you for your feedback " + JSON.stringify(response))
+                return response;
+            } else {
+                const error = new Error(`Error ${response.status}: ${response.statusText}`);
+                error.response = response;
+                throw error;
+            }
+        },
+            error => { throw error; }
+        )
+        .then(response => response.json())
+        // .then(response => dispatch(addComment(response)))
+        // .then(alert("Thank you for your feedback \n" ))
+        .catch(error => {
+            console.log('post comment', error.message);
+            alert('We were unable to submit your feedback \nError: ' + error.message);
+        });
+};
