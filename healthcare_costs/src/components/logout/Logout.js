@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Control, Form, Errors,   } from 'react-redux-form';
-import {  Button, Label, Col, FormGroup} from 'reactstrap'
-import axios from 'axios'
+// import { Control, Form, Errors,   } from 'react-redux-form';
+import {  Button} from 'reactstrap'
+
 // import {loginUser} from ".."
 import {logoutUser} from '../../redux/actions/ActionCreators'
 

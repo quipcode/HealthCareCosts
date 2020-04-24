@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Control, Form} from 'react-redux-form';
 import { Col, Row} from 'reactstrap'
 
+
 const fieldStyling = {
     "marginTop": "5px"
 }
@@ -34,6 +35,7 @@ class MyProfilePage extends Component{
    
     
     handleSubmit(event) {
+        
         this.props.patchUserProfile(event, this.props.userId);
     }
 

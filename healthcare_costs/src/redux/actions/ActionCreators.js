@@ -1,5 +1,4 @@
 import * as ActionTypes from './ActionTypes'
-import {baseUrl} from '../../shared/baseUrl'
 import {serverUrl} from '../../shared/serverUrl'
 import setAuthToken from '../../utils/setAuthToken'
 import jwt_decode from "jwt-decode";
@@ -10,7 +9,6 @@ import history from '../../history';
 
 export const fetchHealthCareCosts = () => dispatch => {
     dispatch(healthCareCostsLoading())
-    // return fetch(baseUrl + 'healthcarecosts')
     return fetch(serverUrl + 'samplehcc')
     .then(response => {
         if(response.ok){
@@ -50,7 +48,6 @@ export const addHealthCareCosts = healthcarecostdata => ({
 export const fetchHCPCSOperations = () => dispatch => {
     dispatch(HCPCSOperationLoading())
     return fetch(serverUrl + 'hccoperations')
-    // return fetch(baseUrl + 'HCPCS_Operation')
     .then(response => {
         if(response.ok){
             
@@ -90,7 +87,6 @@ export const addHCPCSOperations = hcpcsoperations => ({
 export const fetchUSStates = () => dispatch => {
     dispatch(USStatesLoading())
     return fetch(serverUrl + 'usstates')
-    // return fetch(baseUrl + 'usstates')
     .then(response => {
         if(response.ok){
             return response
@@ -213,6 +209,7 @@ export const patchUserProfile = (profile, userId) => dispatch =>{
         .patch(serverUrl  + 'users/' + userId, profile)
         .then(res =>{
             dispatch(addUserProfile(profile))
+            alert("Your profile has been updated")
         })
         .catch(err=> {
             dispatch(userprofileFailed(err.message))
@@ -235,35 +232,15 @@ export const addUserProfile = userprofile => ({
 
 
 export const postFeedback = (theFeedback)  => {
-
-    const newFeedback = theFeedback
-    // newFeedback.date = new Date().toISOString();
-
-    return fetch(baseUrl + 'feedback', {
-        method: "POST",
-        body: JSON.stringify(newFeedback),
-        headers: {
-            "Content-Type": "application/json"
+    axios
+    .post(serverUrl + 'feedback', theFeedback, { "content-type": "application/json"})
+    .then(res => {
+        if(res.statusText === "OK"){
+            alert("Your feedback has been submitted")
         }
     })
-        .then(response => {
-            if (response.ok) {
-                // return response;
-                alert("Thank you for your feedback " + JSON.stringify(response))
-                return response;
-            } else {
-                const error = new Error(`Error ${response.status}: ${response.statusText}`);
-                error.response = response;
-                throw error;
-            }
-        },
-            error => { throw error; }
-        )
-        .then(response => response.json())
-        // .then(response => dispatch(addComment(response)))
-        // .then(alert("Thank you for your feedback \n" ))
-        .catch(error => {
-            console.log('post comment', error.message);
-            alert('We were unable to submit your feedback \nError: ' + error.message);
-        });
+    .catch(err => {
+        console.log("post feedback", err.message, err)
+        alert('We were unable to submit your feedback \nError: ' + err.message)
+    })
 };

@@ -19,7 +19,7 @@ export default combineReducers({
   hcpcsoperations : HCPCSOperations,
   logintoken: UsersLogin,
   ...createForms({
-    feedbackForm: InitialFeedback,
+    feedback: InitialFeedback,
     loginForm: LoginForm,
     myuserprofile: MyUserProfile
     })

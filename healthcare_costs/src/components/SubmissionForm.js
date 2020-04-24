@@ -31,11 +31,6 @@ class SubmissionForm extends React.Component {
                 email: false
             }
         };
-
-        
-   
-
-
        
         this.handleSubmit = this.handleSubmit.bind(this);
     }

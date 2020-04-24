@@ -1,11 +1,7 @@
 export const InitialFeedback = {
-    firstName: '',
-    lastName: '',
-    phoneNum: '',
-    email: '',
-    agree: false,
-    contactType: 'Email',
-    feedback: ''
+    userId: '',
+    title: '',
+    body: ''
 };
 
 export const HealthCareCosts = {

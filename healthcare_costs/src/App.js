@@ -5,11 +5,11 @@ import './App.css'
 // import { createBrowserHistory } from 'history'
 import jwt_decode from "jwt-decode";
 
-import {Router, BrowserRouter} from 'react-router-dom'
+import {Router} from 'react-router-dom'
 import {Provider} from 'react-redux'
 
 import setAuthToken from './utils/setAuthToken'
-import {setCurrentUser, loginUser, logoutUser, getUserProfile} from './redux/actions/ActionCreators'
+import {setCurrentUser, logoutUser, getUserProfile} from './redux/actions/ActionCreators'
 import './App.css';
 import {ConfigureStore} from './redux/configureStore'
 const store = ConfigureStore()
