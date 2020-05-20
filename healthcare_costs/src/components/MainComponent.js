@@ -3,7 +3,7 @@ import { TransitionGroup } from 'react-transition-group';
 import { Switch, Route, Redirect, withRouter  } from 'react-router-dom';
 import {connect} from 'react-redux';
 import { actions } from 'react-redux-form';
-import {fetchHealthCareCosts, fetchHCPCSOperations, getUserProfile, patchUserProfile , fetchUSStates, postFeedback} from '../redux/actions/ActionCreators'
+import {fetchHealthCareCosts, fetchHCPCSOperations, getUserProfile, patchUserProfile , fetchUSStates, postFeedback, fetchUserOperations, postUserOperations} from '../redux/actions/ActionCreators'
 
 import POCSearch from './POC/POCSearch'
 import SubmissionForm from './SubmissionForm'
@@ -19,12 +19,13 @@ const mapDispatchToProps = {
     fetchHealthCareCosts: () => (fetchHealthCareCosts()),
     fetchHCPCSOperations: () => (fetchHCPCSOperations()),
     fetchUSStates: () => (fetchUSStates()),
-
+    fetchUserOperations : () => (fetchUserOperations()),
     getUserProfile : userId => (getUserProfile(userId)),
     patchUserProfile: (profile, userId) => (patchUserProfile(profile, userId)), 
 
     postFeedback : feedback => (postFeedback(feedback)),
-    resetFeedbackForm: () => (actions.reset('feedback'))
+    resetFeedbackForm: () => (actions.reset('feedback')),
+    postUserOperations : useroperation => (postUserOperations(useroperation))
     // loginUser: () => (loginUser())
     // postLogin: login => (postLogin(login)),
 }
@@ -36,7 +37,8 @@ const mapStateToProps = state => {
         hcpcsoperations: state.hcpcsoperations,
         logintoken: state.logintoken,
         auth: state.auth,
-        userprofile: state.userprofile
+        userprofile: state.userprofile,
+        useroperations: state.useroperations
     }
 }
 
@@ -52,6 +54,7 @@ class Main extends Component{
         this.props.fetchHealthCareCosts()
         this.props.fetchHCPCSOperations()
         this.props.fetchUSStates()
+        this.props.fetchUserOperations()
         // this.props.getUserProfile()
     }
     
@@ -78,7 +81,7 @@ class Main extends Component{
 
         const MySubmissionForm = () => {
             return(
-                <SubmissionForm hcpcsoperations={this.props.hcpcsoperations.hcpcsoperations}/>
+                <SubmissionForm hcpcsoperations={this.props.hcpcsoperations.hcpcsoperations} states={this.props.usstates.USStates} user={this.props.auth.user} postUserOperations={this.props.postUserOperations}/>
             )
         }
 

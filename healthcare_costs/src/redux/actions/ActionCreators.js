@@ -244,3 +244,55 @@ export const postFeedback = (theFeedback)  => {
         alert('We were unable to submit your feedback \nError: ' + err.message)
     })
 };
+
+export const postUserOperations = (theOperation)  => {
+    axios
+    .post(serverUrl + 'useroperations', theOperation, { "content-type": "application/json"})
+    .then(res => {
+        if(res.statusText === "OK"){
+            alert("Your operation has been submitted")
+        }
+    })
+    .catch(err => {
+        console.log("post feedback", err.message, err)
+        alert('We were unable to submit your operation \nError: ' + err.message)
+    })
+};
+
+export const fetchUserOperations = () => dispatch => {
+    dispatch(userOperationsLoading())
+    return fetch(serverUrl + 'useroperations')
+    .then(response => {
+        if(response.ok){
+            return response
+        }else{
+            const error = new Error(`Error ${response.status}: ${response.statusText}`); 
+            error.response = response
+            throw error;
+        }
+    },
+        error =>{
+            const errMess = new Error(error.message);
+            throw errMess
+        }
+    )
+    
+    .then(response=> response.json())
+    .then(useroperations => dispatch(adduserOperations(useroperations)))
+    .catch(error => dispatch(userOperationsFailed(error.message)))
+
+}
+
+export const userOperationsLoading = () => ({
+    type: ActionTypes.USEROPERATION_LOADING
+})
+
+export const userOperationsFailed = errMess =>({
+    type: ActionTypes.USEROPERATION_FAILED,
+    payload: errMess
+})
+
+export const adduserOperations = useroperations => ({
+    type: ActionTypes.ADD_USEROPERATION,
+    payload: useroperations
+})

@@ -15,7 +15,7 @@ var samplehccRouter = require('./routes/samplehcc')
 var usstatesRouter = require('./routes/usstates')
 var hccoperationsRouter = require('./routes/hccoperations')
 var feedbackRouter = require('./routes/feedback')
-
+var useroperationsRouter = require('./routes/useroperations')
 
 const url = config.mongoUrl;
 const connect = mongoose.connect(url, {
@@ -47,6 +47,7 @@ app.use('/samplehcc', samplehccRouter)
 app.use('/usstates', usstatesRouter)
 app.use('/hccoperations', hccoperationsRouter)
 app.use('/feedback', feedbackRouter)
+app.use('/useroperations', useroperationsRouter)
 
 app.use(express.static(path.join(__dirname, 'public')));
 

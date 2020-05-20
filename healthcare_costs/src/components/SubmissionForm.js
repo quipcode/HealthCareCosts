@@ -13,23 +13,38 @@ const validEmail = val => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 
 function SubmissionForm(props){
         
-        let Answer = props => 
-        <select>{props.hcpcsoperations.map((x,y) => <option key={y}>{x}</option>)}</select>;
-        
-        let momentsList = [];
-        props.hcpcsoperations.forEach(({ value, label }) => momentsList.push({ value, label }));
 
-        let uniqueSet = [...new Set(momentsList.map(moment => moment.label))];
+        let operations = [];
+        props.hcpcsoperations.forEach(({ value, label }) => operations.push({ value, label }));
 
-        let sortedList = uniqueSet.sort()
+        let operationsSet = [...new Set(operations.map(moment => moment.label))];
+
+        let operationsList = operationsSet.sort()
             .map((label, index) => <option key={index}>{label}</option>);
-        // let uniqueSet = [...props.hcpcsoperations]
+
+        let states = [];
+        props.states.forEach(function({value, label}){
+            if(label != "Nation"){
+                states.push({ value, label })
+            }
+        })
+        // props.states.forEach(({ value, label }) =>
+        //     if(label != "Nation"){
+                
+        //     }
+        //  );
+        
+        let statesSet = [...new Set(states.map(moment => moment.label))];
+        
+       console.log(props)
+        
+        let statesList = statesSet.sort()
+            .map((label, index) => <option key={index}>{label}</option>);  
      
-        console.log(momentsList)
-        console.log(uniqueSet)
-        // let sortedList = uniqueSet.sort()
-        //     .map((label) => <option>{label}</option>);
-        console.log(sortedList)
+        // console.log(operations)
+        // console.log(operationsSet)
+
+        // console.log(operationsList)
         return (
           
             <div className="container">
@@ -38,30 +53,49 @@ function SubmissionForm(props){
                             <h2>Send us your Feedback</h2>
                             <hr />
                         </div>
-                        <div className="col-md-10">
+                        <div className="col-md">
                         <Form model="feedbackForm"  >   
                             {/* <Form model="feedbackForm"  onSubmit={values => this.handleSubmit(values)}>    */}
-                                <Row className="form-group">
-                                    <Label htmlFor="firstName" md={2}>Medicare Payment</Label>
+                                
+                                
+                                {/* <Row className="form-group">
+                                    <Label htmlFor="medicalOperations" md={2}>Medical Operations</Label>
                                     <Col md={10}>
-                                        <Control.text model=".firstName" id="firstName" name="firstName"
-                                            placeholder="Medicare Payment"
-                                            className="form-control"
-                                            validators={{
-                                                required,
-                                                minLength: minLength(2),
-                                                maxLength: maxLength(15)
-                                            }}
-                                        />
+                                        <Control.select model=".medicalOperations" name="medicalOperations"
+                                            className="form-control" validators={{
+                                                required
+                                            }}>
+                                
+                                           {operationsList}
+
+                                        </Control.select>
                                         <Errors
                                             className="text-danger"
-                                            model=".firstName"
+                                            model=".medicalOperations"
                                             show="touched"
                                             component="div"
                                             messages={{
-                                                required: 'Required',
-                                                minLength: 'Must be at least 2 characters',
-                                                maxLength: 'Must be 15 characters or less'
+                                                required: 'Required'
+                                            }}
+                                        />
+                                    </Col>
+                                </Row> */}
+                                <Row className="form-group">
+                                    <Label htmlFor="medicalOperation" md={2}>Medical Operation</Label>
+                                    <Col md={10}>
+                                        <Control.select model=".medicalOperation" name="medicalOperation"
+                                            className="form-control" validators={{
+                                                required
+                                            }}>
+                                           {operationsList}
+                                        </Control.select>
+                                        <Errors
+                                            className="text-danger"
+                                            model=".medicalOperation"
+                                            show="touched"
+                                            component="div"
+                                            messages={{
+                                                required: 'Required'
                                             }}
                                         />
                                     </Col>
@@ -119,6 +153,27 @@ function SubmissionForm(props){
                                     </Col>
                                 </Row>
                                 <Row className="form-group">
+                                    <Label htmlFor="state" md={2}>State</Label>
+                                    <Col md={10}>
+                                        <Control.select model=".state" name="state"
+                                            className="form-control" validators={{
+                                                required
+                                            }}>
+                                           {statesList}
+                                        </Control.select>
+                                        <Errors
+                                            className="text-danger"
+                                            model=".medicalOperations"
+                                            show="touched"
+                                            component="div"
+                                            messages={{
+                                                required: 'Required'
+                                            }}
+                                        />
+                                    </Col>
+                                </Row>
+              
+                                <Row className="form-group">
                                     <Label htmlFor="email" md={2}>Email</Label>
                                     <Col md={10}>
                                         <Control.text model=".email" id="email" name="email"
@@ -141,28 +196,7 @@ function SubmissionForm(props){
                                         />
                                     </Col>
                                 </Row>
-                                <Row className="form-group">
-                                    <Col md={{ size: 4, offset: 2 }}>
-                                        <div className="form-check">
-                                            <Label check>
-                                                <Control.checkbox
-                                                    model=".agree"
-                                                    name="agree"
-                                                    className="form-check-input"
-                                                /> {' '}
-                                                <strong>May we contact you?</strong>
-                                            </Label>
-                                        </div>
-                                    </Col>
-                                    <Col md={4}>
-                                        <Control.select model=".contactType" name="contactType"
-                                            className="form-control">
-                                            {/* {this.state.operations} */}
-                                           {sortedList}
-
-                                        </Control.select>
-                                    </Col>
-                                </Row>
+                         
                                 <Row className="form-group">
                                     <Label htmlFor="feedback" md={2}>Your Feedback</Label>
                                     <Col md={10}>
@@ -180,6 +214,11 @@ function SubmissionForm(props){
                                     </Col>
                                 </Row>
                             </Form>
+                        </div>
+                        <div className="col-12">
+                            
+                            <hr />
+                            <p>Don't see the operation you had listed please fill out our suggestion form</p>
                         </div>
                     </div>
                     </div>
