@@ -34,7 +34,7 @@ class POCSearch extends Component{
                         </div>
                     </div>
                     <Link to={{
-                        pathname: '/healthcarecosts',
+                        pathname: '/pochealthcarecosts',
                         operationstateProps: {
                             operation: this.state.operation,
                             state: this.state.state

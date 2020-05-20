@@ -75,6 +75,13 @@ class Main extends Component{
                 <FeedbackForm userId={this.props.auth.user.id} postFeedback={this.props.postFeedback}  resetFeedbackForm={this.props.resetFeedbackForm}/>
             )
         }
+
+        const MySubmissionForm = () => {
+            return(
+                <SubmissionForm hcpcsoperations={this.props.hcpcsoperations.hcpcsoperations}/>
+            )
+        }
+
         return(
             <div>
             <NavBar auth={this.props.auth}/>
@@ -83,7 +90,7 @@ class Main extends Component{
                     <Route path='/pochealthcarecosts' component={POCTableComp}  />
                     <Route path='/pocsearch' render={() => <POCSearch props={this.props} />} />
                     <Route exact path="/register" component={Register} />
-                    <PrivateRoute exact path="/submissionform" component={SubmissionForm} />
+                    <PrivateRoute exact path="/submissionform" component={MySubmissionForm} />
                     <PrivateRoute exact path="/feedback" component={MyFeedbackForm} />
                     <PrivateRoute exact path="/myprofile" component={MyUserProfile} />
                     <Redirect to='/home' />
