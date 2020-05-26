@@ -30,3 +30,14 @@ export const MyUserProfile = {
     state: '',
     zipcode: '' 
 }
+
+
+export const UserOperation = {
+    UserId:"",
+    Operation:"",
+    State: "",
+    MedPayment: "",
+    PaidAmnt: "",
+    CoverMedicarePayment: ""
+}
+

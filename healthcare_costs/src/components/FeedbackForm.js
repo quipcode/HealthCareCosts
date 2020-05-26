@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux"
 
 
+
 const required = val => val && val.length;
 const maxLength = len => val => !val || (val.length <= len);
 const minLength = len => val => val && (val.length >= len);
@@ -33,6 +34,7 @@ class FeedbackForm extends React.Component {
     }
     render() {
       return (
+          <React.Fragment>
         <div className="container">
         <div className="row row-content">
                     <div className="col-12">
@@ -96,7 +98,9 @@ class FeedbackForm extends React.Component {
                         </Form>
                     </div>
                 </div>
-                </div>       
+                </div> 
+                
+                </React.Fragment>
       );
     }
   }
