@@ -13,7 +13,8 @@ useroperationsRouter.route('/')
             Operation: req.body.operation,
             MedPayment: req.body.medPayment,
             PaidAmnt: req.body.actualPaid,
-            CoverMedicarePayment: req.body.coveredByMedicare
+            CoverMedicarePayment: req.body.coveredByMedicare,
+            State: req.body.state
         })
         newUserOperations
         .save()

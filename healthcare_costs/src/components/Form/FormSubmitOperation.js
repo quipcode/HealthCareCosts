@@ -33,7 +33,7 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
     </div>
   )
 
-// let SimpleForm = props => {
+// let FormSubmitOperation = props => {
 //   const { handleSubmit, pristine, submitting } = props;
 //   return (
 //     <form onSubmit={ handleSubmit }>
@@ -88,7 +88,7 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
 //   )
 // }
 
-class SimpleForm extends Component {
+class FormSubmitOperation extends Component {
   constructor(props){
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -117,31 +117,31 @@ class SimpleForm extends Component {
           
         
           <Row className="form-group">
-            <Label htmlFor="Operation" md={2}>Medical Operation</Label>
+            <Label htmlFor="operation" md={2}>Medical Operation</Label>
             <Col md={10}>
-            <Field className="form-control" name="medops" component='select' >
+            <Field className="form-control" name="operation" component='select' >
               {this.props.medops}
             </Field>
     
             </Col>
           </Row>
           <Row className="form-group">
-            <Label htmlFor="MedPayment" md={2}>Payment Required</Label>
+            <Label htmlFor="medPayment" md={2}>Payment Required</Label>
             <Col md={10}>
-              <Field className="form-control" placeholder="Payment Required" component='input' name="MedPayment"  />
+              <Field className="form-control" placeholder="Payment Required" component='input' name="medPayment"  />
             </Col>
           </Row>
           <Row className="form-group">
-            <Label htmlFor="CoveredMedicarePayment" md={2}>Covered Amount</Label>
+            <Label htmlFor="coveredByMedicare" md={2}>Covered Amount</Label>
             <Col md={10}>
-              <Field className="form-control" placeholder="Covered amount by Medicare" component='input' name="CoveredMedicarePayment"  />
+              <Field className="form-control" placeholder="Covered amount by Medicare" component='input' name="coveredByMedicare"  />
             </Col>
           </Row>
           
           <Row className="form-group">
-            <Label htmlFor="PaidAmnt" md={2}>Paid Amount</Label>
+            <Label htmlFor="actualPaid" md={2}>Paid Amount</Label>
             <Col md={10}>
-              <Field className="form-control" placeholder="Paid Amount" component='input' name="PaidAmnt"  />
+              <Field className="form-control" placeholder="Paid Amount" component='input' name="actualPaid"  />
             </Col>
           </Row>
           <Row className="form-group">
@@ -171,9 +171,9 @@ class SimpleForm extends Component {
     )
   }
 }
-SimpleForm = reduxForm({
+FormSubmitOperation = reduxForm({
   form: 'contact',
   validate,
-})(SimpleForm);
+})(FormSubmitOperation);
 
-export default SimpleForm;
+export default FormSubmitOperation;

@@ -7,6 +7,8 @@ import {connect} from 'react-redux';
 import { Field, reduxForm } from 'redux-form'
 import FormSubmitOperation from './Form/FormSubmitOperation'
 import DropdownList from 'react-widgets/lib/DropdownList'
+import {postUserOperations} from '../redux/actions/ActionCreators'
+import PropTypes from "prop-types";
 
 // import {postFeedback} from '../redux/actions/ActionCreators'
 
@@ -24,14 +26,16 @@ class SubmissionForm extends Component{
             operationsList: [],
             statesList: []
         }
-      
-
+        this.handleSubmit = this.handleSubmit.bind(this) 
+        
+        // Format fetched opeartion into options then sort into an array
         let operations = [];
         this.props.hcpcsoperations.forEach(({ value, label }) => operations.push({ value, label }));
         let operationsSet = [...new Set(operations.map(moment => moment.label))];
         this.state.operationsList = operationsSet.sort()
             .map((label, index) => <option key={index}>{label}</option>);
         
+        // Format fetched states into a sorted array
         let states = [];
         this.props.states.forEach(function({value, label}){
             if(label !== "Nation"){
@@ -43,7 +47,13 @@ class SubmissionForm extends Component{
        
     }
 
-     
+   
+
+    handleSubmit(values) {
+        console.log("in handle sub", values)
+        this.props.postUserOperations(values)
+        alert("your operation has been submitted")
+    } 
     render(){
         return (
             <div className="container">
@@ -51,7 +61,8 @@ class SubmissionForm extends Component{
                     <h2>Submit an operation</h2>
                     <hr />
                 </div>
-                <FormSubmitOperation onSubmit={val => console.log("hello there", val, this.state.statesList )} userid={this.props.user.id} states={this.state.statesList} medops={this.state.operationsList} flame={["pink", "12"]}/>
+                {/* val => console.log("hello there", val, this.state.statesList ) */}
+                <FormSubmitOperation onSubmit={this.handleSubmit} userid={this.props.user.id} states={this.state.statesList} medops={this.state.operationsList} flame={["pink", "12"]}/>
             <div className="row row-content">                    
                 <div className="col-12">            
                     <hr />
@@ -67,11 +78,26 @@ class SubmissionForm extends Component{
     
 }
 
+
+SubmissionForm.propTypes = {
+    postUserOperations: PropTypes.func.isRequired,
+  };
+  
+//   const mapStateToProps = state => ({
+//     auth: state.auth,
+//     errors: state.errors
+//   });
+  
+//   export default connect(
+//     mapStateToProps,
+//     { postUserOperations }
+//   )(SubmissionForm);
+
 const mapDispatchToProps = dispatch => ({
     // ...other methods,
+    postUserOperations,
     dispatch                // ← Add this
  })
 
 export default connect(null, mapDispatchToProps)(SubmissionForm)
 
-//   export default SubmissionForm; 

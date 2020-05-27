@@ -24,7 +24,11 @@ const useroperationsSchema = new Schema({
     CoverMedicarePayment: {
         type: Currency,
          min: 0
-    }
+    },
+    State: {
+        type: String,
+        default: ""
+    },
 })
 
 module.exports = mongoose.model("useroperations", useroperationsSchema);
