@@ -4,11 +4,12 @@ import React, { Component } from 'react';
 import { Control, Form, Errors, actions, component } from 'react-redux-form';
 import {  Button, Label, Col, Row} from 'reactstrap'
 import {connect} from 'react-redux';
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm, reset } from 'redux-form'
 import FormSubmitOperation from './Form/FormSubmitOperation'
 import DropdownList from 'react-widgets/lib/DropdownList'
 import {postUserOperations} from '../redux/actions/ActionCreators'
 import PropTypes from "prop-types";
+
 
 // import {postFeedback} from '../redux/actions/ActionCreators'
 
@@ -47,12 +48,25 @@ class SubmissionForm extends Component{
        
     }
 
+    
+        submitMyForm(data) {
+            const {createRecord, resetForm} = this.props;
+            return createRecord(data).then(() => {
+            resetForm();
+            // do other success stuff
+            });
+        }
    
 
     handleSubmit(values) {
+       
         console.log("in handle sub", values)
-        this.props.postUserOperations(values)
-        alert("your operation has been submitted")
+        
+        
+        // resetForm();
+        // this.props.postUserOperations(values)
+        // alert("your operation has been submitted")
+        // this.handleSubmit(this.submitMyForm.bind(this))
     } 
     render(){
         return (
@@ -62,7 +76,8 @@ class SubmissionForm extends Component{
                     <hr />
                 </div>
                 {/* val => console.log("hello there", val, this.state.statesList ) */}
-                <FormSubmitOperation onSubmit={this.handleSubmit} userid={this.props.user.id} states={this.state.statesList} medops={this.state.operationsList} flame={["pink", "12"]}/>
+                {/* onSubmit={val => this.handleSubmit(val)} */}
+                <FormSubmitOperation  userid={this.props.user.id} states={this.state.statesList} medops={this.state.operationsList} flame={["pink", "12"]}/>
             <div className="row row-content">                    
                 <div className="col-12">            
                     <hr />
