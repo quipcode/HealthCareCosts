@@ -164,11 +164,11 @@ class Login extends Component{
 
                     <hr className="my-4"/>
                     
-                    <div className="row">
+                    {/* <div className="row">
                     
                         <button className="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i className="fab fa-google mr-2"></i> Sign in with Google</button>
-                    </div>
-                        <hr className="my-4"/>
+                    </div> */}
+                        {/* <hr className="my-4"/> */}
                     
                     <div className="row ">                                   
                         <p id="signUpTxt">Don't have an account? Sign up here!</p>

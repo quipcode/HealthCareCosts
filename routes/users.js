@@ -2,9 +2,10 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const keys = require("../../../keys");
-const passport = require("passport");
-const cors = require('./cors');
+// const keys = require("../../../keys");
+// const passport = require("passport");
+// const cors = require('./cors');
+require('dotenv').config();
 
 
 
@@ -64,7 +65,7 @@ router.post("/login",(req,res, next) => {
                 }
                 jwt.sign(
                     payload,
-                    keys.secretOrKey,
+                    process.env.secretOrKey,
                     {
                         expiresIn: 31556926 //1 year in sec
                     },

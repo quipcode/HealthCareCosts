@@ -96,6 +96,7 @@ class Main extends Component{
         return(
             <div>
             <NavBar auth={this.props.auth}/>
+            
             {/* <TransitionGroup> */}
                 <Switch>
                     <Route path='/healthcarecosts' component={UserOpTable}  />

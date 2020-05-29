@@ -9,7 +9,7 @@ import history from '../../history';
 
 export const fetchHealthCareCosts = () => dispatch => {
     dispatch(healthCareCostsLoading())
-    return fetch(serverUrl + 'samplehcc')
+    return fetch('/samplehcc')
     .then(response => {
         if(response.ok){
             return response
@@ -47,7 +47,7 @@ export const addHealthCareCosts = healthcarecostdata => ({
 
 export const fetchHCPCSOperations = () => dispatch => {
     dispatch(HCPCSOperationLoading())
-    return fetch(serverUrl + 'hccoperations')
+    return fetch('hccoperations')
     .then(response => {
         if(response.ok){
             
@@ -86,7 +86,7 @@ export const addHCPCSOperations = hcpcsoperations => ({
 
 export const fetchUSStates = () => dispatch => {
     dispatch(USStatesLoading())
-    return fetch(serverUrl + 'usstates')
+    return fetch('usstates')
     .then(response => {
         if(response.ok){
             return response
@@ -149,7 +149,7 @@ export const setCurrentUser = decoded => {
 export const loginUser = credentials => dispatch =>{
 
     axios
-      .post(serverUrl + 'users/login', credentials, { "content-type": "application/json"})
+      .post('users/login', credentials, { "content-type": "application/json"})
       .then(res => {
           const {token} = res.data
           localStorage.setItem("jwtToken", token);
@@ -187,7 +187,7 @@ export const logoutUser = () => dispatch => {
 export const getUserProfile = userId => dispatch =>{
 
     axios
-    .get(serverUrl + 'users/' + userId, {
+    .get('users/' + userId, {
         validateStatus: function (status) {
           return status < 500; // Reject only if the status code is greater than or equal to 500
         }})
@@ -206,7 +206,7 @@ export const getUserProfile = userId => dispatch =>{
 export const patchUserProfile = (profile, userId) => dispatch =>{
         dispatch(userprofileLoading())
         axios
-        .patch(serverUrl  + 'users/' + userId, profile)
+        .patch('users/' + userId, profile)
         .then(res =>{
             dispatch(addUserProfile(profile))
             alert("Your profile has been updated")
@@ -233,7 +233,7 @@ export const addUserProfile = userprofile => ({
 
 export const postFeedback = (theFeedback)  => {
     axios
-    .post(serverUrl + 'feedback', theFeedback, { "content-type": "application/json"})
+    .post('feedback', theFeedback, { "content-type": "application/json"})
     .then(res => {
         if(res.statusText === "OK"){
             alert("Your feedback has been submitted")
@@ -247,7 +247,7 @@ export const postFeedback = (theFeedback)  => {
 
 export const postUserOperations = (theOperation)  => {
     axios
-    .post(serverUrl + 'useroperations', theOperation, { "content-type": "application/json"})
+    .post('useroperations', theOperation, { "content-type": "application/json"})
     .then(res => {
         if(res.statusText === "OK"){
             alert("Your operation has been submitted")
@@ -261,7 +261,7 @@ export const postUserOperations = (theOperation)  => {
 
 export const fetchUserOperations = () => dispatch => {
     dispatch(userOperationsLoading())
-    return fetch(serverUrl + 'useroperations')
+    return fetch('useroperations')
     .then(response => {
         if(response.ok){
             return response
@@ -301,7 +301,7 @@ export const adduserOperations = useroperations => ({
 
 export const postOperationRequest = (operationDetails)  => {
     axios
-    .post(serverUrl + 'operationrequest', operationDetails, { "content-type": "application/json"})
+    .post('operationrequest', operationDetails, { "content-type": "application/json"})
     .then(res => {
         if(res.statusText === "OK"){
             alert("Your operation request has been submitted")

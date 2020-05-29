@@ -23,7 +23,10 @@ The table seen here is from the curtosy of the [material-table](https://github.c
 Login form pulled from [here](https://startbootstrap.com/snippets/login/)
 
 Detected Bugs:
-- [ ] Failed login message not relayed to end user
+- [x] Failed login message not relayed to end user
+
+Features to add:
+- [ ] Allow oAuth signup
 <!-- - [ ] Update the website
 - [x] Write the press release
 - [ ] Update the website

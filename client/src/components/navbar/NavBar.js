@@ -1,5 +1,5 @@
 import React, {useState}from 'react'
-import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, Button,  Modal, ModalHeader, ModalBody} from 'reactstrap'
+import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, Button,  Modal, ModalHeader, Dropdown, DropdownMenu, DropdownItem, DropdownToggle, ModalBody} from 'reactstrap'
 import { NavDropdown } from 'react-bootstrap';
 import { NavLink} from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -14,6 +14,9 @@ let NavBar = (props) => {
     const [toggleLoginModal, modalLoginToggler] = useState(false)
     const [toggleLogoutModal, modalLogoutToggler] = useState(false)
 
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+
+    const toggle = () => setDropdownOpen(!dropdownOpen);
     
     function refreshPage(){ 
         // alert("hello there my friend")
@@ -101,21 +104,23 @@ let NavBar = (props) => {
             </React.Fragment>
         : 
             <React.Fragment>
+                   
                 <Collapse isOpen={toggleNav} navbar>
-                    <Nav className="float-xs-right" navbar>
-                        <NavDropdown eventkey={1}
-                                title={
-                                    <div className="pull-left">
-                                        <span>Proof of Concept - POC</span>
-                                    </div>
-                                }
-                                id="basic-nav-dropdown" 
-                        >
-                            <NavDropdown.Item to="/pocsearch">POC Search</NavDropdown.Item>
-                            <NavDropdown.Item to="/pochealthcarecosts">POC HealthCare Costs</NavDropdown.Item>        
-                        </NavDropdown>
+                  
+                 
+                    <Nav  className="float-xs-right" navbar>
+                    <Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
+                        <DropdownToggle style={{color: '#f1f1f1'}} className="pull-left" nav caret id="basic-nav-dropdown">
+                            Proof of Concept - POC
+                        </DropdownToggle>
+                        <DropdownMenu>
+                           
+                            <DropdownItem href="/pocsearch" >POC Search</DropdownItem>
+                            
+                            <DropdownItem href="/pochealthcarecosts">POC HealthCare Costs</DropdownItem>
+                        </DropdownMenu>
+                        </Dropdown>
                     </Nav>
-
                     <Nav className="ml-auto" navbar>
                         <NavItem>
                         <Button color="secondary" onClick={() => modalLoginToggler(!toggleLoginModal)} >
@@ -123,6 +128,7 @@ let NavBar = (props) => {
                         </Button>
                         </NavItem>
                     </Nav>
+                 
                 </Collapse>
 
             <Modal isOpen={toggleLoginModal} toggle={modalLoginToggler}>
