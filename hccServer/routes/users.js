@@ -46,7 +46,7 @@ router.post('/register', (req,res) => {
     })
 })
 
-router.post("/login", cors.corsWithOptions ,(req,res, next) => {
+router.post("/login",(req,res, next) => {
     const {errors, isValid} = validateLoginInput(req.body)
     if(!isValid){
         return res.status(400).json(errors)
@@ -94,7 +94,7 @@ router.get("/",(req,res) =>{
     .catch(err => next(err))
 })
 
-router.route("/:userId", cors.corsWithOptions)
+router.route("/:userId")
 .get((req,res,next) => {
     User.findById(req.params.userId)
     .then(user => {

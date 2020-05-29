@@ -6,8 +6,8 @@ const cors = require('./cors')
 const feedbackRouter = express.Router()
 
 feedbackRouter.route('/')
-    .options(cors.corsWithOptions, (req,res) => res.sendStatus(200))
-    .post(cors.cors, (req,res,next) => {
+    .options((req,res) => res.sendStatus(200))
+    .post( (req,res,next) => {
         const newFeedback = new Feedback({
             userId: req.body.userId,
             title: req.body.title,
@@ -18,7 +18,7 @@ feedbackRouter.route('/')
         .then(feedback => res.json(feedback))
         .catch(err => next(err))
     })
-    .get(cors.cors, (req,res,next) => {
+    .get( (req,res,next) => {
         USStates.find().sort({value: 1})
         .then(usstates => {
             res.statusCode = 200;

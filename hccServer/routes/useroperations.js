@@ -6,8 +6,8 @@ const cors = require('./cors')
 const useroperationsRouter = express.Router()
 
 useroperationsRouter.route('/')
-    .options(cors.corsWithOptions, (req,res) => res.sendStatus(200))
-    .post(cors.cors, (req,res,next) => {
+    .options((req,res) => res.sendStatus(200))
+    .post((req,res,next) => {
         const newUserOperations = new UserOperations({
             UserId: req.body.userid,
             Operation: req.body.operation,
@@ -21,7 +21,7 @@ useroperationsRouter.route('/')
         .then(useroperation => res.json(useroperation))
         .catch(err => next(err))
     })
-    .get(cors.cors, (req,res,next) => {
+    .get( (req,res,next) => {
         UserOperations.find().sort({value: 1})
         .then(usstates => {
             res.statusCode = 200;
