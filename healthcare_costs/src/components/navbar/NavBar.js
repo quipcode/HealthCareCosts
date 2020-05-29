@@ -14,7 +14,12 @@ let NavBar = (props) => {
     const [toggleLoginModal, modalLoginToggler] = useState(false)
     const [toggleLogoutModal, modalLogoutToggler] = useState(false)
 
-
+    
+    function refreshPage(){ 
+        // alert("hello there my friend")
+        // alert(window.location)
+        // window.location.reload(); 
+    }
 
     const loginOrProfile = (auth) => {
         
@@ -41,18 +46,26 @@ let NavBar = (props) => {
                         </NavLink>
                     </NavItem>
 
+
                     <NavItem>
                         <NavLink className="nav-link" to="/submissionform">
                             <i className=" fa fa-pencil-square-o fa-lg" /> Submission Form
                         </NavLink>
                     </NavItem>
-                    
-                    <NavItem>
-                        <NavLink className="nav-link" to="/healthcarecosts">
-                            <i className="fa fa-list fa-lg" /> HealthCare Costs
-                        </NavLink>
-                    </NavItem>
 
+                    <NavDropdown eventkey={1}
+                            title={
+                                <div className="pull-left">
+                                    <span>HealthCare Costs</span>
+                                </div>
+                            }
+                            id="basic-nav-dropdown" 
+                        >
+                        <NavDropdown.Item href="/searchhcc"><i className="fa fa-search fa-lg" /> Search Costs</NavDropdown.Item>
+                        <NavDropdown.Item href="/healthcarecosts"> <i className="fa fa-list fa-lg" /> HealthCare Costs</NavDropdown.Item>
+                    </NavDropdown>
+                    
+                   
                     <NavItem>
                         <NavLink className="nav-link" to="/feedback">
                             <i className=" fa fa-address-card fa-lg" /> Feedback
@@ -98,8 +111,8 @@ let NavBar = (props) => {
                                 }
                                 id="basic-nav-dropdown" 
                         >
-                            <NavDropdown.Item href="/pocsearch">POC Search</NavDropdown.Item>
-                            <NavDropdown.Item href="/pochealthcarecosts">POC HealthCare Costs</NavDropdown.Item>        
+                            <NavDropdown.Item to="/pocsearch">POC Search</NavDropdown.Item>
+                            <NavDropdown.Item to="/pochealthcarecosts">POC HealthCare Costs</NavDropdown.Item>        
                         </NavDropdown>
                     </Nav>
 
@@ -125,7 +138,7 @@ let NavBar = (props) => {
     return(
         <div>
             <Navbar dark sticky="top"  className=" navbar navbar-dark  navbar-expand-sm" expand="sm">
-                <NavbarBrand className="mr-auto" href="/"><img src="../assets/images/2018-healthcare-costs.jpg" height="30" width="30" alt="Cost of HealthCare" /></NavbarBrand>
+                <NavbarBrand className="mr-auto" to="/"><img src="../assets/images/2018-healthcare-costs.jpg" height="30" width="30" alt="Cost of HealthCare" /></NavbarBrand>
                 <NavbarToggler onClick={() => navToggler(!toggleNav)} />
                 {loginOrProfile(props.auth)}
             </Navbar>

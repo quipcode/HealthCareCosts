@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import { actions } from 'react-redux-form';
 import {fetchHealthCareCosts, fetchHCPCSOperations, getUserProfile, patchUserProfile , fetchUSStates, postFeedback, fetchUserOperations, postUserOperations} from '../redux/actions/ActionCreators'
 
+
 import POCSearch from './POC/POCSearch'
 import SubmissionForm from './SubmitOperation'
 import FeedbackForm from './FeedbackForm'
@@ -13,6 +14,8 @@ import MyProfilePage from './myprofile/MyProfilePage'
 import NavBar from './navbar/NavBar'
 import Register from './register/Register'
 import PrivateRoute from './private-route/PrivateRoute'
+import UserOperationTable from './useroperation/UserOperationTable'
+import UserOperationSearch from './useroperation/UserOperationSearch'
 
 
 const mapDispatchToProps = {
@@ -68,6 +71,10 @@ class Main extends Component{
                 <POCTable hcCosts={this.props.healthcarecosts} filterBy={location.operationstateProps} />
             )
         }
+        const UserOpTable =({location}) => {
+            // hcCosts={this.props.useroperations}
+            return(<UserOperationTable hcCosts={this.props.useroperations}  filterBy={location.operationstateProps} />)
+        }
         const MyUserProfile = () =>{
             return (
                 < MyProfilePage patchUserProfile={this.props.patchUserProfile} userId={this.props.auth.user.id} getUserProfile={this.props.getUserProfile} myprofile={this.props.userprofile.userprofile} states={this.props.usstates.USStates}></MyProfilePage>
@@ -85,20 +92,27 @@ class Main extends Component{
             )
         }
 
+      
         return(
             <div>
             <NavBar auth={this.props.auth}/>
-            <TransitionGroup>
+            {/* <TransitionGroup> */}
                 <Switch>
+                    <Route path='/healthcarecosts' component={UserOpTable}  />
                     <Route path='/pochealthcarecosts' component={POCTableComp}  />
+                    
                     <Route path='/pocsearch' render={() => <POCSearch props={this.props} />} />
                     <Route exact path="/register" component={Register} />
                     <PrivateRoute exact path="/submissionform" component={MySubmissionForm} />
                     <PrivateRoute exact path="/feedback" component={MyFeedbackForm} />
                     <PrivateRoute exact path="/myprofile" component={MyUserProfile} />
+                    
+                    <Route path='/searchhcc' render={() => <UserOperationSearch props={this.props} />} />
+                    
+                    
                     <Redirect to='/home' />
                 </Switch>
-            </TransitionGroup>
+            {/* </TransitionGroup> */}
             </div>
 
         )
