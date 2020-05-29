@@ -296,3 +296,19 @@ export const adduserOperations = useroperations => ({
     type: ActionTypes.ADD_USEROPERATION,
     payload: useroperations
 })
+
+
+
+export const postOperationRequest = (operationDetails)  => {
+    axios
+    .post(serverUrl + 'operationrequest', operationDetails, { "content-type": "application/json"})
+    .then(res => {
+        if(res.statusText === "OK"){
+            alert("Your operation request has been submitted")
+        }
+    })
+    .catch(err => {
+        console.log("post feedback", err.message, err)
+        alert('We were unable to submit your operation request at this time \nError: ' + err.message)
+    })
+};

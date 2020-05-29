@@ -7,7 +7,7 @@ import {  Button, Label, Col, Row} from 'reactstrap'
 // import {postFeedback} from '../redux/actions/ActionCreators'
 import PropTypes from "prop-types";
 import { connect } from "react-redux"
-
+import {postOperationRequest} from '../../redux/actions/ActionCreators'
 
 
 const required = val => val && val.length;
@@ -25,15 +25,31 @@ class FormSuggestOperation extends React.Component {
             title: '',
             body: ''
         };
-        this.handleSubmit = this.handleSubmit.bind(this);
+        // this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    componentDidMount() {
+        this.props.initialize({ userid: this.props.userid });
     }
   
-    handleSubmit(event) {
-        const myFeedback = {...event, userId: this.props.userId}
-        // postFeedback(myFeedback)
-        // this.props.resetFormSuggestOperation();
-    }
+    onSubmit = (formValues, dispatch) => {
+        console.log('the formvalues', formValues)
+        postOperationRequest(formValues)
+        this.props.toggy()
+        
+        dispatch(reset("userOperationSuggestion")); // string here is the name of the form, check the export default reduxForm below.
+        
+      };
+    // handleSubmit(event) {
+    //     event.preventDefault()
+    //     console.log(event)
+    //     // console.log("SUPPOSED VAL", val)
+    //     // event.preventDefault()
+    //     // const myFeedback = {...event, userId: this.props.userId}
+    //     // postFeedback(myFeedback)
+    //     // this.props.resetFormSuggestOperation();
+    // }
     render() {
+        const { handleSubmit } = this.props;
       return (
           <React.Fragment>
         <div className="container">
@@ -44,26 +60,24 @@ class FormSuggestOperation extends React.Component {
                     </div> */}
                     <div className="col-md-12">
                     {/* onSubmit={this.props.handleSubmit(this.onSubmit)} */}
-                    <form >
-                        
+                    <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+                    <Field className="form-control" name="userid" component='input' disabled hidden />
+                
                         <Row className="form-group">
-                            
-                            <Label htmlFor="coveredByMedicare">Operation</Label>
-                            
-                            <Field className="form-control" placeholder="Operation" component='input' name="coveredByMedicare"  />
-                            
+                            <Label htmlFor="operationName">Operation</Label>
+                            <Field className="form-control" placeholder="Operation" component='input' name="operationName"  />
                         </Row>
                         
                         <Row className="form-group">
-                            <Label htmlFor="actualPaid">Description</Label>
+                            <Label htmlFor="detail">Description</Label>
                             
-                            <Field className="form-control" placeholder="Description" component='textarea' name="actualPaid"  />
+                            <Field className="form-control" placeholder="Description" component='textarea' name="detail"  />
                          
                         </Row>
                       
                         <Row className="form-group">
                             <Col  >
-                                <Button type="submit" className="float-right" color="info">
+                                <Button  className="float-right" color="info">
                                     Suggest Operation
                                 </Button>
                             </Col>
