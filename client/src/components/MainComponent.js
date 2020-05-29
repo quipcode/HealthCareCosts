@@ -16,6 +16,7 @@ import Register from './register/Register'
 import PrivateRoute from './private-route/PrivateRoute'
 import UserOperationTable from './useroperation/UserOperationTable'
 import UserOperationSearch from './useroperation/UserOperationSearch'
+import Home from './Home'
 
 
 const mapDispatchToProps = {
@@ -110,7 +111,7 @@ class Main extends Component{
                     
                     <Route path='/searchhcc' render={() => <UserOperationSearch props={this.props} />} />
                     
-                    
+                    <Route path='/home' render={() => <Home />} />
                     <Redirect to='/home' />
                 </Switch>
             {/* </TransitionGroup> */}
