@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 // import TextField from '@material-ui/core/TextField';
 // import Button from '@material-ui/core/Button';
 import { Control, Form, Errors, actions, component } from 'react-redux-form';
-import {  Button, Label, Col, Row} from 'reactstrap'
+import {  Button, Label, Col, Row, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap'
 import {connect} from 'react-redux';
 import { Field, reduxForm, reset } from 'redux-form'
 import FormSubmitOperation from './Form/FormSubmitOperation'
 import DropdownList from 'react-widgets/lib/DropdownList'
 import {postUserOperations} from '../redux/actions/ActionCreators'
 import PropTypes from "prop-types";
+import FormSuggestOperation from './Form/FormSuggestOperation';
+
+// import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, Button,  Modal, ModalHeader, ModalBody} from 'reactstrap'
 
 
 // import {postFeedback} from '../redux/actions/ActionCreators'
@@ -22,10 +25,16 @@ const isNumber = val => !isNaN(+val);
 class SubmissionForm extends Component{
     constructor(props){
         super(props)
-        
+       
+        this.toggleModal = this.toggleModal.bind(this);
         this.state = {
             operationsList: [],
-            statesList: []
+            statesList: [],
+            toggleLoginModal: false,
+            modalLoginToggler: false,
+            show: false,
+            isModalOpen: false
+
         }
         this.handleSubmit = this.handleSubmit.bind(this) 
         
@@ -45,10 +54,11 @@ class SubmissionForm extends Component{
         })
         let statesSet = [...new Set(states.map(moment => moment.label))];
         this.state.statesList = statesSet.sort().map((label, index) => <option key={index}>{label}</option>);  
-       
+        // const [toggleLoginModal, modalLoginToggler] = useState(false)
     }
 
-    
+    // toggleLoginModal = useState(false)
+    // modalLoginToggler = useState(false)
         submitMyForm(data) {
             const {createRecord, resetForm} = this.props;
             return createRecord(data).then(() => {
@@ -56,7 +66,11 @@ class SubmissionForm extends Component{
             // do other success stuff
             });
         }
-   
+        toggleModal() {
+            this.setState({
+                isModalOpen: !this.state.isModalOpen
+            });
+        }
 
     handleSubmit(values) {
        
@@ -82,10 +96,42 @@ class SubmissionForm extends Component{
                 <div className="col-12">            
                     <hr />
                     <span>Don't see the operation you had listed please fill out our suggestion form</span>
-                    <Button type="submit" className="float-right" color="info">
+                    <Button onClick={this.toggleModal} className="float-right" color="info">
                         Suggest Operation
                     </Button>
                 </div>
+                
+          
+        
+                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                    <ModalHeader toggle={this.toggleModal}><h2>Suggest an operation</h2></ModalHeader>
+                    <ModalBody>
+                        {/* <LocalForm onSubmit={values => this.handleSubmit(values)}>
+                            <div className="form-group">
+                                <Label htmlFor="rating">Rating</Label>
+                                <Control.select model=".rating" id="rating" name="rating"
+                                    className="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </Control.select>
+                            </div>
+                            <div className="form-group">
+                                <Label htmlFor="text">Comment</Label>
+                                <Control.textarea model=".text" id="text" name="text"
+                                    rows="6"
+                                    className="form-control"
+                                />
+                            </div>
+                            <Button type="submit" color="primary">
+                                Submit
+                            </Button>
+                        </LocalForm> */}
+                        <FormSuggestOperation onClick={this.toggleModal}/>
+                    </ModalBody>
+                </Modal>
             </div>   
             </div>
           );

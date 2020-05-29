@@ -117,14 +117,6 @@ class FormSubmitOperation extends Component {
                   </Button>
               </Col>
           </Row>
-
-        {/* <Field name="userid" component='input' hidden placeholder="Number" />
-        <Field name="anotherField" component='input' />
-        <Field name="anotherField2" component='input' />
-        <Field className="form-control" name="state" component='select'  > {this.props.states} </Field>
-        <div>
-           <button type="submit" >Submit</button>
-         </div> */}
       </form>
     )
   }
